@@ -1,4 +1,4 @@
-package DAO;
+package Handlers;
 
 public class VægtHandler {
 }
