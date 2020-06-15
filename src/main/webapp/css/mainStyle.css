@@ -1,0 +1,95 @@
+body{
+    background-color: black;
+    color: white;
+    float: left;
+    margin: 0;
+    position: absolute;
+    overflow: no-content;
+    width:100%;
+}
+body header{
+    display: block;
+    color: white;
+    float: left;
+    position: relative;
+    overflow: no-content;
+    width: 100%;
+}
+header img{
+    display: block;
+    float: left;
+    position: relative;
+    width: 23%
+}
+header h1{
+    display: block;
+    float: left;
+    position: relative;
+    width: 75%;
+}
+
+body main{
+    display: block;
+    background-color: white;
+    color: black;
+    float: left;
+    padding: 20px;
+    position: relative;
+    overflow: no-content;
+    width: 100%;
+}
+/*styling for forms*/
+main form{
+    margin: 0 auto;
+    position: relative;
+    padding: 10px;
+    overflow: hidden;
+    width: 90%;
+}
+form h2{
+    float: left;
+    font-size: 60px;
+    position: relative;
+    width: 100%;
+}
+form label{
+    float: left;
+    font-size: 40px;
+    position:relative;
+    width: 90%;
+}
+form input{
+    float: left;
+    font-size: 20px;
+    height: 40px;
+    position: relative;
+    width: 90%;
+}
+form a{
+    float: left;
+    margin: 20px 0;
+    padding: 20px;
+    position: relative;
+    width: 90%;
+}
+form button{
+    float: left;
+    font-size: 30px;
+    position: relative;
+    width: 100%;
+}
+/*stylling tables*/
+main table{
+    position: relative;
+    width: 80%;
+}
+main table tr{
+    text-align: center;
+}
+body footer{
+    display: block;
+    float: left;
+    position: relative;
+    overflow: no-content;
+    width: 100%;
+}
