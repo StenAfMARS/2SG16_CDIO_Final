@@ -7,7 +7,7 @@ import javax.ws.rs.core.MediaType;
 public class LoginAPI {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public String Login(@QueryParam("username") String username){
+    public String Login(LoginAPI username){
         return "You are logged in as " + username;
     }
 }
