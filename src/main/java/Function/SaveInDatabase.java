@@ -20,7 +20,7 @@ public class SaveInDatabase implements IUserDAO {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT userID,userName,userPassword,ini,cpr,Rolls FROM Users WHERE userID = ?");
+                    "SELECT * FROM Users WHERE userID = ?");
 
             // Set variables
             statement.setInt(1, userID);
