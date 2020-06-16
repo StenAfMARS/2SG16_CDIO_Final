@@ -64,7 +64,7 @@ public class SaveInDatabase implements IUserDAO {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT userID,userName,userPassword,ini,cpr,Rolls FROM Users");
+                    "SELECT userID,userName,userPassword,ini,cpr,fk_RollID FROM Users");
 
             // Set variables
 
