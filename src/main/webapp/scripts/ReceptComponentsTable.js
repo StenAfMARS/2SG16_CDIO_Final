@@ -31,3 +31,18 @@ function generateReceptComponentsTable(ReceptComponents) {
 
 
         }
+function updateReceptComponents(RaavareId,NonNetto,Tolerance,ReceptID){
+    var settings = {
+        "url": "http://localhost:8080/2SG16_CDIO_Final_war_exploded/rest/ReceptComponents/updateReceptComponents",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({"RaavareId":RaavareId,"NonNetto":NonNetto,"Tolerance":Tolerance,"ReceptID":ReceptID}),
+    };
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
+}

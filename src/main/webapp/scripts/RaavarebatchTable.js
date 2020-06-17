@@ -31,3 +31,21 @@ function generateCommodityBatchTable(CommodityBatch) {
 
 
 }
+
+function updateCommodityBatch(RaavareBatchId,Maengde,RaavareId){
+    var settings = {
+        "url": "http://localhost:8080/2SG16_CDIO_Final_war_exploded/rest/CommodityBatch/updateCommodityBatch",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({"RaavareBatchId":RaavareBatchId,"Maengde":Maengde,"RaavareId":RaavareId}),
+    };
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
+}
+
+

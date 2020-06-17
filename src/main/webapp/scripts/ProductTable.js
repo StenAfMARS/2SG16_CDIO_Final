@@ -32,7 +32,21 @@ function generateProductTable(Product) {
 }
 
 
+function updateProduct(ProductId,Status,ReceptId){
+    var settings = {
+        "url": "http://localhost:8080/2SG16_CDIO_Final_war_exploded/rest/product/updateProduct",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({"ProductId":ProductId,"Status":Status,"ReceptId":ReceptId}),
+    };
 
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
+}
 
 
 

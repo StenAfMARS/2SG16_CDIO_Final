@@ -28,8 +28,24 @@ function generateProductComponentsTable(ProductComponents) {
         '<td onclick="updateProductComponents(' + ProductComponents.UserID + ')">opdater ProduktComponents</td>' +
         '<td onclick="deleteProductComponents(' + ProductComponents.UserID + ')"><button>slet ProduktComponents</button></td></tr> '
 
+}
+// function updateProductComponentsByID(id){
+//     switchPage("Views/ProductComponentsForm.html");
+//     document.uuuuserID = userID;
+// }
 
+function updateProductComponents(UserID,RaavareBatchId,Tara,Netto,ProduktbatchId){
+    var settings = {
+        "url": "http://localhost:8080/2SG16_CDIO_Final_war_exploded/rest/productComponents/updateProductComponents",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({"userID":UserID,"RaavareBatchId":RaavareBatchId,"Tara":Tara,"Netto":Netto,"ProduktbatchId":ProduktbatchId}),
+    };
 
-
-
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
 }

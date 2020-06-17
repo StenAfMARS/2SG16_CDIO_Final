@@ -31,3 +31,19 @@ function generateCommodityTable(Commodity) {
 
 
 }
+
+function updateCommodity(RaavareId,RaavareNavn,Leverandoer){
+    var settings = {
+        "url": "http://localhost:8080/2SG16_CDIO_Final_war_exploded/rest/Commodity/updateCommodity",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({"RaavareId":RaavareId,"RaavareNavn":RaavareNavn,"Leverandoer":Leverandoer}),
+    };
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
+}

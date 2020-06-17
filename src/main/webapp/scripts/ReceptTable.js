@@ -30,3 +30,18 @@ function generateReceptTable(Recept) {
 
 }
 
+function updateRecept(ReceptID,ReceptNavn){
+    var settings = {
+        "url": "http://localhost:8080/2SG16_CDIO_Final_war_exploded/rest/Recept/updateRecept",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({"ReceptID":ReceptID,"ReceptNavn":ReceptNavn}),
+    };
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
+}

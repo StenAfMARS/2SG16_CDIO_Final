@@ -29,3 +29,24 @@ function generateUserTable(user) {
 
         '<td onclick="deleteUser(' + user.userID + ')"><button>slet bruger</button></td></tr> '
 }
+
+function updateUserByID(id){
+    switchPage("Views/UserForm.html");
+    document.uuuuserID = id;
+}
+
+function updateUser(id,userName,password,ini,cpr,roles){
+    var settings = {
+        "url": "http://localhost:8080/2SG16_CDIO_Final_war_exploded/rest/user/updateUser",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({"userID":id,"userName":userName,"password":password,"ini":ini,"cpr":cpr,"roles":roles}),
+    };
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
+}
