@@ -1,14 +1,21 @@
 package API;
 
+import DTO.LoginDTO;
+import Data.UserDTO;
+import Function.IUserDAO;
+import Function.SaveInDatabase;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Path("login")
 public class LoginAPI {
-
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public String Login(@FormParam("username") String username){
-        return "You are logged in as " + username;
+    @Produces(MediaType.APPLICATION_JSON)
+    public UserDTO Login(LoginDTO user){
+        IUserDAO users = new SaveInDatabase();
+
+        return users.getUser(user.getUserID());
     }
 }
