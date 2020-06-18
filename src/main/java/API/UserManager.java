@@ -1,12 +1,11 @@
 package API;
 
-import Data.UserDTO;
+import DTO.UserDTO;
 import Function.IUserDAO;
 import Function.SaveInDatabase;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("user")

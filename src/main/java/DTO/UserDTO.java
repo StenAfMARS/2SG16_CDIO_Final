@@ -1,4 +1,4 @@
-package Data;
+package DTO;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;

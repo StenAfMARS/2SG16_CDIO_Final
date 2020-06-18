@@ -1,7 +1,7 @@
 package API;
 
 import DTO.LoginDTO;
-import Data.UserDTO;
+import DTO.UserDTO;
 import Function.IUserDAO;
 import Function.SaveInDatabase;
 
