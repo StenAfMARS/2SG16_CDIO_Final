@@ -6,6 +6,7 @@ import Function.SaveInDatabase;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("user")
@@ -17,39 +18,38 @@ public class UserManager{
         return users;
     }
 
-    @Path("getUser")
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("{id : [0-9]+}")
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public static UserDTO get(UserDTO user){
-        return Users().getUser(user.getUserID());
+    public static UserDTO get(@PathParam("id") int userID){
+        return Users().getUser(userID);
     }
 
-    @Path("getUserList")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public static List<UserDTO> getList(){
-        return Users().getUserList();
-    }
-
-    @Path("updateUser")
-    @POST
+    @Path("{id : [0-9]+}")
+    @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public static void update(UserDTO user){
         Users().updateUser(user);
     }
 
-    @Path("deleteUser")
-    @POST
+    @Path("{id : [0-9]+}")
+    @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
-    public static void delete(UserDTO user){
-        Users().deleteUser(user.getUserID());
+    public static void delete(@PathParam("id") int userID){
+        Users().deleteUser(userID);
     }
 
-    @Path("createUser")
+    @Path("{id : [0-9]+}")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public static void create(UserDTO user){
         Users().createUser(user);
+    }
+
+    @Path("all")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public static List<UserDTO> getList(){
+        return Users().getUserList();
     }
 }
