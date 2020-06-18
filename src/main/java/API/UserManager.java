@@ -1,5 +1,6 @@
+package API;
+
 import Data.UserDTO;
-import Data.UserPassDTO;
 import Function.IUserDAO;
 import Function.SaveInDatabase;
 
@@ -14,16 +15,6 @@ public class UserManager{
         if (users == null)
             users = new SaveInDatabase();
         return users;
-    }
-
-    @Path("test")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public UserPassDTO test(){
-        UserPassDTO output = new UserPassDTO();
-        output.setUsername("hello");
-        output.setPassword("world");
-        return output;
     }
 
     @Path("getUser")
