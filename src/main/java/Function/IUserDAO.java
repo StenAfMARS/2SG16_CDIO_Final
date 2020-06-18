@@ -1,9 +1,8 @@
 package Function;
 
-import Data.UserDTO;
+import DTO.UserDTO;
 import Exceptions.DALException;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface IUserDAO {

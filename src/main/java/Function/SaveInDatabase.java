@@ -1,6 +1,6 @@
 package Function;
 
-import Data.UserDTO;
+import DTO.UserDTO;
 import Exceptions.DALException;
 
 import java.sql.*;
