@@ -2,6 +2,7 @@
 // A $( document ).ready() block.
 $("#logOnForm").submit(function(e) {
     e.preventDefault();
+    
 });
 function switchPage(page){
     $("body").load(page);
