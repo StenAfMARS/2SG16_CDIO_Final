@@ -12,14 +12,14 @@ public class LoginDTO {
         this.userID = userID;
     }
 
-    public String getUserType() {
-        return userType;
+    public String getUserRole() {
+        return userRole;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     int userID;
-    String userType;
+    String userRole;
 }
