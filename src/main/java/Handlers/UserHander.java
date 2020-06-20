@@ -1,13 +1,14 @@
-package Function;
+package Handlers;
 
 import DTO.UserDTO;
 import Exceptions.DALException;
+import Interfaces.IUserDAO;
 
 import java.sql.*;
 import java.util.*;
 import java.util.List;
 
-public class SaveInDatabase implements IUserDAO {
+public class UserHander implements IUserDAO {
 
     @Override
     public UserDTO getUser(int userID){
@@ -16,7 +17,7 @@ public class SaveInDatabase implements IUserDAO {
 
         try {
             // CONNECT
-            Connection connection = Database.connect();
+            Connection connection = DatabaseHandler.connect();
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
@@ -60,7 +61,7 @@ public class SaveInDatabase implements IUserDAO {
 
         try {
             // CONNECT
-            Connection connection = Database.connect();
+            Connection connection = DatabaseHandler.connect();
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
@@ -99,7 +100,7 @@ public class SaveInDatabase implements IUserDAO {
     public void createUser(UserDTO userDTO){
         try {
             // CONNECT
-            Connection connection = Database.connect();
+            Connection connection = DatabaseHandler.connect();
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
@@ -132,7 +133,7 @@ public class SaveInDatabase implements IUserDAO {
     public void updateUser(UserDTO userDTO){
         try {
             // CONNECT
-            Connection connection = Database.connect();
+            Connection connection = DatabaseHandler.connect();
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
@@ -166,7 +167,7 @@ public class SaveInDatabase implements IUserDAO {
 
         try {
             // CONNECT
-            Connection connection = Database.connect();
+            Connection connection = DatabaseHandler.connect();
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(

@@ -1,6 +1,7 @@
 package Interfaces;
 
 import DTO.ProduktBatchDTO;
+import Exceptions.DALException;
 
 import java.util.List;
 

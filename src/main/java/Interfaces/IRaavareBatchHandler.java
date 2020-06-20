@@ -1,6 +1,7 @@
 package Interfaces;
 
 import DTO.RaavareBatchDTO;
+import Exceptions.DALException;
 
 import java.util.List;
 
