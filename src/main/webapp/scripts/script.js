@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    alert(getCookie(IdCard))
+
 });
 
 $("#logOnForm").submit(function(e) {
@@ -8,29 +8,95 @@ $("#logOnForm").submit(function(e) {
 function switchPage(page){
     $("main").load(page);
 }
+function cookieCard() {
+
+    const idCard = getCookie("CookieCard")
+    var keyCard = idCard.split(" ",1)
+    if(keyCard== "10")
+    {
+        alert("test")
+        document.getElementById("UserPanel").style.display = "inline-block";
+    }
+    else if(keyCard== "20"){
+        document.getElementById("receptPanel").style.display = "inline-block";
+        document.getElementById("receptComponentsPanel").style.display = "inline-block";
+        document.getElementById("raavarePanel").style.display = "inline-block";
+        document.getElementById("raavareBatchPanel").style.display = "inline-block";
+        document.getElementById("productPanel").style.display = "inline-block";
+        document.getElementById("productComponentsPanel").style.display = "inline-block";
+    }
+    else if(keyCard== "30"){
+        document.getElementById("raavareBatchPanel").style.display = "inline-block";
+        document.getElementById("raavareBatchPanel").style.display = "inline-block";
+        document.getElementById("productPanel").style.display = "inline-block";
+        document.getElementById("productComponentsPanel").style.display = "inline-block";
+    }
+    else if(keyCard== "40"){
+
+    }
+    else if(keyCard== "100"){
+        document.getElementById("UserPanel").style.display = "inline-block";
+        document.getElementById("receptPanel").style.display = "inline-block";
+        document.getElementById("receptComponentsPanel").style.display = "inline-block";
+        document.getElementById("raavarePanel").style.display = "inline-block";
+        document.getElementById("raavareBatchPanel").style.display = "inline-block";
+        document.getElementById("productPanel").style.display = "inline-block";
+        document.getElementById("productComponentsPanel").style.display = "inline-block";
+    }
+    /*
+    switch(keyCard){
+        //admin
+        case keyCard == "10":
+            alert("test")
+            document.getElementById("UserPanel").style.display = "inline-block";
+            break;
+            //farmasøet
+        case "20":
+            document.getElementById("receptPanel").style.display = "inline-block";
+            document.getElementById("receptComponentsPanel").style.display = "inline-block";
+            document.getElementById("raavarePanel").style.display = "inline-block";
+            document.getElementById("raavareBatchPanel").style.display = "inline-block";
+            document.getElementById("productPanel").style.display = "inline-block";
+            document.getElementById("productComponentsPanel").style.display = "inline-block";
+            break;
+            //produktionleder
+        case "30":
+            document.getElementById("raavareBatchPanel").style.display = "inline-block";
+            document.getElementById("raavareBatchPanel").style.display = "inline-block";
+            document.getElementById("productPanel").style.display = "inline-block";
+            document.getElementById("productComponentsPanel").style.display = "inline-block";
+            break;
+            //
+        case "40":
+            break;
+            // root access ignore everything
+        case "100":
+            document.getElementById("UserPanel").style.display = "inline-block";
+            document.getElementById("receptPanel").style.display = "inline-block";
+            document.getElementById("receptComponentsPanel").style.display = "inline-block";
+            document.getElementById("raavarePanel").style.display = "inline-block";
+            document.getElementById("raavareBatchPanel").style.display = "inline-block";
+            document.getElementById("productPanel").style.display = "inline-block";
+            document.getElementById("productComponentsPanel").style.display = "inline-block";
+
+            break;
+    }
+    alert(keyCard)
+
+
+     */
+}
 
 
 function login(keyCardValue) {
-    var data = $('#logOnForm').serializeJSON();
-    $.ajax({
-        url: 'rest/login',
-        method: 'POST',
-
-        contentType: "application/json", // det vi sender er json
-        data: data,
-        success: function (data) {
-            alert(JSON.stringify(data));
+            var cookieName = "CookieCard";
             var userID =document.getElementById("UserID").value;
-            var value = "userID ="+userID+";keyCardValue="+keyCardValue;
-            createCookie(IdCard, value, 30)
-            switchPage('Views/userAdminstrationPage.html')
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert(jqXHR.responseText);
-            alert(textStatus);
-            alert(errorThrown);
-        }
-    });
+            var value = keyCardValue+" "+userID;
+            createCookie(cookieName, value, 30)
+            alert(getCookie(cookieName))
+            switchPage('Views/LandingPageAdminPanel.html')
+    // cookieCard insures that you dont get somewhere you not allowed to be
+    cookieCard()
 }
 function createCookie(name, value, minits) {
     var expires;

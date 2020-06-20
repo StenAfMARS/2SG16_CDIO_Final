@@ -32,9 +32,9 @@ body header nav ul{
 
 }
 body header nav ul li{
-    display: inline-block;
+    display:none;
     float: left;
-    widows: 10%;
+    width: 10%;
 }
 body header nav ul li a{
     display: block;
