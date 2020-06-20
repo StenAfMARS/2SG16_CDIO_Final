@@ -3,11 +3,11 @@ $(document).ready(function () {
 });
 
 function deleteUser(id) {
-    $.post('rest/user/deleteUser', {"userID":id}, data => alert(JSON.stringify(data)));
+    $.delete('rest/user/' + id, null, data => alert(JSON.stringify(data)));
 }
 
 function loadUsers() {
-    $.post('rest/user/getUserList',
+    $.get('rest/user/all',
         {},
         function (data, textStatus, req) {
             $("#userTable").empty();
@@ -37,8 +37,8 @@ function updateUserByID(id){
 
 function updateUser(id,userName,password,ini,cpr,roles){
     var settings = {
-        "url": "http://localhost:8080/2SG16_CDIO_Final_war_exploded/rest/user/updateUser",
-        "method": "POST",
+        "url": "/rest/user/" + id,
+        "method": "PUT",
         "timeout": 0,
         "headers": {
             "Content-Type": "application/json"
