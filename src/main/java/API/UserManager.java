@@ -1,8 +1,8 @@
 package API;
 
 import DTO.UserDTO;
-import Function.IUserDAO;
-import Function.SaveInDatabase;
+import Interfaces.IUserDAO;
+import Handlers.UserHander;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -13,7 +13,7 @@ public class UserManager{
     private static IUserDAO users;
     public static IUserDAO Users(){
         if (users == null)
-            users = new SaveInDatabase();
+            users = new UserHander();
         return users;
     }
 

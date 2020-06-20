@@ -1,4 +1,4 @@
-package Function;
+package Interfaces;
 
 import DTO.UserDTO;
 import Exceptions.DALException;

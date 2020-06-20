@@ -1,6 +1,7 @@
 package Interfaces;
 
 import DTO.UserDTO;
+import Exceptions.DALException;
 
 import java.util.List;
 
