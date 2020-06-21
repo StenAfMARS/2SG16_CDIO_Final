@@ -1,6 +1,11 @@
+/*
+ * Peter M. Skaarup
+ * 21/05-2020
+*/
 package Handlers;
 
 import DTO.ReceptDTO;
+import DTO.UserDTO;
 import Exceptions.DALException;
 import Interfaces.IReceptHandler;
 
@@ -49,7 +54,35 @@ public class ReceptHandler implements IReceptHandler {
 
     @Override
     public List<ReceptDTO> getReceptList() throws DALException {
-        return null;
+
+        List<ReceptDTO> receptList = new LinkedList<>();
+
+        try{
+
+            Connection connection = DatabaseHandler.connect();
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM Recept");
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                receptList.add(new ReceptDTO(
+                        resultSet.getInt("ReceptID"),
+                        resultSet.getString("receptNavn")
+                ));
+            }
+
+            connection.close();
+            resultSet.close();
+            statement.close();
+
+        }catch (SQLException e){
+
+            e.printStackTrace();
+        }
+
+        return receptList;
     }
 
     @Override
