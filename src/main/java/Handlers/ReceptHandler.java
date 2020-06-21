@@ -5,7 +5,7 @@
 package Handlers;
 
 import DTO.ReceptDTO;
-import DTO.UserDTO;
+import DTO.ReceptKomponentDTO;
 import Exceptions.DALException;
 import Interfaces.IReceptHandler;
 
@@ -37,7 +37,6 @@ public class ReceptHandler implements IReceptHandler {
                         resultSet.getString("receptNavn")
                 );
             }
-
 
             connection.close();
             resultSet.close();
@@ -88,10 +87,66 @@ public class ReceptHandler implements IReceptHandler {
     @Override
     public void createRecept(ReceptDTO recept) throws DALException {
 
+        try{
+            Connection connection = DatabaseHandler.connect();
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "insert into Recept (receptName) values (?)");
+
+            statement.setString(1,recept.getReceptNavn());
+
+            statement.execute();
+
+            connection.close();
+            statement.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new DALException("Couldn't find recept");
+        }
     }
 
     @Override
     public void updateRecept(ReceptDTO recept) throws DALException {
+
+        try{
+            Connection connection = DatabaseHandler.connect();
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "update Recept set receptNavn = ? where ReceptId = ?");
+
+            statement.setString(1, recept.getReceptNavn());
+            statement.setInt(2, recept.getReceptID());
+
+            statement.execute();
+
+            connection.close();
+            statement.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new DALException("Couldn't find recept");
+        }
+
+    }
+
+    @Override
+    public ReceptKomponentDTO getReceptKomponent(int receptKomponentID) throws DALException {
+        return null;
+    }
+
+    @Override
+    public List<ReceptKomponentDTO> getReceptKomponentList() throws DALException {
+        return null;
+    }
+
+    @Override
+    public void createReceptKomponent(ReceptKomponentDTO receptkomponent) throws DALException {
+
+    }
+
+    @Override
+    public void updateReceptKomponent(ReceptKomponentDTO receptKomponent) throws DALException {
 
     }
 }
