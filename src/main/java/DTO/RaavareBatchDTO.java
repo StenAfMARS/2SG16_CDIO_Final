@@ -10,4 +10,6 @@ public class RaavareBatchDTO {
     int raavareId;
     double maengde;
 
+    public RaavareBatchDTO() {
+    }
 }

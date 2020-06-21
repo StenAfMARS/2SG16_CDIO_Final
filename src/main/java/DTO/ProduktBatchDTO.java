@@ -13,4 +13,20 @@ public class ProduktBatchDTO {
     int status;
     // Recept Id 1-99999999
     int receptId;
+
+    public ProduktBatchDTO() {
+    }
+
+    public int getPbId() {
+        return pbId;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+
+    public int getReceptId() {
+        return receptId;
+    }
 }
