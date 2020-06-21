@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    cookieCard()
 });
 
 $("#logOnForm").submit(function(e) {
@@ -12,7 +12,10 @@ function cookieCard() {
 
     const idCard = getCookie("CookieCard")
     var keyCard = idCard.split(" ",1)
-    if(keyCard== "10")
+    if(!getCookie("CookieCard")){
+        switchPage('Views/LandingPage.html')
+    }
+    else if(keyCard== "10")
     {
         alert("test")
         document.getElementById("UserPanel").style.display = "inline-block";
