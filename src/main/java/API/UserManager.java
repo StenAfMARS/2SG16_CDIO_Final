@@ -1,8 +1,9 @@
 package API;
 
 import DTO.UserDTO;
+import Handlers.UserHandler;
 import Interfaces.IUserDAO;
-import Handlers.UserHander;
+import Handlers.UserHandler;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -13,7 +14,7 @@ public class UserManager{
     private static IUserDAO users;
     public static IUserDAO Users(){
         if (users == null)
-            users = new UserHander();
+            users = new UserHandler();
         return users;
     }
 
