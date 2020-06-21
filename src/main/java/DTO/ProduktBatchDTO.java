@@ -16,4 +16,17 @@ public class ProduktBatchDTO {
 
     public ProduktBatchDTO() {
     }
+
+    public int getPbId() {
+        return pbId;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+
+    public int getReceptId() {
+        return receptId;
+    }
 }
