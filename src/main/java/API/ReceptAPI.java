@@ -1,52 +1,71 @@
 package API;
 
-import DTO.UserDTO;
-import Handlers.UserHandler;
-import Interfaces.IUserDAO;
+import DTO.ReceptDTO;
+import Exceptions.DALException;
+import Handlers.ReceptHandler;
+import Interfaces.IReceptHandler;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("recept")
 public class ReceptAPI {
-    private static IUserDAO users;
-    public static IUserDAO Users(){
-        if (users == null)
-            users = new UserHandler();
-        return users;
+    private static IReceptHandler recepts;
+    public static IReceptHandler Recepts(){
+        if (recepts == null)
+            recepts = new ReceptHandler();
+        return recepts;
     }
 
     @Path("{id : [0-9]+}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public static UserDTO get(@PathParam("id") int userID){
-        return Users().getUser(userID);
+    public static ReceptDTO get(@PathParam("id") int receptID){
+        return Recepts().getRecept(receptID);
     }
 
     @Path("{id : [0-9]+}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public static void update(UserDTO user){
-        Users().updateUser(user);
+    public static Response update(ReceptDTO recept){
+        try {
+            Recepts().updateRecept(recept);
+        } catch (DALException e){
+            e.printStackTrace();
+
+            return Response.status(418).build();
+        }
+
+        return Response.status(201).build();
     }
 
     @Path("{id : [0-9]+}")
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
-    public static void delete(@PathParam("id") int userID){
-        Users().deleteUser(userID);
+    public static Response delete(@PathParam("id") int receptID){
+        //Recepts().(recept);
+        return Response.status(418).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public static void create(UserDTO user){
-        Users().createUser(user);
+    public static Response create(ReceptDTO recept){
+        try {
+            Recepts().createRecept(recept);
+        } catch (DALException e){
+            e.printStackTrace();
+
+            return Response.status(418).build();
+        }
+
+        return Response.status(201).build();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public static List<UserDTO> getList(){
-        return Users().getUserList();
+    public static List<ReceptDTO> getList(){
+        return Recepts().getReceptList();
     }
 }

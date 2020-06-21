@@ -1,12 +1,14 @@
 package API;
 
 import DTO.UserDTO;
+import Exceptions.DALException;
 import Handlers.UserHandler;
 import Interfaces.IUserDAO;
 import Handlers.UserHandler;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("user")
@@ -28,21 +30,45 @@ public class UserAPI {
     @Path("{id : [0-9]+}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public static void update(UserDTO user){
-        Users().updateUser(user);
+    public static Response update(UserDTO user){
+        try {
+            Users().updateUser(user);
+        } catch (DALException e){
+            e.printStackTrace();
+
+            return Response.status(418).build();
+        }
+
+        return Response.status(201).build();
     }
 
     @Path("{id : [0-9]+}")
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
-    public static void delete(@PathParam("id") int userID){
-        Users().deleteUser(userID);
+    public static Response delete(@PathParam("id") int userID){
+        try {
+            Users().deleteUser(userID);
+        } catch (DALException e){
+            e.printStackTrace();
+
+            return Response.status(418).build();
+        }
+
+        return Response.status(201).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public static void create(UserDTO user){
-        Users().createUser(user);
+    public static Response create(UserDTO user){
+        try {
+            Users().createUser(user);
+        } catch (DALException e){
+            e.printStackTrace();
+
+            return Response.status(418).build();
+        }
+
+        return Response.status(201).build();
     }
 
     @GET

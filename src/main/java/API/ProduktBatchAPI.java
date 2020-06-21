@@ -1,52 +1,78 @@
 package API;
 
-import DTO.UserDTO;
-import Handlers.UserHandler;
-import Interfaces.IUserDAO;
+import DTO.ProduktBatchDTO;
+import Exceptions.DALException;
+import Handlers.ProduktBatchHandler;
+import Interfaces.IProduktBatchHandler;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("produktBatch")
 public class ProduktBatchAPI {
-    private static IUserDAO users;
-    public static IUserDAO Users(){
-        if (users == null)
-            users = new UserHandler();
-        return users;
+    private static IProduktBatchHandler produktBatches;
+    public static IProduktBatchHandler ProduktBatches(){
+        if (produktBatches == null)
+            produktBatches = new ProduktBatchHandler();
+        return produktBatches;
     }
 
     @Path("{id : [0-9]+}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public static UserDTO get(@PathParam("id") int userID){
-        return Users().getUser(userID);
+    public static ProduktBatchDTO get(@PathParam("id") int produktBatchID){
+        return ProduktBatches().getProduktBatch(produktBatchID);
     }
 
     @Path("{id : [0-9]+}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public static void update(UserDTO user){
-        Users().updateUser(user);
+    public static Response update(ProduktBatchDTO produktBatch){
+        try {
+            ProduktBatches().updateProduktBatch(produktBatch);
+        } catch (DALException e) {
+            e.printStackTrace();
+
+            return Response.status(418).build();
+        }
+
+        return Response.status(201).build();
     }
 
     @Path("{id : [0-9]+}")
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
-    public static void delete(@PathParam("id") int userID){
-        Users().deleteUser(userID);
+    public static Response delete(@PathParam("id") int produktBatchID){
+        try {
+            ProduktBatches().deleteProduktBatch(produktBatchID);
+        } catch (DALException e){
+            e.printStackTrace();
+
+            return Response.status(418).build();
+        }
+
+        return Response.status(201).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public static void create(UserDTO user){
-        Users().createUser(user);
+    public static Response create(ProduktBatchDTO produktBatch){
+        try {
+            ProduktBatches().createProduktBatch(produktBatch);
+        } catch (DALException e){
+            e.printStackTrace();
+
+            return Response.status(418).build();
+        }
+
+        return Response.status(201).build();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public static List<UserDTO> getList(){
-        return Users().getUserList();
+    public static List<ProduktBatchDTO> getList(){
+        return ProduktBatches().getProduktBatchList();
     }
 }
