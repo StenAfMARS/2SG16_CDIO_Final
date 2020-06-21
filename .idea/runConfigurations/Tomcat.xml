@@ -1,11 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.11" ALTERNATIVE_JRE_ENABLED="false">
-    <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/2SG16_CDIO_Final_war/" />
+    <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080" />
     <option name="UPDATING_POLICY" value="restart-server" />
     <deployment>
-      <artifact name="2SG16_CDIO_Final:war">
+      <artifact name="2SG16_CDIO_Final:war exploded">
         <settings>
-          <option name="CONTEXT_PATH" value="/2SG16_CDIO_Final_war" />
+          <option name="CONTEXT_PATH" value="" />
         </settings>
       </artifact>
     </deployment>
@@ -68,7 +68,7 @@
     <method v="2">
       <option name="Make" enabled="true" />
       <option name="BuildArtifacts" enabled="true">
-        <artifact name="2SG16_CDIO_Final:war" />
+        <artifact name="2SG16_CDIO_Final:war exploded" />
       </option>
     </method>
   </configuration>
