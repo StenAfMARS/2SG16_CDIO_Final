@@ -38,14 +38,12 @@ public class UserManager{
         Users().deleteUser(userID);
     }
 
-    @Path("{id : [0-9]+}")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public static void create(UserDTO user){
         Users().createUser(user);
     }
 
-    @Path("all")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public static List<UserDTO> getList(){
