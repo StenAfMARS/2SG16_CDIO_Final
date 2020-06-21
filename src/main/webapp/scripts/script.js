@@ -12,9 +12,19 @@ function cookieCard() {
 
     const idCard = getCookie("CookieCard")
     var keyCard = idCard.split(" ",1)
+    // halfe ass fix to a buck
+    document.getElementById("UserPanel").style.display = "none";
+    document.getElementById("receptPanel").style.display = "none";
+    document.getElementById("receptComponentsPanel").style.display = "none";
+    document.getElementById("raavarePanel").style.display = "none";
+    document.getElementById("raavareBatchPanel").style.display = "none";
+    document.getElementById("productPanel").style.display = "none";
+    document.getElementById("productComponentsPanel").style.display = "none";
+
     if(!getCookie("CookieCard")){
         switchPage('Views/LandingPage.html')
     }
+
     else if(keyCard== "10")
     {
         alert("test")
@@ -95,6 +105,7 @@ function login(keyCardValue) {
             var cookieName = "CookieCard";
             var userID =document.getElementById("UserID").value;
             var value = keyCardValue+" "+userID;
+            deleteAllCookies()
             createCookie(cookieName, value, 30)
             alert(getCookie(cookieName))
             switchPage('Views/LandingPageAdminPanel.html')
@@ -126,4 +137,14 @@ function getCookie(c_name) {
         }
     }
     return "";
+}
+function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
 }

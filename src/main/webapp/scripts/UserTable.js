@@ -31,7 +31,7 @@ function generateUserTable(user) {
 }
 
 function updateUserByID(id){
-    switchPage("Views/UserForm.html");
+    switchPage("Views/userAdminstrationPage.html");
     document.uuuuserID = id;
 }
 

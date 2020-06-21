@@ -171,7 +171,7 @@ public class UserHandler implements IUserDAO {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "delete from Users where userID = ?");
+                    "update Users set userStatus = 0 where userId = ?");
 
             // Set variables
             statement.setInt(1, userID);
