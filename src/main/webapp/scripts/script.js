@@ -100,10 +100,12 @@ function cookieCard() {
      */
 }
 
-
 function login(keyCardValue) {
             var cookieName = "CookieCard";
-            var userID =document.getElementById("UserID").value;
+            if(keyCardValue != 100){
+                var userID =document.getElementById("UserID").value;
+            }
+
             var value = keyCardValue+" "+userID;
             deleteAllCookies()
             createCookie(cookieName, value, 30)
