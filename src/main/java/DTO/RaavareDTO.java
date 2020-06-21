@@ -10,6 +10,17 @@ public class RaavareDTO {
     String raavareNavn;
     String leverandoer;
 
+    public int getRaavareId() {
+        return raavareId;
+    }
+
+    public String getRaavareNavn() {
+        return raavareNavn;
+    }
+
+    public String getLeverandoer() {
+        return leverandoer;
+    }
     public RaavareDTO() {
     }
 }
