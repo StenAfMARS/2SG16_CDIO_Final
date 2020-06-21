@@ -17,4 +17,6 @@ public class ReceptKomponentDTO {
     /** tolerance i området 0,1 - 10,0 % */
     double tolerance;
 
+    public ReceptKomponentDTO() {
+    }
 }

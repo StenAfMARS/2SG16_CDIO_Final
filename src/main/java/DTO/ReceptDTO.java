@@ -8,4 +8,6 @@ public class ReceptDTO {
     int receptId;
     String receptNavn;
 
+    public ReceptDTO() {
+    }
 }

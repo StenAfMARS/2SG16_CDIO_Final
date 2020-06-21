@@ -13,4 +13,7 @@ public class ProduktBatchKompDTO {
     double tara;
     double netto;
     int oprId;
+
+    public ProduktBatchKompDTO() {
+    }
 }

@@ -3,14 +3,13 @@ package API;
 import DTO.UserDTO;
 import Handlers.UserHandler;
 import Interfaces.IUserDAO;
-import Handlers.UserHandler;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("user")
-public class UserManager{
+@Path("raavareBatch")
+public class RaavareBatchAPI {
     private static IUserDAO users;
     public static IUserDAO Users(){
         if (users == null)

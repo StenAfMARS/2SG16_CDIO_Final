@@ -10,4 +10,6 @@ public class RaavareDTO {
     String raavareNavn;
     String leverandoer;
 
+    public RaavareDTO() {
+    }
 }
