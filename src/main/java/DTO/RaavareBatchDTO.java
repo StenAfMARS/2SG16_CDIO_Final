@@ -12,4 +12,16 @@ public class RaavareBatchDTO {
 
     public RaavareBatchDTO() {
     }
+
+    public double getMaengde() {
+        return maengde;
+    }
+
+    public int getRbId() {
+        return rbId;
+    }
+
+    public int getRaavareId() {
+        return raavareId;
+    }
 }
