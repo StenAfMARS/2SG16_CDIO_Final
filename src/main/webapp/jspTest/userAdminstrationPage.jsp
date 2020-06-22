@@ -59,7 +59,7 @@
                 sb.append(")' value='slet'></td></tr></form>");
             }
 
-            out.print(sb.toString())
+            out.print(sb.toString());
         %>
     </tbody>
 </table>
