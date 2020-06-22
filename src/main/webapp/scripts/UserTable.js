@@ -7,7 +7,7 @@ function deleteUser(id) {
 }
 
 function loadUsers() {
-    $.get('rest/user/all',
+    $.get('rest/user',
         {},
         function (data, textStatus, req) {
             $("#userTable").empty();
