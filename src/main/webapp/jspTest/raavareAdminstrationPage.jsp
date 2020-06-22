@@ -29,8 +29,8 @@
     <tr>
         <form id="createRaavare" method="post" action="/rest/users">
             <th></th>
-            <th><input type="text" name="raavareNavn"></th>
-            <th><input type="text" name="raavareLeverandoer"></th>
+            <th><input form="createRaavare" type="text" name="raavareNavn"></th>
+            <th><input form="createRaavare" type="text" name="leverandoer"></th>
             <th colspan="2"><input type="button" value="create" onclick="createCommodity($('#createRaavare'))"></th>
         </form>
     </tr>

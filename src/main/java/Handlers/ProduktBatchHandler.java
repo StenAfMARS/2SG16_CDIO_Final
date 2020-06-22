@@ -23,7 +23,7 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM produktBatch WHERE  pbId=?");
+                    "SELECT * FROM produktBatch WHERE  pbID=?");
 
             // Set variables
             statement.setInt(1, produktbatch);
@@ -102,11 +102,11 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "insert into Produktbatch ( status, ReceptID) values ( ?, ?)");
+                    "insert into produktBatch (status, receptID) values ( ?, ?)");
 
             // Set variables
             statement.setInt(1, produktbatch.getStatus());
-            statement.setInt(2, produktbatch.getReceptId());
+            statement.setInt(2, produktbatch.getReceptID());
 
             // Excecute
             statement.execute();
@@ -131,13 +131,13 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "update Produktbatch set pdId = ?, status = ?,ReceptID = ? where pdId = ?");
+                    "update produktBatch set pbID = ?, status = ?,receptID = ? where pbID = ?");
 
             // Set variables
-
-
-            statement.setInt(1, produktbatch.getStatus());
-            statement.setInt(2, produktbatch.getReceptId());
+            statement.setInt(1, produktbatch.getPbID());
+            statement.setInt(2, produktbatch.getStatus());
+            statement.setInt(3, produktbatch.getReceptID());
+            statement.setInt(4, produktbatch.getPbID());
 
 
 
@@ -166,7 +166,7 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "delete from Produktbatch where pdId = ?");
+                    "delete from produktBatch where pbID = ?");
 
             // Set variables
             statement.setInt(1, produktbatch);
@@ -273,7 +273,7 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "insert into produktBatchComponents (UserID, raavareBatch, tara, netto, pdId) values (?, ?, ?, ?, ?)");
+                    "insert into produktBatchComponents (UserID, raavareBatch, tara, netto, fk_pbID) values (?, ?, ?, ?, ?)");
 
 
             // Set variables
@@ -311,7 +311,7 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "update produktBatchComponents set UserID = ?, raavareBatch = ?,tara = ?, netto= ?,pdId=? where UserID = ?");
+                    "update produktBatchComponents set UserID = ?, raavareBatch = ?,tara = ?, netto= ?,fk_pbID=? where UserID = ?");
 
             // Set variables
 
