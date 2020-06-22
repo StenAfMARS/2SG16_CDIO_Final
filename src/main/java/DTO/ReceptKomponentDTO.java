@@ -1,10 +1,10 @@
 package DTO;
 
 public class ReceptKomponentDTO {
-    public ReceptKomponentDTO(int receptId, int raavareId, double nomNetto, double tolerance) {
+    public ReceptKomponentDTO(int receptId, int raavareId, double nonNetto, double tolerance) {
         this.receptID = receptId;
         this.raavareID = raavareId;
-        this.nomNetto = nomNetto;
+        this.nonNetto = nonNetto;
         this.tolerance = tolerance;
     }
 
@@ -12,7 +12,7 @@ public class ReceptKomponentDTO {
     int receptID;
     /** nominel nettomængde i området 0,05 - 20,0 kg */
     int raavareID;
-    double nomNetto;
+    double nonNetto;
     /** tolerance i området 0,1 - 10,0 % */
     double tolerance;
 
