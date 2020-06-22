@@ -13,18 +13,17 @@
             <th>CPR</th>
             <th>Password</th>
             <th>Roles</th>
-            <th>update</th>
-            <th>delete</th>
-        </tr>
-        <tr><form>
-            <th>UserId</th>
-            <th>UserName</th>
-            <th>Initialer</th>
-            <th>CPR</th>
-            <th>Password</th>
-            <th>Roles</th>
             <th></th>
-            <th>create</th>
+            <th></th>
+        </tr>
+        <tr><form method="post" action="/rest/users">
+            <th>UserId</th>
+            <th><input type="text" name="userName"></th>
+            <th><input type="text" name="ini"></th>
+            <th><input type="text" name="cpr"></th>
+            <th><input type="text" name="password"></th>
+            <th><input type="text" name="roles"></th>
+            <th colspan="8"><input type="button" value="create"></th>
         </form></tr>
     </thead>
     <tbody id="userTable">
@@ -42,8 +41,8 @@
                 "<td><input type='text' name='cpr' value='" +user.getCpr() + "'></td>" +
                 "<td><input type='text' name='password' value='" + user.getPassword() + "'></td>" +
                 "<td><input type='text' name='roles' value='" + user.getRoles() + "'></td>" +
-                "<td><input type='button' value='opdater bruger'></td>" +
-                "<td onclick='deleteUser(" + user.getUserID() + ")'><button>slet bruger</button></td></form></tr>");
+                "<td><input type='button' value='opdater'></td>" +
+                "<td onclick='deleteUser(" + user.getUserID() + ")'><button>slet</button></td></form></tr>");
             }
         %>
     </tbody>
