@@ -104,7 +104,7 @@ public class RaavareBatchHandler implements IRaavareBatchHandler {
             Connection connection = DatabaseHandler.connect();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "insert into raavarebatch (rdId, maengde, raavareID) values (?, ?, ?)");
+                    "insert into raavarebatch (rdId, maengde, fk_raavareID) values (?, ?, ?)");
 
             statement.setDouble(1,raavarebatch.getMaengde());
             statement.setInt(2,raavarebatch.getRaavareID());
@@ -127,7 +127,7 @@ public class RaavareBatchHandler implements IRaavareBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "update raavarebatch set rdId = ?, maengde = ?,raavareID = ? where rdId = ?");
+                    "update raavarebatch set rdId = ?, maengde = ?,fk_raavareID = ? where rdId = ?");
             // Set variables
 
 
