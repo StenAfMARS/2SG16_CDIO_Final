@@ -1,7 +1,3 @@
-$(document).ready(function () {
-    loadCommodityBatch();
-});
-
 function deleteCommodityBatch(id) {
     $.post('rest/CommodityBatch/deleteCommodityBatch', {"rbId":id}, data => alert(JSON.stringify(data)));
 }
@@ -17,9 +13,6 @@ function loadProductComponents() {
         }
     );
 }
-
-
-
 
 function generateCommodityBatchTable(CommodityBatch) {
     return '<tr><td>' + CommodityBatch.rbId + '</td>' +

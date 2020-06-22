@@ -91,9 +91,10 @@ public class ReceptHandler implements IReceptHandler {
             Connection connection = DatabaseHandler.connect();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "insert into Recept (receptName) values (?)");
+                    "insert into Recept (receptId, receptNavn) values (?, ?)");
 
-            statement.setString(1,recept.getReceptNavn());
+            statement.setInt(1,recept.getReceptID());
+            statement.setString(2,recept.getReceptNavn());
 
             statement.execute();
 

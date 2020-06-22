@@ -2,6 +2,14 @@ package DTO;
 
 public class ReceptDTO {
 
+    public void setReceptID(int receptID) {
+        this.receptID = receptID;
+    }
+
+    public void setReceptNavn(String receptNavn) {
+        this.receptNavn = receptNavn;
+    }
+
     int receptID;
     String receptNavn;
 
