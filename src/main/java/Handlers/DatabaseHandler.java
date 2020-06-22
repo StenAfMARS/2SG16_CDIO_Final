@@ -10,12 +10,6 @@ public class DatabaseHandler {
     public static String dbusername = "vampire_live_dk";
     public static String dbpassword = "b2h4k9gc";
 
-    /*public Database(String dburl, String dbusername, String dbpassword){
-        this.dburl = dburl;
-        this.dbusername = dbusername;
-        this.dbpassword = dbpassword;
-    }*/
-
     public static Connection connect() throws SQLException {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
 
