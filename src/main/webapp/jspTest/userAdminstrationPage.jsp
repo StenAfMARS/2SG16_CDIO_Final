@@ -38,7 +38,7 @@
 
             for (UserDTO user : users) {
                 sb.append("<form method='put' action='/rest/users'><tr id='");
-                sb.append(user.getUserID())
+                sb.append(user.getUserID());
                 sb.append("'><td name='userID' value='");
                 sb.append(user.getUserID());
                 sb.append("'>");
@@ -59,7 +59,7 @@
                 sb.append(")' value='slet'></td></tr></form>");
             }
 
-            out.print(sb.toString())
+            out.print(sb.toString());
         %>
     </tbody>
 </table>
