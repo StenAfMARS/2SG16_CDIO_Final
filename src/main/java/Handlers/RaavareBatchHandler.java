@@ -1,6 +1,5 @@
 package Handlers;
 
-import DTO.ProduktBatchDTO;
 import DTO.RaavareBatchDTO;
 import Exceptions.DALException;
 import Interfaces.IRaavareBatchHandler;
@@ -108,7 +107,7 @@ public class RaavareBatchHandler implements IRaavareBatchHandler {
                     "insert into raavarebatch (rdId, maengde, raavareID) values (?, ?, ?)");
 
             statement.setDouble(1,raavarebatch.getMaengde());
-            statement.setInt(2,raavarebatch.getRaavareId());
+            statement.setInt(2,raavarebatch.getRaavareID());
             statement.execute();
 
             connection.close();
@@ -132,9 +131,9 @@ public class RaavareBatchHandler implements IRaavareBatchHandler {
             // Set variables
 
 
-            statement.setInt(1, raavarebatch.getRbId());
+            statement.setInt(1, raavarebatch.getRbID());
             statement.setDouble(2, raavarebatch.getMaengde());
-            statement.setInt(3, raavarebatch.getRaavareId());
+            statement.setInt(3, raavarebatch.getRaavareID());
 
 
 

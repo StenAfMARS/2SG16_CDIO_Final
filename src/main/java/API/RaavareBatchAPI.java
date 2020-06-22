@@ -26,7 +26,6 @@ public class RaavareBatchAPI {
         return RaavareBatches().getRaavareBatch(raavareBatchID);
     }
 
-    @Path("{id : [0-9]+}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public static Response update(RaavareBatchDTO raavareBatch){

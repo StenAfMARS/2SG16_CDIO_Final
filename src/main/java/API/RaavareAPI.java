@@ -26,7 +26,6 @@ public class RaavareAPI {
         return Raavare().getRaavare(raavareID);
     }
 
-    @Path("{id : [0-9]+}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public static Response update(RaavareDTO raavare){

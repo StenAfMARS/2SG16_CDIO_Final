@@ -17,7 +17,6 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
     public ProduktBatchDTO getProduktBatch(int produktbatch) throws DALException {
         ProduktBatchDTO produktBatchDTO= null;
 
-
         try {
             // CONNECT
             Connection connection = DatabaseHandler.connect();
@@ -105,15 +104,9 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
             PreparedStatement statement = connection.prepareStatement(
                     "insert into Produktbatch ( status, ReceptID) values ( ?, ?)");
 
-
             // Set variables
-
-
             statement.setInt(1, produktbatch.getStatus());
             statement.setInt(2, produktbatch.getReceptId());
-
-
-
 
             // Excecute
             statement.execute();

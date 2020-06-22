@@ -26,7 +26,6 @@ public class ReceptAPI {
         return Recepts().getRecept(receptID);
     }
 
-    @Path("{id : [0-9]+}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public static Response update(ReceptDTO recept){

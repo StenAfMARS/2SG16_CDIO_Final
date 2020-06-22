@@ -2,27 +2,27 @@ package DTO;
 
 public class ProduktBatchKompDTO {
     public ProduktBatchKompDTO(int pbId, int rbId, double tara, double netto, int oprId) {
-        this.pbId = pbId;
-        this.rbId = rbId;
+        this.pbID = pbId;
+        this.rbID = rbId;
         this.tara = tara;
         this.netto = netto;
-        this.oprId = oprId;
+        this.oprID = oprId;
     }
-    int pbId;
-    int rbId;
+    int pbID;
+    int rbID;
     double tara;
     double netto;
-    int oprId;
+    int oprID;
 
     public ProduktBatchKompDTO() {
     }
 
-    public int getPbId() {
-        return pbId;
+    public int getPbID() {
+        return pbID;
     }
 
-    public int getRbId() {
-        return rbId;
+    public int getRbID() {
+        return rbID;
     }
 
     public double getTara() {
@@ -33,7 +33,7 @@ public class ProduktBatchKompDTO {
         return netto;
     }
 
-    public int getOprId() {
-        return oprId;
+    public int getOprID() {
+        return oprID;
     }
 }
