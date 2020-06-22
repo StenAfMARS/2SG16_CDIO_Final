@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("raavareBatch")
+@Path("raavareBatches")
 public class RaavareBatchAPI {
     private static IRaavareBatchHandler raavareBatches;
     public static IRaavareBatchHandler RaavareBatches(){

@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("produktBatch")
+@Path("produktBatches")
 public class ProduktBatchAPI {
     private static IProduktBatchHandler produktBatches;
     public static IProduktBatchHandler ProduktBatches(){
