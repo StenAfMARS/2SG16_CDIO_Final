@@ -1,7 +1,3 @@
-$(document).ready(function () {
-    loadCommodity();
-});
-
 function deleteCommodity(id) {
     $.ajax({
         url: '../rest/raavarer/' + id,
@@ -25,7 +21,7 @@ function createCommodity(form) {
     });
 }
 function loadCommodity() {
-    $.post('rest/raavarer',
+    $.get('../rest/raavarer',
         {},
         function (data, textStatus, req) {
             $("#CommodityTable").empty();
@@ -39,12 +35,12 @@ function loadCommodity() {
 
 
 function generateCommodityTable(Commodity) {
-    return `<tr id="tr${Commodity.raavareId}"><form id=\"${Commodity.raavareId}\"></form>
-        <td><input form=\"${Commodity.raavareId}\" type=\"text\" name=\"userID\" value=\"${Commodity.raavareId}\" readonly=\"readonly\"></td>
-        <td><input form=\"${Commodity.raavareId}\" type=\"text\" name=\"userName\" value=\"${Commodity.raavareName}\"></td>
-        <td><input form=\"${Commodity.raavareId}\" type=\"text\" name=\"ini\" value=\"${Commodity.raavareLeverandoer}\"></td>
-        <td><input type=\"button\" value=\"opdater\" onclick=\"updateCommodity($(\'#commodityBatchTable #${Commodity.raavareId}\'));\"></td>
-        <td><input type=\"button\" onclick=\"deleteCommodity(${Commodity.raavareId});\" value=\"slet\"></td></tr>`;
+    return `<tr id="tr${Commodity.raavareID}"><form id=\"${Commodity.raavareID}\"></form>
+        <td><input form=\"${Commodity.raavareID}\" type=\"text\" name=\"userID\" value=\"${Commodity.raavareID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${Commodity.raavareID}\" type=\"text\" name=\"userName\" value=\"${Commodity.raavareName}\"></td>
+        <td><input form=\"${Commodity.raavareID}\" type=\"text\" name=\"ini\" value=\"${Commodity.raavareLeverandoer}\"></td>
+        <td><input type=\"button\" value=\"opdater\" onclick=\"updateCommodity($(\'#commodityBatchTable #${Commodity.raavareID}\'));\"></td>
+        <td><input type=\"button\" onclick=\"deleteCommodity(${Commodity.raavareID});\" value=\"slet\"></td></tr>`;
 
 
 

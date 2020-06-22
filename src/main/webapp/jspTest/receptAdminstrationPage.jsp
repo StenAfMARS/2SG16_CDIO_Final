@@ -1,6 +1,4 @@
-<%@ page import="Handlers.UserHandler" %>
 <%@ page import="java.util.List" %>
-<%@ page import="DTO.UserDTO" %>
 <%@ page import="Handlers.ReceptHandler" %>
 <%@ page import="DTO.ReceptDTO" %>
 <script src="/scripts/jquery-3.4.1.js"></script>
@@ -17,9 +15,9 @@
         <th></th>
     </tr>
     <tr>
-        <form id="createUser" method="post" action="/rest/recepter"></form>
-        <th><input form="createUser" type="text" name="receptID"></th>
-        <th><input form="createUser" type="text" name="receptNavn"></th>
+        <form id="createRecept" method="post" action="/rest/recepter"></form>
+        <th><input form="createRecept" type="text" name="receptID"></th>
+        <th><input form="createRecept" type="text" name="receptNavn"></th>
         <th colspan="2"><input type="button" value="create" onclick="createRecept($('#createRecept'))"></th>
     </tr>
     </thead>
