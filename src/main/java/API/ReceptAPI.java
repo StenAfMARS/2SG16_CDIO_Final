@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("recept")
+@Path("recepter")
 public class ReceptAPI {
     private static IReceptHandler recepts;
     public static IReceptHandler Recepts(){
