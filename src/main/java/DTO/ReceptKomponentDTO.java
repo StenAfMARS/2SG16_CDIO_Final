@@ -1,9 +1,8 @@
 package DTO;
 
 public class ReceptKomponentDTO {
-    public ReceptKomponentDTO(int receptId, String receptNavn, int raavareId, double nomNetto, double tolerance) {
+    public ReceptKomponentDTO(int receptId, int raavareId, double nomNetto, double tolerance) {
         this.receptID = receptId;
-        this.receptNavn = receptNavn;
         this.raavareID = raavareId;
         this.nomNetto = nomNetto;
         this.tolerance = tolerance;
