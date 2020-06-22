@@ -23,7 +23,7 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM Produktbatch WHERE  pbId=?");
+                    "SELECT * FROM produktBatch WHERE  pbId=?");
 
             // Set variables
             statement.setInt(1, produktbatch);
@@ -63,7 +63,7 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM Produktbatch");
+                    "SELECT * FROM produktBatch");
 
             // Set variables
 
@@ -102,17 +102,11 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "insert into Produktbatch (pdId, status, ReceptID) values (?, ?, ?)");
-
+                    "insert into Produktbatch ( status, ReceptID) values ( ?, ?)");
 
             // Set variables
-
-
             statement.setInt(1, produktbatch.getStatus());
             statement.setInt(2, produktbatch.getReceptId());
-
-
-
 
             // Excecute
             statement.execute();

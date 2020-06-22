@@ -26,7 +26,6 @@ public class ProduktBatchAPI {
         return ProduktBatches().getProduktBatch(produktBatchID);
     }
 
-    @Path("{id : [0-9]+}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public static Response update(ProduktBatchDTO produktBatch){

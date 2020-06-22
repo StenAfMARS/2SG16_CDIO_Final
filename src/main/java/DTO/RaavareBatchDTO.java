@@ -2,12 +2,12 @@ package DTO;
 
 public class RaavareBatchDTO {
     public RaavareBatchDTO(int rbId, int raavareId, double maengde) {
-        this.rbId = rbId;
-        this.raavareId = raavareId;
+        this.rbID = rbId;
+        this.raavareID = raavareId;
         this.maengde = maengde;
     }
-    int rbId;
-    int raavareId;
+    int rbID;
+    int raavareID;
     double maengde;
 
     public RaavareBatchDTO() {
@@ -17,11 +17,11 @@ public class RaavareBatchDTO {
         return maengde;
     }
 
-    public int getRbId() {
-        return rbId;
+    public int getRbID() {
+        return rbID;
     }
 
-    public int getRaavareId() {
-        return raavareId;
+    public int getRaavareID() {
+        return raavareID;
     }
 }

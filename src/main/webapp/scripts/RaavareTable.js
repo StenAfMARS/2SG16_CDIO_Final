@@ -3,11 +3,29 @@ $(document).ready(function () {
 });
 
 function deleteCommodity(id) {
-    $.post('rest/Commodity/deleteCommodity', {"raavareId":id}, data => alert(JSON.stringify(data)));
+    $.ajax({
+        url: '../rest/raavarer/' + id,
+        method: 'delete',
+        contentType: "application/json", // det vi sender er json
+        success: function (data) {
+            $('#userTable #tr' + data).remove();
+        }
+    });
 }
-
+function createCommodity(form) {
+    var data = form.serializeJSON();
+    $.ajax({
+        url: '../rest/raavarer',
+        method: 'POST',
+        contentType: "application/json", // det vi sender er json
+        data: data,
+        success: function(data){
+            loadCommodity();
+        }
+    });
+}
 function loadCommodity() {
-    $.post('rest/Product/getCommodityList',
+    $.post('rest/raavarer',
         {},
         function (data, textStatus, req) {
             $("#CommodityTable").empty();
@@ -21,29 +39,29 @@ function loadCommodity() {
 
 
 function generateCommodityTable(Commodity) {
-    return '<tr><td>' + Commodity.raavareId + '</td>' +
-        '<td>' +'<input type="text" value="'+Commodity.raavareNavn +'">'+'</td>' +
-        '<td>'+'<input type="text" value="' + Commodity.leverandoer + '">'+'</td>' +
-        '<td onclick="updateCommodity(' + Commodity.raavareId + ')">opdater raavare</td>' +
-
-        '<td onclick="deleteCommodity(' + Commodity.raavareId + ')"><button>slet raavare</button></td></tr> '
+    return `<tr id="tr${Commodity.raavareId}"><form id=\"${Commodity.raavareId}\"></form>
+        <td><input form=\"${Commodity.raavareId}\" type=\"text\" name=\"userID\" value=\"${Commodity.raavareId}\" readonly=\"readonly\"></td>
+        <td><input form=\"${Commodity.raavareId}\" type=\"text\" name=\"userName\" value=\"${Commodity.raavareName}\"></td>
+        <td><input form=\"${Commodity.raavareId}\" type=\"text\" name=\"ini\" value=\"${Commodity.raavareLeverandoer}\"></td>
+        <td><input type=\"button\" value=\"opdater\" onclick=\"updateCommodity($(\'#commodityBatchTable #${Commodity.raavareId}\'));\"></td>
+        <td><input type=\"button\" onclick=\"deleteCommodity(${Commodity.raavareId});\" value=\"slet\"></td></tr>`;
 
 
 
 }
 
-function updateCommodity(RaavareId,RaavareNavn,Leverandoer){
+function updateCommodity(form){
     var settings = {
-        "url": "http://localhost:8080/2SG16_CDIO_Final_war_exploded/rest/Commodity/updateCommodity",
-        "method": "POST",
+        "url": "../rest/raavarer",
+        "method": "PUT",
         "timeout": 0,
         "headers": {
             "Content-Type": "application/json"
         },
-        "data": JSON.stringify({"RaavareId":RaavareId,"RaavareNavn":RaavareNavn,"Leverandoer":Leverandoer}),
+        "data": form.serializeJSON()
     };
 
     $.ajax(settings).done(function (response) {
-        console.log(response);
+        loadCommodity();
     });
 }

@@ -1,47 +1,47 @@
-$(document).ready(function () {
-    loadRecept();
-});
-
-function deleteRecept(id) {
-    $.post('rest/Recept/deleteRecept', {"receptID":id}, data => alert(JSON.stringify(data)));
+function createRecept(form) {
+    var data = form.serializeJSON();
+    $.ajax({
+        url: '../rest/recepter',
+        method: 'POST',
+        contentType: "application/json", // det vi sender er json
+        data: data,
+        success: function(data){
+            loadRecepter();
+        }
+    });
 }
 
-function loadRecept() {
-    $.post('rest/Recept/getReceptList',
+function loadRecepter() {
+    $.get('../rest/recepter',
         {},
         function (data, textStatus, req) {
-            $("#ReceptTable").empty();
+            $("#receptTable").empty();
             $.each(data, function (i, elt) {
-                $('#ReceptTable').append(generateReceptTable(elt));
+                $('#receptTable').append(generateReceptTable(elt));
             });
         }
     );
 }
 
-
-function generateReceptTable(Recept) {
-    return '<tr><td>' + Recept.receptID + '</td>' +
-        '<td>' +'<input type="text" value="'+Recept.receptNavn +'">'+'</td>' +
-        '<td onclick="updateRecept(' + Recept.receptID + ')">opdater Recept</td>' +
-
-        '<td onclick="deleteRecept(' + Recept.receptID + ')"><button>slet Recept</button></td></tr> '
-
-
-
+function generateReceptTable(recept) {
+    return `<tr id="tr${recept.receptID}"><form id=\"${recept.receptID}\"></form>
+        <td><input form=\"${recept.receptID}\" type=\"text\" name=\"receptID\" value=\"${recept.receptID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${recept.receptID}\" type=\"text\" name=\"receptName\" value=\"${recept.receptNavn}\"></td>
+        <td><input type=\"button\" value=\"opdater\" onclick=\"updateRecept($(\'#receptTable #${recept.receptID}\'));\"></td></tr>`;
 }
 
-function updateRecept(ReceptID,ReceptNavn){
+function updateRecept(form){
     var settings = {
-        "url": "http://localhost:8080/2SG16_CDIO_Final_war_exploded/rest/Recept/updateRecept",
-        "method": "POST",
+        "url": "../rest/recepter",
+        "method": "put",
         "timeout": 0,
         "headers": {
             "Content-Type": "application/json"
         },
-        "data": JSON.stringify({"ReceptID":ReceptID,"ReceptNavn":ReceptNavn}),
+        "data": form.serializeJSON(),
     };
 
     $.ajax(settings).done(function (response) {
-        console.log(response);
+        loadRecepter();
     });
 }

@@ -1,0 +1,65 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: mathias
+  Date: 6/22/2020
+  Time: 5:09 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page import="Handlers.UserHandler" %>
+<%@ page import="java.util.List" %>
+<%@ page import="DTO.RaavareDTO" %>
+<%@ page import="Handlers.RaavareHandler" %>
+<script src="/scripts/jquery-3.4.1.js"></script>
+<script src="/scripts/jquery.serialize-object.js"></script>
+<table align="center">
+    <thead>
+
+    <tr>
+        <td id="header" colspan="5"><h1>Råvare table</h1> </td>
+
+    </tr>
+
+    <tr>
+        <th>RaavareId</th>
+        <th>RaavareNavn</th>
+        <th>Leverandoer</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <form id="createRaavare" method="post" action="/rest/users">
+            <th></th>
+            <th><input type="text" name="raavareNavn"></th>
+            <th><input type="text" name="raavareLeverandoer"></th>
+            <th colspan="2"><input type="button" value="create" onclick="createRaavare($('#createRaavare'))"></th>
+        </form>
+    </tr>
+
+    </thead>
+    <tbody id="commodityBatchTable">
+    <%
+        RaavareHandler RaavareHandler = new RaavareHandler();
+
+        List<RaavareDTO> raavare = RaavareHandler.getRaavareList();
+
+        StringBuilder sb = new StringBuilder();
+
+        for (RaavareDTO raavareDTO : raavare) {
+            sb.append(String.format("<tr id=\"tr%1$s\"><form id=\"%1$s\"></form>" +
+                            "<td><input form=\"%1$s\" type=\"text\" name=\"raavareID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
+                            "<td><input form=\"%1$s\" type=\"text\" name=\"raavareNavn\" value=\"%2$s\"></td>" +
+                            "<td><input form=\"%1$s\" type=\"text\" name=\"raavareLeverandoer\" value=\"%3$s\"></td>" +
+                            "<td><input type=\"button\" value=\"opdater\" onclick=\"updateCommodity($(\'#userTable #%1$s\'));\"></td>" +
+                            "<td><input type=\"button\" onclick=\"deleteCommodity(%1$s);\" value=\"slet\"></td></tr>",
+                    raavareDTO.getRaavareId(),      // 1
+                    raavareDTO.getRaavareNavn(),    // 2
+                    raavareDTO.getLeverandoer()     // 3
+                )
+            );
+
+        }
+        out.print(sb.toString());
+    %>
+    </tbody>
+</table>
+<script src="/scripts/RaavareTable.js"></script>
