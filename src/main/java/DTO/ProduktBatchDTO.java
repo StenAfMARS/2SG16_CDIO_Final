@@ -3,12 +3,12 @@ package DTO;
 public class ProduktBatchDTO {
 
     public ProduktBatchDTO(int pbId, int status, int receptId){
-        this.pbId = pbId;
+        this.pbID = pbId;
         this.status = status;
         this.receptId = receptId;
     }
     // Produkt Batch id 1-99999999
-    int pbId;
+    int pbID;
     // Ikke påbegyndt = 0/ Under Produktion =  1/ Afsluttet = 2
     int status;
     // Recept Id 1-99999999
@@ -17,8 +17,8 @@ public class ProduktBatchDTO {
     public ProduktBatchDTO() {
     }
 
-    public int getPbId() {
-        return pbId;
+    public int getPbID() {
+        return pbID;
     }
 
     public int getStatus() {

@@ -2,16 +2,16 @@ package DTO;
 
 public class RaavareDTO {
     public RaavareDTO(int raavareId, String raavareNavn, String leverandoer) {
-        this.raavareId = raavareId;
+        this.raavareID = raavareId;
         this.raavareNavn = raavareNavn;
         this.leverandoer = leverandoer;
     }
-    int raavareId;
+    int raavareID;
     String raavareNavn;
     String leverandoer;
 
-    public int getRaavareId() {
-        return raavareId;
+    public int getRaavareID() {
+        return raavareID;
     }
 
     public String getRaavareNavn() {

@@ -102,17 +102,11 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "insert into Produktbatch (pdId, status, ReceptID) values (?, ?, ?)");
-
+                    "insert into Produktbatch (status, ReceptID) values (?, ?)");
 
             // Set variables
-
-
             statement.setInt(1, produktbatch.getStatus());
             statement.setInt(2, produktbatch.getReceptId());
-
-
-
 
             // Excecute
             statement.execute();
@@ -285,10 +279,10 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
             // Set variables
 
 
-            statement.setInt(1, produktBatchKompDTO.getRbId());
+            statement.setInt(1, produktBatchKompDTO.getRbID());
             statement.setDouble(2, produktBatchKompDTO.getTara());
             statement.setDouble(3, produktBatchKompDTO.getNetto());
-            statement.setInt(4, produktBatchKompDTO.getPbId());
+            statement.setInt(4, produktBatchKompDTO.getPbID());
 
 
 
@@ -322,11 +316,11 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
             // Set variables
 
 
-            statement.setInt(1, produktBatchKomp.getOprId());
-            statement.setInt(2, produktBatchKomp.getRbId());
+            statement.setInt(1, produktBatchKomp.getOprID());
+            statement.setInt(2, produktBatchKomp.getRbID());
             statement.setDouble(3, produktBatchKomp.getTara());
             statement.setDouble(4, produktBatchKomp.getNetto());
-            statement.setInt(5, produktBatchKomp.getPbId());
+            statement.setInt(5, produktBatchKomp.getPbID());
 
 
             // Execute
