@@ -18,15 +18,16 @@
             <th></th>
             <th></th>
         </tr>
-        <tr><form id="createUser" method="post" action="/rest/users">
+        <tr>
+            <form id="createUser" method="post" action="/rest/users"></form>
             <th></th>
-            <th><input type="text" name="userName"></th>
-            <th><input type="text" name="ini"></th>
-            <th><input type="text" name="cpr"></th>
-            <th><input type="text" name="password"></th>
-            <th><input type="text" name="roles"></th>
+            <th><input form="createUser" type="text" name="userName"></th>
+            <th><input form="createUser" type="text" name="ini"></th>
+            <th><input form="createUser" type="text" name="cpr"></th>
+            <th><input form="createUser" type="text" name="password"></th>
+            <th><input form="createUser" type="text" name="roles"></th>
             <th colspan="2"><input type="button" value="create" onclick="createUser($('#createUser'))"></th>
-        </form></tr>
+        </tr>
     </thead>
     <tbody id="userTable">
         <%
@@ -37,26 +38,21 @@
             StringBuilder sb = new StringBuilder();
 
             for (UserDTO user : users) {
-                sb.append("<form method='put' action='/rest/users'><tr id='");
-                sb.append(user.getUserID())
-                sb.append("'><td name='userID' value='");
-                sb.append(user.getUserID());
-                sb.append("'>");
-                sb.append(user.getUserID());
-                sb.append("</td>");
-                sb.append("<td><input type='text' name='userName' value='");
-                sb.append(user.getUserName());
-                sb.append("'></td><td><input type='text' name='ini' value='");
-                sb.append(user.getIni());
-                sb.append("'></td><td><input type='text' name='cpr' value='");
-                sb.append(user.getCpr());
-                sb.append("'></td><td><input type='text' name='password' value='");
-                sb.append(user.getPassword());
-                sb.append("'></td><td><input type='text' name='roles' value='");
-                sb.append(user.getRoles());
-                sb.append("'></td><td><input type='button' value='opdater'></td><td><input type='button' onclick='deleteUser(");
-                sb.append(user.getUserID());
-                sb.append(")' value='slet'></td></tr></form>");
+                sb.append(String.format("<tr id=\"tr%1$s\"><form id=\"%1$s\"></form>" +
+                    "<td><input form=\"%1$s\" type=\"text\" name=\"userID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
+                    "<td><input form=\"%1$s\" type=\"text\" name=\"userName\" value=\"%2$s\"></td>" +
+                    "<td><input form=\"%1$s\" type=\"text\" name=\"ini\" value=\"%3$s\"></td>" +
+                    "<td><input form=\"%1$s\" type=\"text\" name=\"cpr\" value=\"%4$s\"></td>" +
+                    "<td><input form=\"%1$s\" type=\"text\" name=\"password\" value=\"%5$s\"></td>" +
+                    "<td><input form=\"%1$s\" type=\"text\" name=\"roles\" value=\"%6$s\"></td>" +
+                    "<td><input type=\"button\" value=\"opdater\" onclick=\"updateUser($(\'#userTable #%1$s\'));\"></td>" +
+                    "<td><input type=\"button\" onclick=\"deleteUser(%1$s);\" value=\"slet\"></td></tr>",
+                        user.getUserID(),   // 1
+                        user.getUserName(), // 2
+                        user.getIni(),      // 3
+                        user.getCpr(),      // 4
+                        user.getPassword(), // 5
+                        user.getRoles()));  // 6
             }
 
             out.print(sb.toString());
