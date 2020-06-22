@@ -3,9 +3,8 @@ function deleteUser(id) {
         url: '../rest/users/' + id,
         method: 'delete',
         contentType: "application/json", // det vi sender er json
-        succes: function (data) {
-            alert(data);
-            $('#userTable #' + data).remove();
+        success: function (data) {
+            $('#userTable #tr' + data).remove();
         }
     });
 }
@@ -17,8 +16,8 @@ function createUser(form) {
         method: 'POST',
         contentType: "application/json", // det vi sender er json
         data: data,
-        succes: function(data){
-            addUserOnTable(data);
+        success: function(data){
+            loadUsers();
         }
     });
 }
@@ -36,15 +35,15 @@ function loadUsers() {
 }
 
 function addUserOnTable(user) {
-    return "<tr><form id=\"${user.userID}\"></form>" +
-        "<td><input form=\"${user.userID}\" type=\"text\" name=\"userID\" value=\"${user.userID}\" readonly=\"readonly\"></td>" +
-        "<td><input form=\"${user.userID}\" type=\"text\" name=\"userName\" value=\"${user.userName}\"></td>" +
-        "<td><input form=\"${user.userID}\" type=\"text\" name=\"ini\" value=\"${user.ini}\"></td>" +
-        "<td><input form=\"${user.userID}\" type=\"text\" name=\"cpr\" value=\"${user.cpr}\"></td>" +
-        "<td><input form=\"${user.userID}\" type=\"text\" name=\"password\" value=\"${user.password}\"></td>" +
-        "<td><input form=\"${user.userID}\" type=\"text\" name=\"roles\" value=\"${user.roles}\"></td>" +
-        "<td><input type=\"button\" value=\"opdater\" onclick=\"updateUser($(\'#userTable #${user.userID}\'));\"></td>" +
-        "<td><input type=\"button\" onclick=\"deleteUser(${user.userID});\" value=\"slet\"></td></tr>";
+    return `<tr id="tr${user.userID}"><form id=\"${user.userID}\"></form>
+        <td><input form=\"${user.userID}\" type=\"text\" name=\"userID\" value=\"${user.userID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${user.userID}\" type=\"text\" name=\"userName\" value=\"${user.userName}\"></td>
+        <td><input form=\"${user.userID}\" type=\"text\" name=\"ini\" value=\"${user.ini}\"></td>
+        <td><input form=\"${user.userID}\" type=\"text\" name=\"cpr\" value=\"${user.cpr}\"></td>
+        <td><input form=\"${user.userID}\" type=\"text\" name=\"password\" value=\"${user.password}\"></td>
+        <td><input form=\"${user.userID}\" type=\"text\" name=\"roles\" value=\"${user.roles}\"></td>
+        <td><input type=\"button\" value=\"opdater\" onclick=\"updateUser($(\'#userTable #${user.userID}\'));\"></td>
+        <td><input type=\"button\" onclick=\"deleteUser(${user.userID});\" value=\"slet\"></td></tr>`;
 }
 
 function updateUser(form){
@@ -59,6 +58,6 @@ function updateUser(form){
     };
 
     $.ajax(settings).done(function (response) {
-        console.log(response);
+        loadUsers();
     });
 }

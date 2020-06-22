@@ -21,11 +21,11 @@
         <tr>
             <form id="createUser" method="post" action="/rest/users"></form>
             <th></th>
-            <th><input type="text" name="userName"></th>
-            <th><input type="text" name="ini"></th>
-            <th><input type="text" name="cpr"></th>
-            <th><input type="text" name="password"></th>
-            <th><input type="text" name="roles"></th>
+            <th><input form="createUser" type="text" name="userName"></th>
+            <th><input form="createUser" type="text" name="ini"></th>
+            <th><input form="createUser" type="text" name="cpr"></th>
+            <th><input form="createUser" type="text" name="password"></th>
+            <th><input form="createUser" type="text" name="roles"></th>
             <th colspan="2"><input type="button" value="create" onclick="createUser($('#createUser'))"></th>
         </tr>
     </thead>
@@ -38,7 +38,7 @@
             StringBuilder sb = new StringBuilder();
 
             for (UserDTO user : users) {
-                sb.append(String.format("<tr><form id=\"%1$s\"></form>" +
+                sb.append(String.format("<tr id=\"tr%1$s\"><form id=\"%1$s\"></form>" +
                     "<td><input form=\"%1$s\" type=\"text\" name=\"userID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
                     "<td><input form=\"%1$s\" type=\"text\" name=\"userName\" value=\"%2$s\"></td>" +
                     "<td><input form=\"%1$s\" type=\"text\" name=\"ini\" value=\"%3$s\"></td>" +
