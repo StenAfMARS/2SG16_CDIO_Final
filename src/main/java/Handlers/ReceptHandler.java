@@ -1,6 +1,6 @@
 /*
- * Peter M. Skaarup
- * 21/05-2020
+   Peter M. Skaarup
+   21/05-2020
 */
 package Handlers;
 
@@ -189,15 +189,21 @@ public class ReceptHandler implements IReceptHandler {
             while (resultSet.next()){
                 receptKomponentList.add(new ReceptKomponentDTO(
                         resultSet.getInt("fk_RaavareID"),
+                        resultSet.getInt("fk_ReceptID"),
                         resultSet.getDouble("nonNetto"),
-                        resultSet.getDouble("tolerance"),
-                        resultSet.getInt("fk_ReceptID")
+                        resultSet.getDouble("tolerance")
+
                     )
                 );
             }
 
-        }catch (SQLException e){
+            connection.close();
+            resultSet.close();
+            statement.close();
 
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new DALException("Could not find recept component");
         }
 
         return receptKomponentList;
@@ -207,7 +213,36 @@ public class ReceptHandler implements IReceptHandler {
     public List<ReceptKomponentDTO> getReceptKomponentList() throws DALException {
         List<ReceptKomponentDTO> receptKomponentList = new LinkedList<>();
 
-        return null;
+        try{
+            Connection connection = DatabaseHandler.connect();
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM RecebtComponents");
+
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                receptKomponentList.add(new ReceptKomponentDTO(
+                                resultSet.getInt("fk_RaavareID"),
+                                resultSet.getInt("fk_ReceptID"),
+                                resultSet.getDouble("nonNetto"),
+                                resultSet.getDouble("tolerance")
+
+                        )
+                );
+            }
+
+            connection.close();
+            resultSet.close();
+            statement.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new DALException("Could not find recept component");
+        }
+
+        return receptKomponentList;
     }
 
     @Override
