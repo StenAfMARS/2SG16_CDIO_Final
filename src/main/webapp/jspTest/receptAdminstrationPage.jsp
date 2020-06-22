@@ -20,7 +20,7 @@
         <form id="createUser" method="post" action="/rest/recepter"></form>
         <th><input form="createUser" type="text" name="receptID"></th>
         <th><input form="createUser" type="text" name="receptNavn"></th>
-        <th colspan="2"><input type="button" value="create" onclick="createUser($('#createRecept'))"></th>
+        <th colspan="2"><input type="button" value="create" onclick="createRecept($('#createRecept'))"></th>
     </tr>
     </thead>
     <tbody id="receptTable">
