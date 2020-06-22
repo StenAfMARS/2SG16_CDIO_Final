@@ -65,7 +65,7 @@ public class UserHandler implements IUserDAO {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT userID,userName,userPassword,ini,cpr,fk_RollID FROM Users");
+                    "SELECT userID,userName,userPassword,ini,cpr,fk_RollID FROM Users WHERE userStatus = 1");
 
             // Set variables
 
