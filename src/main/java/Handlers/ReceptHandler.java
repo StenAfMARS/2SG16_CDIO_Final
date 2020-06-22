@@ -121,9 +121,6 @@ public class ReceptHandler implements IReceptHandler {
 
             statement.execute();
 
-
-
-
             connection.close();
             statement.close();
 
@@ -161,6 +158,7 @@ public class ReceptHandler implements IReceptHandler {
             }
 
             connection.close();
+            resultSet.close();
             statement.close();
 
 
