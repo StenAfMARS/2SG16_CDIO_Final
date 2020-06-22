@@ -19,7 +19,7 @@
             <th></th>
         </tr>
         <tr>
-            <form id="createUser" method="post" action="/rest/users"></form>
+            <form id="createUser"></form>
             <th></th>
             <th><input form="createUser" type="text" name="userName"></th>
             <th><input form="createUser" type="text" name="ini"></th>

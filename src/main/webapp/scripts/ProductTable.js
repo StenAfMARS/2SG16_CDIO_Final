@@ -1,53 +1,60 @@
-$(document).ready(function () {
-    loadProduct();
-});
-
-function deleteProduct(id) {
-    $.post('rest/Product/deleteProduct', {"pbId":id}, data => alert(JSON.stringify(data)));
+function deleteProductBatch(id) {
+    $.ajax({
+        url: '../rest/productBatches/' + id,
+        method: 'delete',
+        contentType: "application/json", // det vi sender er json
+        success: function (data) {
+            $('#productBatchTable #tr' + data).remove();
+        }
+    });
 }
 
-function loadProduct() {
-    $.post('rest/Product/getProductList',
+function createProductBatch(form) {
+    var data = form.serializeJSON();
+    $.ajax({
+        url: '../rest/productBatches',
+        method: 'POST',
+        contentType: "application/json", // det vi sender er json
+        data: data,
+        success: function(data){
+            loadProductBatches();
+        }
+    });
+}
+
+function loadProductBatches() {
+    $.get('../rest/productBatches',
         {},
         function (data, textStatus, req) {
-            $("#productTable").empty();
+            $("#productBatchTable").empty();
             $.each(data, function (i, elt) {
-                $('#productTable').append(generateProductTable(elt));
+                $('#productBatchTable').append(addProductBatchOnTable(elt));
             });
         }
     );
 }
 
-
-
-function generateProductTable(Product) {
-    return '<tr><td>' + Product.pbId + '</td>' +
-        '<td>' +'<input type="text" value="'+Product.Status +'">'+'</td>' +
-        '<td>'+'<input type="text" value="' + Product.receptId + '">'+'</td>' +
-        '<td onclick="updateProduct(' + Product.pbId + ')">opdater Produkt</td>' +
-        '<td onclick="deleteProduct(' + Product.pbId + ')"><button>slet Produkt</button></td></tr> '
-
-
-
+function addProductBatchOnTable(productBatch) {
+    return `<tr id="tr${productBatch.pbID}"><form id=\"${productBatch.pbID}\"></form>
+        <td><input form=\"${productBatch.pbID}\" type=\"text\" name=\"productBatchID\" value=\"${productBatch.pbID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${productBatch.pbID}\" type=\"text\" name=\"productBatchName\" value=\"${productBatch.status}\"></td>
+        <td><input form=\"${productBatch.pbID}\" type=\"text\" name=\"ini\" value=\"${productBatch.receptID}\"></td>
+        <td><input type=\"button\" value=\"opdater\" onclick=\"updateProductBatch($(\'#productBatchTable #${productBatch.pbID}\'));\"></td>
+        <td><input type=\"button\" onclick=\"deleteProductBatch(${productBatch.pbID});\" value=\"slet\"></td></tr>`;
 }
 
-
-function updateProduct(ProductId,Status,ReceptId){
+function updateProductBatch(form){
     var settings = {
-        "url": "http://localhost:8080/2SG16_CDIO_Final_war_exploded/rest/product/updateProduct",
-        "method": "POST",
+        "url": "../rest/productBatches",
+        "method": "PUT",
         "timeout": 0,
         "headers": {
             "Content-Type": "application/json"
         },
-        "data": JSON.stringify({"ProductId":ProductId,"Status":Status,"ReceptId":ReceptId}),
+        "data": form.serializeJSON()
     };
 
     $.ajax(settings).done(function (response) {
-        console.log(response);
+        loadProductBatches();
     });
 }
-
-
-
-

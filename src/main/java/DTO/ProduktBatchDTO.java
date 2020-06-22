@@ -5,14 +5,14 @@ public class ProduktBatchDTO {
     public ProduktBatchDTO(int pbId, int status, int receptId){
         this.pbID = pbId;
         this.status = status;
-        this.receptId = receptId;
+        this.receptID = receptId;
     }
     // Produkt Batch id 1-99999999
     int pbID;
     // Ikke påbegyndt = 0/ Under Produktion =  1/ Afsluttet = 2
     int status;
     // Recept Id 1-99999999
-    int receptId;
+    int receptID;
 
     public ProduktBatchDTO() {
     }
@@ -26,7 +26,7 @@ public class ProduktBatchDTO {
     }
 
 
-    public int getReceptId() {
-        return receptId;
+    public int getReceptID() {
+        return receptID;
     }
 }
