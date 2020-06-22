@@ -35,7 +35,7 @@ public class UserHandler implements IUserDAO {
                         resultSet.getString(3),
                         resultSet.getString(4),
                         resultSet.getString(5),
-                        resultSet.getString(6).split(" ")
+                        resultSet.getString(6)
                 );
             }
 
@@ -78,7 +78,7 @@ public class UserHandler implements IUserDAO {
                         resultSet.getString(3),
                         resultSet.getString(4),
                         resultSet.getString(5),
-                        resultSet.getString(6).split(" ")
+                        resultSet.getString(6)
                 ));
             }
 
@@ -103,17 +103,14 @@ public class UserHandler implements IUserDAO {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "insert into Users (userName, userPassword, ini, cpr, Rolls) values (?, ?, ?, ?, ?)");
+                    "insert into Users (userName, userPassword, ini, cpr, fk_RollID) values (?, ?, ?, ?, ?)");
 
             // Set variables
             statement.setString(1, userDTO.getUserName());
             statement.setString(2, userDTO.getPassword());
             statement.setString(3, userDTO.getIni());
             statement.setString(4, userDTO.getCpr());
-            if (userDTO.getRoles() == null)
-                statement.setString(5, "");
-            else
-                statement.setString(5, String.join(" ", userDTO.getRoles()));
+            statement.setString(5, userDTO.getRoles());
 
             // Excecute
             statement.execute();
@@ -124,7 +121,7 @@ public class UserHandler implements IUserDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new DALException("Couldn't find user");
+            throw new DALException("Couldn't create user");
         }
     }
 
@@ -143,7 +140,7 @@ public class UserHandler implements IUserDAO {
             statement.setString(2, userDTO.getPassword());
             statement.setString(3, userDTO.getIni());
             statement.setString(4, userDTO.getCpr());
-            statement.setString(5, String.join(" ", userDTO.getRoles()));
+            statement.setString(5, userDTO.getRoles());
             statement.setInt(6, userDTO.getUserID());
 
             // Execute
@@ -155,7 +152,7 @@ public class UserHandler implements IUserDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new DALException("Couldn't find user");
+            throw new DALException("Couldn't update user");
         }
     }
 

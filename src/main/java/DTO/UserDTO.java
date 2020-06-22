@@ -18,9 +18,9 @@ public class UserDTO implements Serializable {
     private String password;
     private String ini;
     private String cpr;
-    private String[] roles;
+    private String roles;
 
-    public UserDTO(int userID, String userName, String password, String ini, String cpr, String[] roles) {
+    public UserDTO(int userID, String userName, String password, String ini, String cpr, String roles) {
         this.userID = userID;
         this.userName = userName;
         this.password = password;
@@ -35,7 +35,7 @@ public class UserDTO implements Serializable {
         String password = "";
         String ini = "";
         String cpr = "";
-        List<String> roles = new ArrayList<>();
+        String roles = "";
     }
 
     public void randomizePassword(){
@@ -111,11 +111,11 @@ public class UserDTO implements Serializable {
         return false;
     }
 
-    public String[] getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public boolean setRoles(String[] roles) {
+    public boolean setRoles(String roles) {
         this.roles = roles;
         return true;
     }

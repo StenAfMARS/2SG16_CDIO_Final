@@ -1,13 +1,36 @@
-$(document).ready(function () {
-    loadUsers();
-});
-
 function deleteUser(id) {
-    $.delete('rest/users/' + id, null, data => alert(JSON.stringify(data)));
+    $.ajax({
+        url: '../rest/users/' + id,
+        method: 'delete',
+        contentType: "application/json", // det vi sender er json
+        succes: function (data) {
+            $('#userTable #' + id).remove();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+            alert(textStatus);
+            alert(errorThrown);
+        }
+    });
+}
+
+function createUser(form) {
+    var data = form.serializeJSON();
+    $.ajax({
+        url: '../rest/users',
+        method: 'POST',
+        contentType: "application/json", // det vi sender er json
+        data: data,
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+            alert(textStatus);
+            alert(errorThrown);
+        }
+    });
 }
 
 function loadUsers() {
-    $.get('rest/users',
+    $.get('../rest/users',
         {},
         function (data, textStatus, req) {
             $("#userTable").empty();
@@ -30,14 +53,9 @@ function generateUserTable(user) {
         '<td onclick="deleteUser(' + user.userID + ')"><button>slet bruger</button></td></tr> '
 }
 
-function updateUserByID(id){
-    switchPage("Views/userAdminstrationPage.jsp");
-    document.uuuuserID = id;
-}
-
 function updateUser(id, userName, password, ini, cpr, roles){
     var settings = {
-        "url": "/rest/users",
+        "url": "../rest/users",
         "method": "PUT",
         "timeout": 0,
         "headers": {
