@@ -12,7 +12,6 @@ public class UserHandler implements IUserDAO {
 
     @Override
     public UserDTO getUser(int userID){
-
         UserDTO userDTO = null;
 
         try {
