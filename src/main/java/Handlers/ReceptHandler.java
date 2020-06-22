@@ -225,10 +225,9 @@ public class ReceptHandler implements IReceptHandler {
             while (resultSet.next()){
                 receptKomponentList.add(new ReceptKomponentDTO(
                                 resultSet.getInt("fk_RaavareID"),
-                                resultSet.getInt("fk_ReceptID"),
                                 resultSet.getDouble("nonNetto"),
-                                resultSet.getDouble("tolerance")
-
+                                resultSet.getDouble("tolerance"),
+                                resultSet.getInt("fk_ReceptID")
                         )
                 );
             }
@@ -246,7 +245,30 @@ public class ReceptHandler implements IReceptHandler {
     }
 
     @Override
-    public void createReceptKomponent(ReceptKomponentDTO receptkomponent) throws DALException {
+    public void createReceptKomponent(ReceptKomponentDTO receptKomponent) throws DALException {
+
+        try{
+            Connection connection = DatabaseHandler.connect();
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "insert into RecebtComponents (fk_RaavareID, nonNetto, tolerance, fk_ReceptID ) values (?, ?, ?, ?)");
+
+            statement.setInt(1,receptKomponent.getRaavareID());
+            statement.setDouble(2,receptKomponent.getNonNetto());
+            statement.setDouble(3,receptKomponent.getTolerance());
+            statement.setInt(4,receptKomponent.getReceptID());
+
+
+            statement.execute();
+
+            connection.close();
+            statement.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new DALException("Couldn't create recept component");
+        }
+    }
 
     }
 
