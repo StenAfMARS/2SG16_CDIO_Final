@@ -12,7 +12,7 @@ function createRecept(form) {
 }
 
 function loadRecepter() {
-    $.get('rest/recepter',
+    $.get('../rest/recepter',
         {},
         function (data, textStatus, req) {
             $("#receptTable").empty();
@@ -23,15 +23,14 @@ function loadRecepter() {
     );
 }
 
-
 function generateReceptTable(recept) {
     return `<tr id="tr${recept.receptID}"><form id=\"${recept.receptID}\"></form>
-        <td><input form=\"${recept.receptID}\" type=\"text\" name=\"userID\" value=\"${recept.receptID}\" readonly=\"readonly\"></td>
-        <td><input form=\"${recept.receptID}\" type=\"text\" name=\"userName\" value=\"${recept.receptNavn}\"></td>
-        <td><input type=\"button\" value=\"opdater\" onclick=\"updateRecept($(\'#userTable #${recept.receptID}\'));\"></td></tr>`;
+        <td><input form=\"${recept.receptID}\" type=\"text\" name=\"receptID\" value=\"${recept.receptID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${recept.receptID}\" type=\"text\" name=\"receptName\" value=\"${recept.receptNavn}\"></td>
+        <td><input type=\"button\" value=\"opdater\" onclick=\"updateRecept($(\'#receptTable #${recept.receptID}\'));\"></td></tr>`;
 }
 
-function updateRecept(ReceptID,ReceptNavn){
+function updateRecept(form){
     var settings = {
         "url": "../rest/recepter",
         "method": "put",
@@ -39,7 +38,7 @@ function updateRecept(ReceptID,ReceptNavn){
         "headers": {
             "Content-Type": "application/json"
         },
-        "data": JSON.stringify({"ReceptID":ReceptID,"ReceptNavn":ReceptNavn}),
+        "data": form.serializeJSON(),
     };
 
     $.ajax(settings).done(function (response) {

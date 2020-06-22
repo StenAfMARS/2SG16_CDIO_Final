@@ -8,7 +8,7 @@
 <table align="center">
     <thead>
     <tr>
-        <td id="header" colspan="4" onclick="loadUsers()"><h1>Table of recepter</h1></td>
+        <td id="header" colspan="3" onclick="loadUsers()"><h1>Table of recepter</h1></td>
     </tr>
     <tr>
         <th>receptID</th>
@@ -35,8 +35,7 @@
         sb.append(String.format("<tr id=\"tr%1$s\"><form id=\"%1$s\"></form>" +
             "<td><input form=\"%1$s\" type=\"text\" name=\"receptID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
             "<td><input form=\"%1$s\" type=\"text\" name=\"receptNavn\" value=\"%2$s\"></td>" +
-            "<td><input type=\"button\" value=\"opdater\" onclick=\"updateRecept($(\'#receptTable #%1$s\'));\"></td>" +
-            "<td><input type=\"button\" onclick=\"deleteRecept(%1$s);\" value=\"slet\"></td></tr>",
+            "<td><input type=\"button\" value=\"opdater\" onclick=\"updateRecept($(\'#receptTable #%1$s\'));\"></td></tr>",
         recept.getReceptID(),   // 1
         recept.getReceptNavn()  // 2
         ));}
