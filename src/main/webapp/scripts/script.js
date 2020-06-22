@@ -6,7 +6,7 @@ $("#logOnForm").submit(function(e) {
     e.preventDefault();
 });
 function switchPage(page){
-    $("main").load(page);
+    $("#test").load(page);
 }
 function cookieCard() {
 

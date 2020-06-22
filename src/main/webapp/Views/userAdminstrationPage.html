@@ -1,32 +1,31 @@
-<script type="text/javascript" src="scripts/UserTable.js"></script>
-<main>
+
+    <script src="scripts/UserTable.js"></script>
     <table align="center">
         <thead>
 
-            <tr>
-                <td id="header" colspan="7"><h1>Table of users</h1> </td>
+        <tr>
+        <td id="header" colspan="7" onclick="loadUsers()"><h1>Table of users<br/>klik på mig</h1> </td>
 
-            </tr>
+    </tr>
 
-            <tr>
-                <th>UserId</th>
-                <th>UserName</th>
-                <th>Initialer</th>
-                <th>CPR</th>
-                <th>Password</th>
-                <th>Roles</th>
-                <th>update</th>
-                <th>delete</th>
+    <tr>
+    <th>UserId</th>
+    <th>UserName</th>
+    <th>Initialer</th>
+    <th>CPR</th>
+    <th>Password</th>
+    <th>Roles</th>
+    <th>update</th>
+    <th>delete</th>
 
 
-            </tr>
+    </tr>
 
-        </thead>
-        <tbody id="userTable">
+    </thead>
+    <tbody id="userTable">
 
         </tbody>
-    </table>
-</main>
-<footer>
 
-</footer>
+        </table>
+        <script>loadUsers()</script>
+

@@ -1,3 +1,4 @@
+console.log("er jeg her")
 $(document).ready(function () {
     loadUsers();
 });
@@ -7,6 +8,8 @@ function deleteUser(id) {
 }
 
 function loadUsers() {
+
+    console.log("test")
     $.get('rest/user',
         {},
         function (data, textStatus, req) {
