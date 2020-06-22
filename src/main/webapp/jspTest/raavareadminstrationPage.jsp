@@ -29,8 +29,8 @@
     <tr>
         <form id="createRaavare" method="post" action="/rest/users">
             <th></th>
-            <th><input type="text" name="raavareNavn"></th>
-            <th><input type="text" name="raavareLeverandoer"></th>
+            <th><input form="createRaavare" type="text" name="raavareNavn"></th>
+            <th><input form="createRaavare" type="text" name="leverandoer"></th>
             <th colspan="2"><input type="button" value="create" onclick="createCommodity($('#createRaavare'))"></th>
         </form>
     </tr>
@@ -48,7 +48,7 @@
             sb.append(String.format("<tr id=\"tr%1$s\"><form id=\"%1$s\"></form>" +
                             "<td><input form=\"%1$s\" type=\"text\" name=\"raavareID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
                             "<td><input form=\"%1$s\" type=\"text\" name=\"raavareNavn\" value=\"%2$s\"></td>" +
-                            "<td><input form=\"%1$s\" type=\"text\" name=\"raavareLeverandoer\" value=\"%3$s\"></td>" +
+                            "<td><input form=\"%1$s\" type=\"text\" name=\"leverandoer\" value=\"%3$s\"></td>" +
                             "<td><input type=\"button\" value=\"opdater\" onclick=\"updateCommodity($(\'#commodityBatchTable #%1$s\'));\"></td>" +
                             "<td><input type=\"button\" onclick=\"deleteCommodity(%1$s);\" value=\"slet\"></td></tr>",
                     raavareDTO.getRaavareID(),      // 1

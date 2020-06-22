@@ -1,3 +1,15 @@
+$(document).ready(function() {
+    cookieCard()
+});
+function cookieCard() {
+
+    const idCard = getCookie("CookieCard")
+    var keyCard = idCard.split(" ", 1)
+    // halfe ass fix to a buck
+    if(keyCard != "20" ) {
+        switchPage("Views/LandingPageAdminPanel.html")
+    }
+}
 function deleteCommodity(id) {
     $.ajax({
         url: '../rest/raavarer/' + id,
@@ -36,9 +48,9 @@ function loadCommodity() {
 
 function generateCommodityTable(Commodity) {
     return `<tr id="tr${Commodity.raavareID}"><form id=\"${Commodity.raavareID}\"></form>
-        <td><input form=\"${Commodity.raavareID}\" type=\"text\" name=\"userID\" value=\"${Commodity.raavareID}\" readonly=\"readonly\"></td>
-        <td><input form=\"${Commodity.raavareID}\" type=\"text\" name=\"userName\" value=\"${Commodity.raavareName}\"></td>
-        <td><input form=\"${Commodity.raavareID}\" type=\"text\" name=\"ini\" value=\"${Commodity.raavareLeverandoer}\"></td>
+        <td><input form=\"${Commodity.raavareID}\" type=\"text\" name=\"raavareID\" value=\"${Commodity.raavareID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${Commodity.raavareID}\" type=\"text\" name=\"raavareName\" value=\"${Commodity.raavareName}\"></td>
+        <td><input form=\"${Commodity.raavareID}\" type=\"text\" name=\"leverandoer\" value=\"${Commodity.leverandoer}\"></td>
         <td><input type=\"button\" value=\"opdater\" onclick=\"updateCommodity($(\'#commodityBatchTable #${Commodity.raavareID}\'));\"></td>
         <td><input type=\"button\" onclick=\"deleteCommodity(${Commodity.raavareID});\" value=\"slet\"></td></tr>`;
 
