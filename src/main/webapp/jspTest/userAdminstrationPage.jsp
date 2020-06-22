@@ -16,6 +16,16 @@
             <th>update</th>
             <th>delete</th>
         </tr>
+        <tr><form>
+            <th>UserId</th>
+            <th>UserName</th>
+            <th>Initialer</th>
+            <th>CPR</th>
+            <th>Password</th>
+            <th>Roles</th>
+            <th></th>
+            <th>create</th>
+        </form></tr>
     </thead>
     <tbody id="userTable">
         <%
@@ -25,14 +35,15 @@
 
             for (UserDTO user : users) {
                 out.print(
-                "<tr><td>" + user.getUserID() + "</td>" +
-                "<td><input type='text' value='" + user.getUserName() + "'></td>" +
-                "<td><input type='text' value='" + user.getIni() + "'></td>" +
-                "<td><input type='text' value='" +user.getCpr() + "'></td>" +
-                "<td><input type='text' value='" + user.getPassword() + "'></td>" +
-                "<td><input type='text' value='" + user.getRoles() + "'></td>" +
-                "<td onclick='updateUser(" + user.getUserID() + ")'><button>opdater bruger</button></td>" +
-                "<td onclick='deleteUser(" + user.getUserID() + ")'><button>slet bruger</button></td></tr>");
+                "<tr><form method='put' action='/rest/users'>" +
+                "<td name='userID' value='" + user.getUserID() + "'>" + user.getUserID() + "</td>" +
+                "<td><input type='text' name='userName' value='" + user.getUserName() + "'></td>" +
+                "<td><input type='text' name='ini' value='" + user.getIni() + "'></td>" +
+                "<td><input type='text' name='cpr' value='" +user.getCpr() + "'></td>" +
+                "<td><input type='text' name='password' value='" + user.getPassword() + "'></td>" +
+                "<td><input type='text' name='roles' value='" + user.getRoles() + "'></td>" +
+                "<td><input type='button' value='opdater bruger'></td>" +
+                "<td onclick='deleteUser(" + user.getUserID() + ")'><button>slet bruger</button></td></form></tr>");
             }
         %>
     </tbody>
