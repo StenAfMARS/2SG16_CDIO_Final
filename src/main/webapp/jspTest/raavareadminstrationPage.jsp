@@ -31,7 +31,7 @@
             <th></th>
             <th><input type="text" name="raavareNavn"></th>
             <th><input type="text" name="raavareLeverandoer"></th>
-            <th colspan="2"><input type="button" value="create" onclick="createRaavare($('#createRaavare'))"></th>
+            <th colspan="2"><input type="button" value="create" onclick="createCommodity($('#createRaavare'))"></th>
         </form>
     </tr>
 
@@ -49,9 +49,9 @@
                             "<td><input form=\"%1$s\" type=\"text\" name=\"raavareID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
                             "<td><input form=\"%1$s\" type=\"text\" name=\"raavareNavn\" value=\"%2$s\"></td>" +
                             "<td><input form=\"%1$s\" type=\"text\" name=\"raavareLeverandoer\" value=\"%3$s\"></td>" +
-                            "<td><input type=\"button\" value=\"opdater\" onclick=\"updateCommodity($(\'#userTable #%1$s\'));\"></td>" +
+                            "<td><input type=\"button\" value=\"opdater\" onclick=\"updateCommodity($(\'#commodityBatchTable #%1$s\'));\"></td>" +
                             "<td><input type=\"button\" onclick=\"deleteCommodity(%1$s);\" value=\"slet\"></td></tr>",
-                    raavareDTO.getRaavareId(),      // 1
+                    raavareDTO.getRaavareID(),      // 1
                     raavareDTO.getRaavareNavn(),    // 2
                     raavareDTO.getLeverandoer()     // 3
                 )

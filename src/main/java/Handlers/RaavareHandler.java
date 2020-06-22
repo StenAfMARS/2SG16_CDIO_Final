@@ -130,6 +130,7 @@ public class RaavareHandler implements IRaavareHandler {
             // Set variables
             statement.setString(1, raavareDTO.getRaavareNavn());
             statement.setString(2, raavareDTO.getLeverandoer());
+            statement.setInt(3, raavareDTO.getRaavareID());
             // Execute
             statement.execute();
 

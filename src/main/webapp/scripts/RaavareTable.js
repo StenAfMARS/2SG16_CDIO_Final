@@ -1,7 +1,3 @@
-$(document).ready(function () {
-    loadCommodity();
-});
-
 function deleteCommodity(id) {
     $.ajax({
         url: '../rest/raavarer/' + id,
@@ -25,7 +21,7 @@ function createCommodity(form) {
     });
 }
 function loadCommodity() {
-    $.post('rest/raavarer',
+    $.get('../rest/raavarer',
         {},
         function (data, textStatus, req) {
             $("#CommodityTable").empty();

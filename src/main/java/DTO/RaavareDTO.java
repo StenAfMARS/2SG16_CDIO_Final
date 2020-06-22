@@ -10,9 +10,7 @@ public class RaavareDTO {
     String raavareNavn;
     String leverandoer;
 
-    public int getRaavareID() {
-        return raavareID;
-    }
+    public int getRaavareID() {return raavareID;}
 
     public String getRaavareNavn() {
         return raavareNavn;
@@ -21,6 +19,12 @@ public class RaavareDTO {
     public String getLeverandoer() {
         return leverandoer;
     }
-    public RaavareDTO() {
-    }
+
+    public void setRaavareID(int raavareID) {this.raavareID = raavareID;    }
+
+    public void setRaavareNavn(String raavareNavn) {this.raavareNavn = raavareNavn;}
+
+    public void setLeverandoer(String leverandoer) {this.leverandoer = leverandoer;}
+
+    public RaavareDTO() {}
 }
