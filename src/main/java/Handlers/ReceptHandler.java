@@ -1,6 +1,6 @@
 /*
- * Peter M. Skaarup
- * 21/05-2020
+   Peter M. Skaarup
+   21/05-2020
 */
 package Handlers;
 
@@ -134,7 +134,7 @@ public class ReceptHandler implements IReceptHandler {
     @Override
     public ReceptKomponentDTO getReceptKomponent(int receptID, int raavareID) throws DALException {
 
-        ReceptKomponentDTO receptKomponent = null;
+        ReceptKomponentDTO ReceptKomponentDTO = null;
 
         try{
             Connection connection = DatabaseHandler.connect();
@@ -146,7 +146,19 @@ public class ReceptHandler implements IReceptHandler {
 
             statement.execute();
 
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                ReceptKomponentDTO = new ReceptKomponentDTO(
+                        resultSet.getInt("fk_RaavareID"),
+                        resultSet.getInt("nonNetto"),
+                        resultSet.getInt("tolerance"),
+                        resultSet.getInt("fk_ReceptID")
+                );
+            }
+
             connection.close();
+            resultSet.close();
             statement.close();
 
 
@@ -156,12 +168,81 @@ public class ReceptHandler implements IReceptHandler {
             throw new DALException("Could not find RaavareID and/or ReceptID");
         }
 
-        return null;
+        return ReceptKomponentDTO;
+    }
+
+    @Override
+    public List<ReceptKomponentDTO> getReceptKomponentList(int receptID) throws DALException {
+        List<ReceptKomponentDTO> receptKomponentList = new LinkedList<>();
+
+        try{
+            Connection connection = DatabaseHandler.connect();
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM RecebtComponents WHERE fk_ReceptID = ?");
+
+            statement.setInt(1, receptID);
+            statement.execute();
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                receptKomponentList.add(new ReceptKomponentDTO(
+                        resultSet.getInt("fk_RaavareID"),
+                        resultSet.getInt("fk_ReceptID"),
+                        resultSet.getDouble("nonNetto"),
+                        resultSet.getDouble("tolerance")
+
+                    )
+                );
+            }
+
+            connection.close();
+            resultSet.close();
+            statement.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new DALException("Could not find recept component");
+        }
+
+        return receptKomponentList;
     }
 
     @Override
     public List<ReceptKomponentDTO> getReceptKomponentList() throws DALException {
-        return null;
+        List<ReceptKomponentDTO> receptKomponentList = new LinkedList<>();
+
+        try{
+            Connection connection = DatabaseHandler.connect();
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM RecebtComponents");
+
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                receptKomponentList.add(new ReceptKomponentDTO(
+                                resultSet.getInt("fk_RaavareID"),
+                                resultSet.getInt("fk_ReceptID"),
+                                resultSet.getDouble("nonNetto"),
+                                resultSet.getDouble("tolerance")
+
+                        )
+                );
+            }
+
+            connection.close();
+            resultSet.close();
+            statement.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new DALException("Could not find recept component");
+        }
+
+        return receptKomponentList;
     }
 
     @Override

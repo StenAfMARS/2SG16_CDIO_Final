@@ -14,6 +14,7 @@ public interface IReceptHandler {
     void updateRecept(ReceptDTO recept) throws DALException;
 
     ReceptKomponentDTO getReceptKomponent(int recepID, int raavareID) throws DALException;
+    List<ReceptKomponentDTO> getReceptKomponentList(int receptID) throws DALException;
     List<ReceptKomponentDTO> getReceptKomponentList() throws DALException;
     void createReceptKomponent(ReceptKomponentDTO receptkomponent) throws DALException;
     void updateReceptKomponent(ReceptKomponentDTO receptKomponent) throws DALException;
