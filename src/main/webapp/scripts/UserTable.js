@@ -3,11 +3,11 @@ $(document).ready(function () {
 });
 
 function deleteUser(id) {
-    $.delete('rest/user/' + id, null, data => alert(JSON.stringify(data)));
+    $.delete('rest/users/' + id, null, data => alert(JSON.stringify(data)));
 }
 
 function loadUsers() {
-    $.get('rest/user',
+    $.get('rest/users',
         {},
         function (data, textStatus, req) {
             $("#userTable").empty();
@@ -37,7 +37,7 @@ function updateUserByID(id){
 
 function updateUser(id,userName,password,ini,cpr,roles){
     var settings = {
-        "url": "/rest/user/" + id,
+        "url": "/rest/users/" + id,
         "method": "PUT",
         "timeout": 0,
         "headers": {

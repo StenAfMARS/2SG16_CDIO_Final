@@ -2,7 +2,7 @@ function createUser() {
     event.preventDefault();
     var data = $('#userForm').serializeJSON();
     $.ajax({
-        url: 'rest/user',
+        url: 'rest/users',
         method: 'POST',
 
         contentType: "application/json", // det vi sender er json
