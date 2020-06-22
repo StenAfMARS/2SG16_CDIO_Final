@@ -4,12 +4,8 @@ function deleteUser(id) {
         method: 'delete',
         contentType: "application/json", // det vi sender er json
         succes: function (data) {
-            $('#userTable #' + id).remove();
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert(jqXHR.responseText);
-            alert(textStatus);
-            alert(errorThrown);
+            alert(data);
+            $('#userTable #' + data).remove();
         }
     });
 }
@@ -21,10 +17,8 @@ function createUser(form) {
         method: 'POST',
         contentType: "application/json", // det vi sender er json
         data: data,
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert(jqXHR.responseText);
-            alert(textStatus);
-            alert(errorThrown);
+        succes: function(data){
+            addUserOnTable(data);
         }
     });
 }
@@ -35,25 +29,25 @@ function loadUsers() {
         function (data, textStatus, req) {
             $("#userTable").empty();
             $.each(data, function (i, elt) {
-                $('#userTable').append(generateUserTable(elt));
+                $('#userTable').append(addUserOnTable(elt));
             });
         }
     );
 }
 
-function generateUserTable(user) {
-    return '<tr><td>' + user.userID + '</td>' +
-        '<td>' +'<input type="text" value="'+user.userName +'">'+'</td>' +
-        '<td>'+'<input type="text" value="' + user.ini + '">'+'</td>' +
-        '<td>' +'<input type="text" value="' +user.cpr + '">'+'</td>' +
-        '<td>'+'<input type="text" value="' + user.password + '">'+'</td>' +
-        '<td>' +'<input type="text" value="' + user.roles + '">'+' </td>' +
-        '<td onclick="updateUser(' + user.userID + ')">opdater bruger</td>' +
-
-        '<td onclick="deleteUser(' + user.userID + ')"><button>slet bruger</button></td></tr> '
+function addUserOnTable(user) {
+    return "<tr><form id=\"${user.userID}\"></form>" +
+        "<td><input form=\"${user.userID}\" type=\"text\" name=\"userID\" value=\"${user.userID}\" readonly=\"readonly\"></td>" +
+        "<td><input form=\"${user.userID}\" type=\"text\" name=\"userName\" value=\"${user.userName}\"></td>" +
+        "<td><input form=\"${user.userID}\" type=\"text\" name=\"ini\" value=\"${user.ini}\"></td>" +
+        "<td><input form=\"${user.userID}\" type=\"text\" name=\"cpr\" value=\"${user.cpr}\"></td>" +
+        "<td><input form=\"${user.userID}\" type=\"text\" name=\"password\" value=\"${user.password}\"></td>" +
+        "<td><input form=\"${user.userID}\" type=\"text\" name=\"roles\" value=\"${user.roles}\"></td>" +
+        "<td><input type=\"button\" value=\"opdater\" onclick=\"updateUser($(\'#userTable #${user.userID}\'));\"></td>" +
+        "<td><input type=\"button\" onclick=\"deleteUser(${user.userID});\" value=\"slet\"></td></tr>";
 }
 
-function updateUser(id, userName, password, ini, cpr, roles){
+function updateUser(form){
     var settings = {
         "url": "../rest/users",
         "method": "PUT",
@@ -61,7 +55,7 @@ function updateUser(id, userName, password, ini, cpr, roles){
         "headers": {
             "Content-Type": "application/json"
         },
-        "data": JSON.stringify({"userID":id,"userName":userName,"password":password,"ini":ini,"cpr":cpr,"roles":roles}),
+        "data": form.serializeJSON()
     };
 
     $.ajax(settings).done(function (response) {

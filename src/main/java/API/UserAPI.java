@@ -27,9 +27,9 @@ public class UserAPI {
         return Users().getUser(userID);
     }
 
-    @Path("{id : [0-9]+}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public static Response update(UserDTO user){
         try {
             Users().updateUser(user);
@@ -39,7 +39,7 @@ public class UserAPI {
             return Response.status(418).build();
         }
 
-        return Response.status(201).build();
+        return Response.status(201).entity(user).build();
     }
 
     @Path("{id : [0-9]+}")
@@ -54,11 +54,12 @@ public class UserAPI {
             return Response.status(418).build();
         }
 
-        return Response.status(201).build();
+        return Response.status(201).entity(userID).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public static Response create(UserDTO user){
         try {
             Users().createUser(user);
@@ -68,7 +69,7 @@ public class UserAPI {
             return Response.status(418).build();
         }
 
-        return Response.status(201).build();
+        return Response.status(201).entity(user).build();
     }
 
     @GET

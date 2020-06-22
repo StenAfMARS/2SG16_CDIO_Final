@@ -133,7 +133,7 @@ public class UserHandler implements IUserDAO {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "update Users set userName = ?, userPassword = ?,ini = ?, cpr = ?, Rolls = ? where userId = ?");
+                    "update Users set userName = ?, userPassword = ?,ini = ?, cpr = ?, fk_RollID = ? where userId = ?");
 
             // Set variables
             statement.setString(1, userDTO.getUserName());
