@@ -1,6 +1,7 @@
 package Handlers;
 
 import DTO.ProduktBatchDTO;
+import DTO.ProduktBatchKompDTO;
 import Exceptions.DALException;
 import Interfaces.IProduktBatchHandler;
 
@@ -189,6 +190,157 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
             throw new DALException("Couldn't find product");
         }
 
+    }
+    public ProduktBatchKompDTO getproduktBatchKompDTO(int produktBatchKomp) throws DALException {
+
+        ProduktBatchKompDTO produktBatchKompDTO= null;
+        try {
+            // CONNECT
+            Connection connection = DatabaseHandler.connect();
+
+            // Set statement
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM produktBatchComponents WHERE  UserID=?");
+
+            // Set variables
+            statement.setInt(1, produktBatchKomp);
+
+            // Read reply
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()) {
+                produktBatchKompDTO = new ProduktBatchKompDTO(
+                        resultSet.getInt(1),
+                        resultSet.getInt(2),
+                        resultSet.getDouble(3),
+                        resultSet.getDouble(4),
+                        resultSet.getInt(5));
+            }
+
+            // close things
+            connection.close();
+            resultSet.close();
+            statement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DALException("Couldn't find productKom");
+        }
+
+        // return result
+        return produktBatchKompDTO;
+    }
+
+
+    public List<ProduktBatchKompDTO> getproduktBatchKompDTOList() throws DALException {
+
+        List<ProduktBatchKompDTO> ProduktBatchKompDTOs = new LinkedList<>();
+
+        try {
+            // CONNECT
+            Connection connection = DatabaseHandler.connect();
+
+            // Set statement
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM produktBatchComponents");
+
+            // Set variables
+
+            // Read reply
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()) {
+                ProduktBatchKompDTOs.add(new ProduktBatchKompDTO(
+                        resultSet.getInt(1),
+                        resultSet.getInt(2),
+                        resultSet.getDouble(3),
+                        resultSet.getDouble(4),
+                        resultSet.getInt(5)));
+            }
+
+            // close things
+            connection.close();
+            resultSet.close();
+            statement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // return result
+
+        return ProduktBatchKompDTOs;
+    }
+
+
+    public void createProduktBatchKompDTO(ProduktBatchKompDTO produktBatchKompDTO) throws DALException {
+        try {
+            // CONNECT
+            Connection connection = DatabaseHandler.connect();
+
+            // Set statement
+            PreparedStatement statement = connection.prepareStatement(
+                    "insert into produktBatchComponents (UserID, raavareBatch, tara, netto, pdId) values (?, ?, ?, ?, ?)");
+
+
+            // Set variables
+
+
+            statement.setInt(1, produktBatchKompDTO.getRbId());
+            statement.setDouble(2, produktBatchKompDTO.getTara());
+            statement.setDouble(3, produktBatchKompDTO.getNetto());
+            statement.setInt(4, produktBatchKompDTO.getPbId());
+
+
+
+
+
+            // Excecute
+            statement.execute();
+
+            // close things
+            connection.close();
+            statement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DALException("Couldn't find productkom");
+        }
+    }
+
+
+    public void updateProduktBatchKompDTO(ProduktBatchKompDTO produktBatchKomp) throws DALException {
+
+
+        try {
+            // CONNECT
+            Connection connection = DatabaseHandler.connect();
+
+            // Set statement
+            PreparedStatement statement = connection.prepareStatement(
+                    "update produktBatchComponents set UserID = ?, raavareBatch = ?,tara = ?, netto= ?,pdId=? where UserID = ?");
+
+            // Set variables
+
+
+            statement.setInt(1, produktBatchKomp.getOprId());
+            statement.setInt(2, produktBatchKomp.getRbId());
+            statement.setDouble(3, produktBatchKomp.getTara());
+            statement.setDouble(4, produktBatchKomp.getNetto());
+            statement.setInt(5, produktBatchKomp.getPbId());
+
+
+            // Execute
+            statement.execute();
+
+            // close things
+            connection.close();
+            statement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DALException("Couldn't find productKom");
+        }
     }
 }
 

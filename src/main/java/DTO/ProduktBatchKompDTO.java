@@ -16,4 +16,24 @@ public class ProduktBatchKompDTO {
 
     public ProduktBatchKompDTO() {
     }
+
+    public int getPbId() {
+        return pbId;
+    }
+
+    public int getRbId() {
+        return rbId;
+    }
+
+    public double getTara() {
+        return tara;
+    }
+
+    public double getNetto() {
+        return netto;
+    }
+
+    public int getOprId() {
+        return oprId;
+    }
 }
