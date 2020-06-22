@@ -17,7 +17,6 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
     public ProduktBatchDTO getProduktBatch(int produktbatch) throws DALException {
         ProduktBatchDTO produktBatchDTO= null;
 
-
         try {
             // CONNECT
             Connection connection = DatabaseHandler.connect();
