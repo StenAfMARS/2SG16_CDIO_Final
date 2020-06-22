@@ -15,7 +15,7 @@
     <thead>
 
     <tr>
-        <td id="header" colspan="7"><h1>Råvare table</h1> </td>
+        <td id="header" colspan="5"><h1>Råvare table</h1> </td>
 
     </tr>
 
@@ -23,13 +23,14 @@
         <th>RaavareId</th>
         <th>RaavareNavn</th>
         <th>Leverandoer</th>
-        <th>update</th>
-        <th>delete</th>
+        <th></th>
+        <th></th>
     </tr>
     <tr>
         <form id="createRaavare" method="post" action="/rest/users">
             <th></th>
-            <th><input type="text" name="RaavareNavn"></th>
+            <th><input type="text" name="raavareNavn"></th>
+            <th><input type="text" name="raavareLeverandoer"></th>
             <th colspan="2"><input type="button" value="create" onclick="createRaavare($('#createRaavare'))"></th>
         </form>
     </tr>
@@ -43,31 +44,22 @@
 
         StringBuilder sb = new StringBuilder();
 
-        for (RaavareDTO user : raavare) {
-            sb.append("<form method='put' action='/rest/raavare'><tr id='");
-            sb.append(user.get());
-            sb.append("'><td name='userID' value='");
-            sb.append(user.getUserID());
-            sb.append("'>");
-            sb.append(user.getUserID());
-            sb.append("</td>");
-            sb.append("<td><input type='text' name='userName' value='");
-            sb.append(user.getUserName());
-            sb.append("'></td><td><input type='text' name='ini' value='");
-            sb.append(user.getIni());
-            sb.append("'></td><td><input type='text' name='cpr' value='");
-            sb.append(user.getCpr());
-            sb.append("'></td><td><input type='text' name='password' value='");
-            sb.append(user.getPassword());
-            sb.append("'></td><td><input type='text' name='roles' value='");
-            sb.append(user.getRoles());
-            sb.append("'></td><td><input type='button' value='opdater'></td><td><input type='button' onclick='deleteUser(");
-            sb.append(user.getUserID());
-            sb.append(")' value='slet'></td></tr></form>");
-        }
+        for (RaavareDTO raavareDTO : raavare) {
+            sb.append(String.format("<tr id=\"tr%1$s\"><form id=\"%1$s\"></form>" +
+                            "<td><input form=\"%1$s\" type=\"text\" name=\"raavareID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
+                            "<td><input form=\"%1$s\" type=\"text\" name=\"raavareNavn\" value=\"%2$s\"></td>" +
+                            "<td><input form=\"%1$s\" type=\"text\" name=\"raavareLeverandoer\" value=\"%3$s\"></td>" +
+                            "<td><input type=\"button\" value=\"opdater\" onclick=\"updateCommodity($(\'#userTable #%1$s\'));\"></td>" +
+                            "<td><input type=\"button\" onclick=\"deleteCommodity(%1$s);\" value=\"slet\"></td></tr>",
+                    raavareDTO.getRaavareId(),      // 1
+                    raavareDTO.getRaavareNavn(),    // 2
+                    raavareDTO.getLeverandoer()     // 3
+                )
+            );
 
+        }
         out.print(sb.toString());
     %>
     </tbody>
 </table>
-</body>
+<script src="/scripts/RaavareTable.js"></script>
