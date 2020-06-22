@@ -131,7 +131,30 @@ public class ReceptHandler implements IReceptHandler {
     }
 
     @Override
-    public ReceptKomponentDTO getReceptKomponent(int receptKomponentID) throws DALException {
+    public ReceptKomponentDTO getReceptKomponent(int receptID, int raavareID) throws DALException {
+
+        ReceptKomponentDTO receptKomponent = null;
+
+        try{
+            Connection connection = DatabaseHandler.connect();
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM RecebtComponents WHERE fk_ReceptID = ? AND fk_RaavareID = ?");
+
+            statement.setInt(1, receptID);
+            statement.setInt(2, raavareID);
+
+            statement.execute();
+
+            connection.close();
+            statement.close();
+
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new DALException("Could not find RaavareID and/or ReceptID");
+        }
+
         return null;
     }
 
