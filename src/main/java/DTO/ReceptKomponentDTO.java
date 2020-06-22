@@ -7,9 +7,9 @@ public class ReceptKomponentDTO {
         this.nomNetto = nomNetto;
         this.tolerance = tolerance;
     }
-    int receptID;
+
     /** raavare id i området 1-99999999 vælges af brugerne */
-    String receptNavn;
+    int receptID;
     /** nominel nettomængde i området 0,05 - 20,0 kg */
     int raavareID;
     double nomNetto;

@@ -168,11 +168,45 @@ public class ReceptHandler implements IReceptHandler {
             throw new DALException("Could not find RaavareID and/or ReceptID");
         }
 
-        return null;
+        return ReceptKomponentDTO;
+    }
+
+    @Override
+    public List<ReceptKomponentDTO> getReceptKomponentList(int receptID) throws DALException {
+        List<ReceptKomponentDTO> receptKomponentList = new LinkedList<>();
+
+        try{
+            Connection connection = DatabaseHandler.connect();
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM RecebtComponents WHERE fk_ReceptID = ?");
+
+            statement.setInt(1, receptID);
+            statement.execute();
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                receptKomponentList.add(new ReceptKomponentDTO(
+                        resultSet.getInt("fk_RaavareID"),
+                        resultSet.getInt("nonNetto"),
+                        resultSet.getDouble("tolerance"),
+                        resultSet.getInt("fk_ReceptID")
+                    )
+                );
+            }
+
+        }catch (SQLException e){
+
+        }
+
+        return receptKomponentList;
     }
 
     @Override
     public List<ReceptKomponentDTO> getReceptKomponentList() throws DALException {
+        List<ReceptKomponentDTO> receptKomponentList = new LinkedList<>();
+
         return null;
     }
 
