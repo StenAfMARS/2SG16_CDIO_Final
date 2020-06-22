@@ -270,8 +270,6 @@ public class ReceptHandler implements IReceptHandler {
         }
     }
 
-    }
-
     @Override
     public void updateReceptKomponent(ReceptKomponentDTO receptKomponent) throws DALException {
 
