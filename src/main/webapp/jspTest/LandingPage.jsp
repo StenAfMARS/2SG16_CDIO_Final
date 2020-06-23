@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <body>
-    <form id="loginForm">
+    <form>
         <label>skriv dit bruger id og vælg din rolde</label>
         <input id="UserID" type="text" name="input">
         <div class="wrapper">
