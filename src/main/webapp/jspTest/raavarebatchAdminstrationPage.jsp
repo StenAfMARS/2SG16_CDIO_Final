@@ -18,7 +18,7 @@
         <form id="createRaavareBatch"></form>
         <th><input form="createRaavareBatch" type="text" name="rbID"></th>
         <th><input form="createRaavareBatch" type="text" name="raavareID"></th>
-        <th><input form="createRaavareBatch" type="text" name="maengde"></th>
+        <th><input form="createRaavareBatch" type="text" name="maengde" step="0.001"></th>
         <th><input type="button" value="create" onclick="createRaavareBatch($('#createRaavareBatch'))"></th>
     </tr>
     </thead>
@@ -32,9 +32,9 @@
 
         for (RaavareBatchDTO raavareBatch : raavareBatches) {
         sb.append(String.format("<tr id=\"tr%1$s\"><form id=\"%1$s\"></form>" +
-            "<td><input form=\"%1$s\" type=\"text\" name=\"rbID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
-            "<td><input form=\"%1$s\" type=\"text\" name=\"raavareID\" value=\"%2$s\"></td>" +
-            "<td><input form=\"%1$s\" type=\"text\" name=\"maengde\" value=\"%3$s\"></td>" +
+            "<td><input form=\"%1$s\" type=\"number\" name=\"rbID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
+            "<td><input form=\"%1$s\" type=\"number\" name=\"raavareID\" value=\"%2$s\"></td>" +
+            "<td><input form=\"%1$s\" type=\"number\" name=\"maengde\" value=\"%3$s\" step=\"0.001\"></td>" +
             "<td><input type=\"button\" value=\"opdater\" onclick=\"updateRaavareBatch($(\'#raavareBatchTable #%1$s\'));\"></td></tr>",
             raavareBatch.getRbID(),     // 1
             raavareBatch.getRaavareID(),// 2

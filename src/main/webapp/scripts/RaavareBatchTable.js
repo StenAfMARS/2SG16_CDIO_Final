@@ -36,11 +36,10 @@ function loadRaavareBatches() {
 
 function addRaavareBatchOnTable(raavareBatch) {
     return `<tr id="tr${raavareBatch.rbID}"><form id=\"${raavareBatch.rbID}\"></form>
-        <td><input form=\"${raavareBatch.rbID}\" type=\"text\" name=\"raavareBatchID\" value=\"${raavareBatch.rbID}\" readonly=\"readonly\"></td>
-        <td><input form=\"${raavareBatch.rbID}\" type=\"text\" name=\"raavareBatchName\" value=\"${raavareBatch.raavareID}\"></td>
-        <td><input form=\"${raavareBatch.rbID}\" type=\"text\" name=\"ini\" value=\"${raavareBatch.maengde}\"></td>
-        <td><input type=\"button\" value=\"opdater\" onclick=\"updateRaavareBatch($(\'#raavareBatchTable #${raavareBatch.rbID}\'));\"></td>
-        <td><input type=\"button\" onclick=\"deleteRaavareBatch(${raavareBatch.rbID});\" value=\"slet\"></td></tr>`;
+        <td><input form=\"${raavareBatch.rbID}\" type=\"number\" name=\"rbID\" value=\"${raavareBatch.rbID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${raavareBatch.rbID}\" type=\"number\" name=\"raavareID\" value=\"${raavareBatch.raavareID}\"></td>
+        <td><input form=\"${raavareBatch.rbID}\" type=\"number\" name=\"maengde\" value=\"${raavareBatch.maengde}\" step=\"0.001\"></td>
+        <td><input type=\"button\" value=\"opdater\" onclick=\"updateRaavareBatch($(\'#raavareBatchTable #${raavareBatch.rbID}\'));\"></td></tr>`;
 }
 
 function updateRaavareBatch(form){

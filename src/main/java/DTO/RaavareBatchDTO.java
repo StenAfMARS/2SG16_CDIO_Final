@@ -10,6 +10,18 @@ public class RaavareBatchDTO {
     int raavareID;
     double maengde;
 
+    public void setRbID(int rbID) {
+        this.rbID = rbID;
+    }
+
+    public void setRaavareID(int raavareID) {
+        this.raavareID = raavareID;
+    }
+
+    public void setMaengde(double maengde) {
+        this.maengde = maengde;
+    }
+
     public RaavareBatchDTO() {
     }
 
