@@ -7,7 +7,7 @@ function deleteReceptComponents(id) {
 }
 
 function loadReceptComponents() {
-    $.post('rest/ReceptComponents/getReceptComponentsList',
+    $.post('rest/ReceptComponents/getReceptKomponentsList',
         {},
         function (data, textStatus, req) {
             $("#ReceptComponentsTable").empty();
