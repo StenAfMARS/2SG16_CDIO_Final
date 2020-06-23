@@ -14,6 +14,7 @@
         session.setAttribute("sessionUserID",uname);
     }
     String ukeyCard=request.getParameter("keycard");
+
     if(ukeyCard != ""){
         session.setAttribute("sessionUserKeycard",ukeyCard);
     }

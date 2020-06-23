@@ -1,12 +1,12 @@
-$(document).ready(function() {
-});
-
 $("#logOnForm").submit(function(e) {
     e.preventDefault();
 });
-function switchPage(page){
-    $("#test").load(page);
+
+function switchPage(page, data){
+    $("#test").load(page, data);
+    history.pushState(null, "", page);
 }
+
 function cookieCard() {
 
     const idCard = getCookie("CookieCard")
@@ -109,7 +109,7 @@ function login(keyCardValue) {
             deleteAllCookies()
             createCookie(cookieName, value, 30)
             alert(getCookie(cookieName))
-            switchPage('Views/LandingPageAdminPanel.html')
+            switchPage('../Views/LandingPageAdminPanel.html')
     // cookieCard insures that you dont get somewhere you not allowed to be
     cookieCard()
 }

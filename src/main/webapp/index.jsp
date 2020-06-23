@@ -8,15 +8,6 @@
     <script src="scripts/script.js"></script>
 </head>
 <body>
- <%
-     // session controller
-     String currentUName=(String)session.getAttribute("sessionUserID");
-
-    if(currentUName == ""){
-        String switchPageCommand = "<script>switchPage(\"jspTest/LandingPage.jsp\");</script>";
-    }
-
- %>
     <header>
         <img src="images/logo-dummy.png"/>
         <h1>This i a webpage</h1>
