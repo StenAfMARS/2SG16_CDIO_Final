@@ -36,4 +36,5 @@ public class ProduktBatchKompDTO {
     public int getOprID() {
         return oprID;
     }
+
 }

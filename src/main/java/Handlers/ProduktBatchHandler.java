@@ -279,10 +279,11 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
             // Set variables
 
 
-            statement.setInt(1, produktBatchKompDTO.getRbID());
-            statement.setDouble(2, produktBatchKompDTO.getTara());
-            statement.setDouble(3, produktBatchKompDTO.getNetto());
-            statement.setInt(4, produktBatchKompDTO.getPbID());
+            statement.setInt(1, produktBatchKompDTO.getOprID());
+            statement.setInt(2, produktBatchKompDTO.getRbID());
+            statement.setDouble(3, produktBatchKompDTO.getTara());
+            statement.setDouble(4, produktBatchKompDTO.getNetto());
+            statement.setInt(5, produktBatchKompDTO.getPbID());
 
             // Excecute
             statement.execute();
@@ -307,16 +308,16 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "update productBatchComponents set fk_UserID = ?, fk_rbID = ?,tara = ?, netto= ?,fk_pbID=? where fk_UserID = ?");
+                    "update productBatchComponents set fk_rbID = ?,tara = ?, netto= ?,fk_pbID=? where fk_UserID = ?");
 
             // Set variables
 
 
-            statement.setInt(1, produktBatchKomp.getOprID());
-            statement.setInt(2, produktBatchKomp.getRbID());
-            statement.setDouble(3, produktBatchKomp.getTara());
-            statement.setDouble(4, produktBatchKomp.getNetto());
-            statement.setInt(5, produktBatchKomp.getPbID());
+            statement.setInt(1, produktBatchKomp.getRbID());
+            statement.setDouble(2, produktBatchKomp.getTara());
+            statement.setDouble(3, produktBatchKomp.getNetto());
+            statement.setInt(4, produktBatchKomp.getPbID());
+            statement.setInt(5, produktBatchKomp.getOprID());
 
 
             // Execute
