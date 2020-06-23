@@ -51,12 +51,12 @@
                             "<td><input form=\"%1$s\" type=\"text\" name=\"nonNetto\" value=\"%3$s\"></td>" +
                             "<td><input form=\"%1$s\" type=\"text\" name=\"tolerance\" value=\"%4$s\"></td>" +
 
-                            "<td><input type=\"button\" value=\"opdater\" onclick=\"updateProductBatchKomponent($(\'#productBatchTable #%1$s\'));\"></td>" +
+                            "<td><input type=\"button\" value=\"opdater\" onclick=\"updateReceptComponents($(\'#productBatchTable #%1$s\'));\"></td>" +
                             "<td><input type=\"button\" onclick=\"deleteProductBatchKomponent(%1$s);\" value=\"slet\"></td></tr>",
                     receptKomponent.getRaavareID(),    // 1
                     receptKomponent.getReceptID(),    // 2
                     receptKomponent.getNonNetto(),    // 3
-                    receptKomponent.getTolerance()   // 2
+                    receptKomponent.getTolerance()   // 4
 
             ));}
 
@@ -64,5 +64,5 @@
     %>
     </tbody>
 </table>
-<script src="/scripts/ProductComponentsTable.js"></script>
+<script src="/scripts/ReceptComponentsTable.js"></script>
 
