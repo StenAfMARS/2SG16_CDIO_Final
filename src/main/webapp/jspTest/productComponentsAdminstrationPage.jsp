@@ -1,6 +1,20 @@
 <%@ page import="java.util.List" %>
 <%@ page import="Handlers.ProduktBatchHandler" %>
 <%@ page import="DTO.ProduktBatchKompDTO" %>
+<%
+    String keycard = (String)session.getAttribute("sessionUserKeycard");
+
+    if (keycard == null)
+        response.sendRedirect("/index.jsp");
+    else switch (keycard){
+        case "20":
+        case "30":
+        case "100":
+            break;
+        default:
+            response.setStatus(403);
+    }
+%>
 <script src="/scripts/jquery-3.4.1.js"></script>
 <script src="/scripts/jquery.serialize-object.js"></script>
 <table align="center">
