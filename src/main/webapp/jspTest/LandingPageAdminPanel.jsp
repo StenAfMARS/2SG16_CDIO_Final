@@ -9,18 +9,25 @@
 
 <body>
 <%
-    String uname=request.getParameter("inputName");
+    String uname = (String)request.getAttribute("inputName");
+
+
     if(uname != ""){
         session.setAttribute("sessionUserID",uname);
     }
+
     String ukeyCard=request.getParameter("keycard");
+
     if(ukeyCard != ""){
         session.setAttribute("sessionUserKeycard",ukeyCard);
     }
+
     String currentPage=request.getParameter("currentPage");
+
     if(currentPage != ""){
         session.setAttribute("currentPage",currentPage);
     }
+
     String currentUName=(String)session.getAttribute("sessname");
     String currentUKeycard=(String)session.getAttribute("sessname");
     out.print("Welcome "+ uname);

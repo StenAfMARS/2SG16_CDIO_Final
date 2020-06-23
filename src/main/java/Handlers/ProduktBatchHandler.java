@@ -265,6 +265,48 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
         return ProduktBatchKompDTOs;
     }
 
+    public ProduktBatchKompDTO getproduktBatchKompDTO(int pbID, int rbID) throws DALException {
+
+        ProduktBatchKompDTO ProduktBatchKompDTO = null;
+
+        try {
+            // CONNECT
+            Connection connection = DatabaseHandler.connect();
+
+            // Set statement
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM productBatchComponents where pbID = ? and rbID = ?");
+
+            // Set variables
+            statement.setInt(1, pbID);
+            statement.setInt(2, rbID);
+
+            // Read reply
+            ResultSet resultSet = statement.executeQuery();
+
+            if(resultSet.next()) {
+                ProduktBatchKompDTO = new ProduktBatchKompDTO(
+                        resultSet.getInt(5),
+                        resultSet.getInt(2),
+                        resultSet.getDouble(3),
+                        resultSet.getDouble(4),
+                        resultSet.getInt(1));
+            }
+
+            // close things
+            connection.close();
+            resultSet.close();
+            statement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // return result
+
+        return ProduktBatchKompDTO;
+    }
+
 
     public void createProduktBatchKompDTO(ProduktBatchKompDTO produktBatchKompDTO) throws DALException {
         try {
