@@ -10,17 +10,21 @@
         <td id="header" colspan="5" onclick="loadProductBatchKomponents()"><h1>Table of productBatchKomponents</h1></td>
     </tr>
     <tr>
-        <th>ProductBatchKomponentId</th>
-        <th>status</th>
-        <th>receptID</th>
+        <th>ProductBatchKomponentID</th>
+        <th>RaavareBatchID</th>
+        <th>Tara</th>
+        <th>Netto</th>
+        <th>OpretterID</th>
         <th></th>
         <th></th>
     </tr>
     <tr>
         <form id="createProductBatchKomponent"></form>
         <th><input form="createProductBatchKomponent" type="text" name="pbID"></th>
-        <th><input form="createProductBatchKomponent" type="text" name="status"></th>
-        <th><input form="createProductBatchKomponent" type="text" name="receptID"></th>
+        <th><input form="createProductBatchKomponent" type="text" name="rbID"></th>
+        <th><input form="createProductBatchKomponent" type="text" name="tara"></th>
+        <th><input form="createProductBatchKomponent" type="text" name="netto"></th>
+        <th><input form="createProductBatchKomponent" type="text" name="oprID"></th>
         <th colspan="2"><input type="button" value="create" onclick="createProductBatchKomponent($('#createProductBatchKomponent'))"></th>
     </tr>
     </thead>
@@ -52,5 +56,5 @@
         %>
     </tbody>
 </table>
-<script src="/scripts/ProductTable.js"></script>
+<script src="/scripts/ProductComponentsTable.js"></script>
 
