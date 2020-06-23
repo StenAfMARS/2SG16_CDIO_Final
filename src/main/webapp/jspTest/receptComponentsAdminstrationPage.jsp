@@ -54,7 +54,6 @@
                             "<td><input form=\"%5$s\" type=\"number\" name=\"rbID\" value=\"%2$s\" readonly=\"readonly\"></td>" +
                             "<td><input form=\"%5$s\" type=\"number\" name=\"tara\" value=\"%3$s\" step=\"0.001\"></td>" +
                             "<td><input form=\"%5$s\" type=\"number\" name=\"netto\" value=\"%4$s\" step=\"0.001\"></td>" +
-                            "<td><input form=\"%5$s\" type=\"number\" name=\"oprID\" value=\"%5$s\"></td>" +
                             "<td><input type=\"button\" value=\"opdater\" onclick=\"updateReceptKomponent($(\'#receptKomponentTable #%5$s\'));\"></td></tr>",
                     receptKomponent.getReceptID(),    // 1
                     receptKomponent.getRaavareID(),    // 2
