@@ -1,3 +1,6 @@
+/*
+    Peter M. Skaarup
+ */
 package DTO;
 
 public class ReceptDTO {

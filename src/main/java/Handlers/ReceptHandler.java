@@ -1,6 +1,5 @@
 /*
    Peter M. Skaarup
-   21/05-2020
 */
 package Handlers;
 
@@ -114,7 +113,7 @@ public class ReceptHandler implements IReceptHandler {
             Connection connection = DatabaseHandler.connect();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "update Recept set receptNavn = ? where ReceptId = ?");
+                    "update Recept set receptNavn = ? where ReceptID = ?");
 
             statement.setString(1, recept.getReceptNavn());
             statement.setInt(2, recept.getReceptID());
