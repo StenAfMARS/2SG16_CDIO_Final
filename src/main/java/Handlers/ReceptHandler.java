@@ -274,7 +274,7 @@ public class ReceptHandler implements IReceptHandler {
             Connection connection = DatabaseHandler.connect();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "update RecebtComponents set fk_RaavareID = ?, nonNetto = ?, tolerance = ?, fk_ReceptID = ? where ReceptId = ?");
+                    "update RecebtComponents set fk_RaavareID = ?, nonNetto = ?, tolerance = ?, fk_ReceptID = ? where fk_ReceptId = ?");
 
             statement.setInt(1, receptKomponent.getRaavareID());
             statement.setDouble(2, receptKomponent.getNonNetto());

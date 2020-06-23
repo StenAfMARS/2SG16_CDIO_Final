@@ -9,8 +9,6 @@
 
 <%@ page import="java.util.List" %>
 <%@ page import="DTO.ReceptKomponentDTO" %>
-<%@ page import="DTO.ReceptDTO" %>
-<%@ page import="DTO.RaavareDTO" %>
 <%@ page import="Handlers.ReceptHandler" %>
 <script src="/scripts/jquery-3.4.1.js"></script>
 <script src="/scripts/jquery.serialize-object.js"></script>
@@ -28,15 +26,15 @@
     </tr>
     <tr>
         <form id="createReceptKomponent"></form>
-        <th><input form="createReceptKomponent" type="text" name="fk_RaavareID"></th>
-        <th><input form="createReceptKomponent" type="text" name="fk_ReceptID"></th>
+        <th><input form="createReceptKomponent" type="text" name="RaavareID"></th>
+        <th><input form="createReceptKomponent" type="text" name="ReceptID"></th>
         <th><input form="createReceptKomponent" type="text" name="nonNetto"></th>
         <th><input form="createReceptKomponent" type="text" name="tolerance"></th>
 
         <th colspan="2"><input type="button" value="create" onclick="createReceptKomponent($('#createReceptKomponent'))"></th>
     </tr>
     </thead>
-    <tbody id="productBatchKomponentTable">
+    <tbody id="receptKomponentTable">
     <%
         ReceptHandler ReceptHandler = new ReceptHandler();
 
@@ -51,8 +49,8 @@
                             "<td><input form=\"%1$s\" type=\"text\" name=\"nonNetto\" value=\"%3$s\"></td>" +
                             "<td><input form=\"%1$s\" type=\"text\" name=\"tolerance\" value=\"%4$s\"></td>" +
 
-                            "<td><input type=\"button\" value=\"opdater\" onclick=\"updateReceptComponents($(\'#productBatchTable #%1$s\'));\"></td>" +
-                            "<td><input type=\"button\" onclick=\"deleteProductBatchKomponent(%1$s);\" value=\"slet\"></td></tr>",
+                            "<td><input type=\"button\" value=\"opdater\" onclick=\"updateReceptKomponents($(\'#ReceptComponentsTable #%1$s\'));\"></td>" +
+                            "<td><input type=\"button\" onclick=\"deleteReceptKomponent(%1$s);\" value=\"slet\"></td></tr>",
                     receptKomponent.getRaavareID(),    // 1
                     receptKomponent.getReceptID(),    // 2
                     receptKomponent.getNonNetto(),    // 3
