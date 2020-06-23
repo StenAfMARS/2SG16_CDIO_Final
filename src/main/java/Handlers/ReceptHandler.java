@@ -271,6 +271,26 @@ public class ReceptHandler implements IReceptHandler {
 
     @Override
     public void updateReceptKomponent(ReceptKomponentDTO receptKomponent) throws DALException {
+        try{
+            Connection connection = DatabaseHandler.connect();
 
+            PreparedStatement statement = connection.prepareStatement(
+                    "update RecebtComponents set fk_RaavareID = ?, nonNetto = ?, tolerance = ?, fk_ReceptID = ? where ReceptId = ?");
+
+            statement.setInt(1, receptKomponent.getRaavareID());
+            statement.setDouble(2, receptKomponent.getNonNetto());
+            statement.setDouble(3, receptKomponent.getTolerance());
+            statement.setInt(4, receptKomponent.getReceptID());
+            statement.setInt(5, receptKomponent.getReceptID());
+
+            statement.execute();
+
+            connection.close();
+            statement.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new DALException("Couldn't update recept components");
+        }
     }
 }
