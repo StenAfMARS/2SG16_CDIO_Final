@@ -192,7 +192,6 @@ public class ReceptHandler implements IReceptHandler {
                         resultSet.getInt("fk_ReceptID"),
                         resultSet.getDouble("nonNetto"),
                         resultSet.getDouble("tolerance")
-
                     )
                 );
             }
@@ -228,7 +227,6 @@ public class ReceptHandler implements IReceptHandler {
                                 resultSet.getInt("fk_ReceptID"),
                                 resultSet.getDouble("nonNetto"),
                                 resultSet.getDouble("tolerance")
-
                         )
                 );
             }
@@ -246,12 +244,53 @@ public class ReceptHandler implements IReceptHandler {
     }
 
     @Override
-    public void createReceptKomponent(ReceptKomponentDTO receptkomponent) throws DALException {
+    public void createReceptKomponent(ReceptKomponentDTO receptKomponent) throws DALException {
 
+        try{
+            Connection connection = DatabaseHandler.connect();
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "insert into RecebtComponents (fk_RaavareID, nonNetto, tolerance, fk_ReceptID ) values (?, ?, ?, ?)");
+
+            statement.setInt(1,receptKomponent.getRaavareID());
+            statement.setDouble(2,receptKomponent.getNonNetto());
+            statement.setDouble(3,receptKomponent.getTolerance());
+            statement.setInt(4,receptKomponent.getReceptID());
+
+
+            statement.execute();
+
+            connection.close();
+            statement.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new DALException("Couldn't create recept component");
+        }
     }
 
     @Override
     public void updateReceptKomponent(ReceptKomponentDTO receptKomponent) throws DALException {
+        try{
+            Connection connection = DatabaseHandler.connect();
 
+            PreparedStatement statement = connection.prepareStatement(
+                    "update RecebtComponents set fk_RaavareID = ?, nonNetto = ?, tolerance = ?, fk_ReceptID = ? where ReceptId = ?");
+
+            statement.setInt(1, receptKomponent.getRaavareID());
+            statement.setDouble(2, receptKomponent.getNonNetto());
+            statement.setDouble(3, receptKomponent.getTolerance());
+            statement.setInt(4, receptKomponent.getReceptID());
+            statement.setInt(5, receptKomponent.getReceptID());
+
+            statement.execute();
+
+            connection.close();
+            statement.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new DALException("Couldn't update recept components");
+        }
     }
 }

@@ -2,13 +2,13 @@ package Handlers;
 
 import DTO.UserDTO;
 import Exceptions.DALException;
-import Interfaces.IUserDAO;
+import Interfaces.IUserHandler;
 
 import java.sql.*;
 import java.util.*;
 import java.util.List;
 
-public class UserHandler implements IUserDAO {
+public class UserHandler implements IUserHandler {
 
     @Override
     public UserDTO getUser(int userID){

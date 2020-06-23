@@ -193,7 +193,7 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM produktBatchComponents WHERE  fk_UserID=?");
+                    "SELECT * FROM productBatchComponents WHERE  fk_UserID=?");
 
             // Set variables
             statement.setInt(1, produktBatchKomp);
@@ -235,7 +235,7 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM produktBatchComponents");
+                    "SELECT * FROM productBatchComponents");
 
             // Set variables
 
@@ -273,7 +273,7 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "insert into produktBatchComponents (fk_UserID, fk_rbID, tara, netto, fk_pbID) values (?, ?, ?, ?, ?)");
+                    "insert into productBatchComponents (fk_UserID, fk_rbID, tara, netto, fk_pbID) values (?, ?, ?, ?, ?)");
 
 
             // Set variables
@@ -283,10 +283,6 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
             statement.setDouble(2, produktBatchKompDTO.getTara());
             statement.setDouble(3, produktBatchKompDTO.getNetto());
             statement.setInt(4, produktBatchKompDTO.getPbID());
-
-
-
-
 
             // Excecute
             statement.execute();
@@ -311,7 +307,7 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "update produktBatchComponents set fk_UserID = ?, fk_rbID = ?,tara = ?, netto= ?,fk_pbID=? where fk_UserID = ?");
+                    "update productBatchComponents set fk_UserID = ?, fk_rbID = ?,tara = ?, netto= ?,fk_pbID=? where fk_UserID = ?");
 
             // Set variables
 
