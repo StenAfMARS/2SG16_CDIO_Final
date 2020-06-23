@@ -3,7 +3,7 @@ package API;
 import DTO.UserDTO;
 import Exceptions.DALException;
 import Handlers.UserHandler;
-import Interfaces.IUserDAO;
+import Interfaces.IUserHandler;
 import Handlers.UserHandler;
 
 import javax.ws.rs.*;
@@ -13,8 +13,8 @@ import java.util.List;
 
 @Path("users")
 public class UserAPI {
-    private static IUserDAO users;
-    public static IUserDAO Users(){
+    private static IUserHandler users;
+    public static IUserHandler Users(){
         if (users == null)
             users = new UserHandler();
         return users;
