@@ -14,6 +14,26 @@ public class ProduktBatchKompDTO {
     double netto;
     int oprID;
 
+    public void setPbID(int pbID) {
+        this.pbID = pbID;
+    }
+
+    public void setRbID(int rbID) {
+        this.rbID = rbID;
+    }
+
+    public void setTara(double tara) {
+        this.tara = tara;
+    }
+
+    public void setNetto(double netto) {
+        this.netto = netto;
+    }
+
+    public void setOprID(int oprID) {
+        this.oprID = oprID;
+    }
+
     public ProduktBatchKompDTO() {
     }
 
@@ -36,4 +56,5 @@ public class ProduktBatchKompDTO {
     public int getOprID() {
         return oprID;
     }
+
 }

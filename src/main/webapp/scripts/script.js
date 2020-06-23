@@ -1,13 +1,22 @@
-$(document).ready(function() {
-    cookieCard()
-});
-
 $("#logOnForm").submit(function(e) {
     e.preventDefault();
 });
-function switchPage(page){
-    $("#test").load(page);
+
+function switchPage(page, returning){
+    $("#test").load(page, function (data) {
+        if (!returning)
+            history.pushState(null, "", page);
+    });
 }
+
+window.onpopstate = function(event) {
+    switchPage(document.location.toString(), true);
+};
+
+function setKeycard(kc){
+    $("#kcController")[0].innerHTML = `.kc {display: none;} .kc${kc} {display: inline-block;}`;
+}
+
 function cookieCard() {
 
     const idCard = getCookie("CookieCard")
@@ -110,7 +119,7 @@ function login(keyCardValue) {
             deleteAllCookies()
             createCookie(cookieName, value, 30)
             alert(getCookie(cookieName))
-            switchPage('Views/LandingPageAdminPanel.html')
+            switchPage('../Views/LandingPageAdminPanel.html')
     // cookieCard insures that you dont get somewhere you not allowed to be
     cookieCard()
 }

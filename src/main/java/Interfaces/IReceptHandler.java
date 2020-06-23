@@ -1,3 +1,6 @@
+/*
+    Peter M. Skaarup
+ */
 package Interfaces;
 
 import DTO.ReceptDTO;

@@ -23,7 +23,7 @@ public class RaavareBatchHandler implements IRaavareBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM raavareBatch WHERE  rbId=?");
+                    "SELECT * FROM raavareBatch WHERE  rbID=?");
 
             // Set variables
             statement.setInt(1, RaavareBatchId);
@@ -65,7 +65,7 @@ public class RaavareBatchHandler implements IRaavareBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM raavareBatch");
+                    "SELECT rbID, fk_raavareID, maengde FROM raavareBatch");
 
             // Set variables
 
@@ -76,7 +76,7 @@ public class RaavareBatchHandler implements IRaavareBatchHandler {
                 raavareBatchDTOS.add(new RaavareBatchDTO(
                         resultSet.getInt(1),
                         resultSet.getInt(2),
-                        resultSet.getInt(3)));
+                        resultSet.getDouble(3)));
             }
 
             // close things
@@ -95,8 +95,36 @@ public class RaavareBatchHandler implements IRaavareBatchHandler {
 
     @Override
     public List<RaavareBatchDTO> getRaavareBatchList(int raavareId) throws DALException {
-        return null;
+        List<RaavareBatchDTO> raavareBatchDTOS = new LinkedList<>();
+
+        try{
+            Connection connection = DatabaseHandler.connect();
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM raavareBatch");
+
+            statement.execute();
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                raavareBatchDTOS.add(new RaavareBatchDTO(
+                        resultSet.getInt(1),
+                        resultSet.getInt(2),
+                        resultSet.getInt(3)));
+            }
+
+            connection.close();
+            resultSet.close();
+            statement.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new DALException("Could not find commodity");
+        }
+        return raavareBatchDTOS;
     }
+
 
     @Override
     public void createRaavareBatch(RaavareBatchDTO raavarebatch) throws DALException {
@@ -104,10 +132,11 @@ public class RaavareBatchHandler implements IRaavareBatchHandler {
             Connection connection = DatabaseHandler.connect();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "insert into raavarebatch (rdId, maengde, raavareID) values (?, ?, ?)");
+                    "insert into raavareBatch (rbID, maengde, fk_raavareID) values (?, ?, ?)");
 
-            statement.setDouble(1,raavarebatch.getMaengde());
-            statement.setInt(2,raavarebatch.getRaavareID());
+            statement.setInt(1,raavarebatch.getRbID());
+            statement.setDouble(2,raavarebatch.getMaengde());
+            statement.setInt(3,raavarebatch.getRaavareID());
             statement.execute();
 
             connection.close();
@@ -127,16 +156,11 @@ public class RaavareBatchHandler implements IRaavareBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "update raavarebatch set rdId = ?, maengde = ?,raavareID = ? where rdId = ?");
+                    "update raavareBatch set maengde = ?, fk_raavareID = ? where rbID = ?");
             // Set variables
-
-
-            statement.setInt(1, raavarebatch.getRbID());
-            statement.setDouble(2, raavarebatch.getMaengde());
-            statement.setInt(3, raavarebatch.getRaavareID());
-
-
-
+            statement.setDouble(1, raavarebatch.getMaengde());
+            statement.setInt(2, raavarebatch.getRaavareID());
+            statement.setInt(3, raavarebatch.getRbID());
 
             // Execute
             statement.execute();

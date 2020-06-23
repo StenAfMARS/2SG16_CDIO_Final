@@ -1,51 +1,63 @@
-$(document).ready(function () {
-    loadProductComponents();
-});
-
-function deleteProductComponents(id) {
-    $.post('rest/ProductComponents/deleteProductComponents', {"UserID":id}, data => alert(JSON.stringify(data)));
+function deleteProductBatchKomponent(id) {
+    $.ajax({
+        url: '../rest/productBatchKomponents/' + id,
+        method: 'delete',
+        contentType: "application/json", // det vi sender er json
+        success: function (data) {
+            $('#productBatchKomponentTable #tr' + data).remove();
+        }
+    });
 }
 
-function loadProductComponents() {
-    $.post('rest/ProductComponents/getProductComponentsList',
+function createProductBatchKomponent(form) {
+    var data = form.serializeJSON();
+    $.ajax({
+        url: '../rest/productBatchKomponents',
+        method: 'POST',
+        contentType: "application/json", // det vi sender er json
+        data: data,
+        success: function(data){
+            loadProductBatchKomponents();
+        }
+    });
+}
+
+function loadProductBatchKomponents() {
+    $.get('../rest/productBatchKomponents',
         {},
         function (data, textStatus, req) {
-            $("#ProductComponentsTable").empty();
+            $("#productBatchKomponentTable").empty();
             $.each(data, function (i, elt) {
-                $('#ProductComponentsTable').append(generateProductComponentsTable(elt));
+                $('#productBatchKomponentTable').append(addProductBatchKomponentOnTable(elt));
             });
         }
     );
 }
 
+function addProductBatchKomponentOnTable(productBatchKomponent) {
+    let sel = productBatchKomponent.pbID + "," + productBatchKomponent.rbID;
 
-function generateProductComponentsTable(ProductComponents) {
-    return '<tr><td>' + ProductComponents.UserID + '</td>' +
-        '<td>' +'<input type="text" value="'+ProductComponents.rbId +'">'+'</td>' +
-        '<td>'+'<input type="text" value="' + ProductComponents.tara + '">'+'</td>' +
-        '<td>'+'<input type="text" value="' + ProductComponents.netto + '">'+'</td>' +
-        '<td>'+'<input type="text" value="' + ProductComponents.pbId + '">'+'</td>' +
-        '<td onclick="updateProductComponents(' + ProductComponents.UserID + ')">opdater ProduktComponents</td>' +
-        '<td onclick="deleteProductComponents(' + ProductComponents.UserID + ')"><button>slet ProduktComponents</button></td></tr> '
-
+    return `<tr id="tr${sel}"><form id=\"${sel}\"></form>
+        <td><input form=\"${sel}\" type=\"number\" name=\"pbID\" value=\"${productBatchKomponent.pbID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${sel}\" type=\"number\" name=\"rbID\" value=\"${productBatchKomponent.rbID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${sel}\" type=\"number\" name=\"tara\" value=\"${productBatchKomponent.tara}\" step="0.001"></td>
+        <td><input form=\"${sel}\" type=\"number\" name=\"netto\" value=\"${productBatchKomponent.netto}\" step="0.001"></td>
+        <td><input form=\"${sel}\" type=\"number\" name=\"oprID\" value=\"${productBatchKomponent.oprID}\" readonly=\"readonly\"></td>
+        <td><input type=\"button\" value=\"opdater\" onclick=\"updateProductBatchKomponent($(\'#productBatchKomponentTable #${sel}\'));\"></td></tr>`;
 }
-// function updateProductComponentsByID(id){
-//     switchPage("Views/ProductComponentsForm.html");
-//     document.uuuuserID = userID;
-// }
 
-function updateProductComponents(UserID,RaavareBatchId,Tara,Netto,ProduktbatchId){
+function updateProductBatchKomponent(form){
     var settings = {
-        "url": "http://localhost:8080/2SG16_CDIO_Final_war_exploded/rest/productComponents/updateProductComponents",
-        "method": "POST",
+        "url": "../rest/productBatchKomponents",
+        "method": "PUT",
         "timeout": 0,
         "headers": {
             "Content-Type": "application/json"
         },
-        "data": JSON.stringify({"userID":UserID,"RaavareBatchId":RaavareBatchId,"Tara":Tara,"Netto":Netto,"ProduktbatchId":ProduktbatchId}),
+        "data": form.serializeJSON()
     };
 
     $.ajax(settings).done(function (response) {
-        console.log(response);
+        loadProductBatchKomponents();
     });
 }

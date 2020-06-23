@@ -1,6 +1,5 @@
 /*
    Peter M. Skaarup
-   21/05-2020
 */
 package Handlers;
 
@@ -114,7 +113,7 @@ public class ReceptHandler implements IReceptHandler {
             Connection connection = DatabaseHandler.connect();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "update Recept set receptNavn = ? where ReceptId = ?");
+                    "update Recept set receptNavn = ? where ReceptID = ?");
 
             statement.setString(1, recept.getReceptNavn());
             statement.setInt(2, recept.getReceptID());
@@ -192,7 +191,6 @@ public class ReceptHandler implements IReceptHandler {
                         resultSet.getInt("fk_ReceptID"),
                         resultSet.getDouble("nonNetto"),
                         resultSet.getDouble("tolerance")
-
                     )
                 );
             }
@@ -225,9 +223,9 @@ public class ReceptHandler implements IReceptHandler {
             while (resultSet.next()){
                 receptKomponentList.add(new ReceptKomponentDTO(
                                 resultSet.getInt("fk_RaavareID"),
+                                resultSet.getInt("fk_ReceptID"),
                                 resultSet.getDouble("nonNetto"),
-                                resultSet.getDouble("tolerance"),
-                                resultSet.getInt("fk_ReceptID")
+                                resultSet.getDouble("tolerance")
                         )
                 );
             }
@@ -272,6 +270,26 @@ public class ReceptHandler implements IReceptHandler {
 
     @Override
     public void updateReceptKomponent(ReceptKomponentDTO receptKomponent) throws DALException {
+        try{
+            Connection connection = DatabaseHandler.connect();
 
+            PreparedStatement statement = connection.prepareStatement(
+                    "update RecebtComponents set fk_RaavareID = ?, nonNetto = ?, tolerance = ?, fk_ReceptID = ? where fk_ReceptId = ?");
+
+            statement.setInt(1, receptKomponent.getRaavareID());
+            statement.setDouble(2, receptKomponent.getNonNetto());
+            statement.setDouble(3, receptKomponent.getTolerance());
+            statement.setInt(4, receptKomponent.getReceptID());
+            statement.setInt(5, receptKomponent.getReceptID());
+
+            statement.execute();
+
+            connection.close();
+            statement.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new DALException("Couldn't update recept components");
+        }
     }
 }

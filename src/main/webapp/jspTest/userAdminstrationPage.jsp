@@ -1,6 +1,21 @@
 <%@ page import="Handlers.UserHandler" %>
 <%@ page import="java.util.List" %>
 <%@ page import="DTO.UserDTO" %>
+
+<%
+    String keycard = (String)session.getAttribute("sessionUserKeycard");
+
+    if (keycard == null)
+        response.sendRedirect("/index.jsp");
+    else switch (keycard){
+        case "10":
+        case "100":
+            break;
+        default:
+            response.setStatus(403);
+    }
+%>
+
 <script src="/scripts/jquery-3.4.1.js"></script>
 <script src="/scripts/jquery.serialize-object.js"></script>
 <table align="center">
@@ -38,7 +53,7 @@
             StringBuilder sb = new StringBuilder();
 
             for (UserDTO user : users) {
-                sb.append(String.format("<tr id=\"tr%1$s\"><form id=\"%1$s\"></form>" +
+                sb.append(String.format("<tr keycard=\"tr%1$s\"><form keycard=\"%1$s\"></form>" +
                     "<td><input form=\"%1$s\" type=\"text\" name=\"userID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
                     "<td><input form=\"%1$s\" type=\"text\" name=\"userName\" value=\"%2$s\"></td>" +
                     "<td><input form=\"%1$s\" type=\"text\" name=\"ini\" value=\"%3$s\"></td>" +

@@ -17,6 +17,18 @@ public class ProduktBatchDTO {
     public ProduktBatchDTO() {
     }
 
+    public void setPbID(int pbID) {
+        this.pbID = pbID;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setReceptID(int receptID) {
+        this.receptID = receptID;
+    }
+
     public int getPbID() {
         return pbID;
     }

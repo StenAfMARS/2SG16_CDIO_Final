@@ -193,7 +193,7 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM produktBatchComponents WHERE  fk_UserID=?");
+                    "SELECT * FROM productBatchComponents WHERE  fk_UserID=?");
 
             // Set variables
             statement.setInt(1, produktBatchKomp);
@@ -235,7 +235,7 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM produktBatchComponents");
+                    "SELECT * FROM productBatchComponents");
 
             // Set variables
 
@@ -244,11 +244,11 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             while(resultSet.next()) {
                 ProduktBatchKompDTOs.add(new ProduktBatchKompDTO(
-                        resultSet.getInt(1),
+                        resultSet.getInt(5),
                         resultSet.getInt(2),
                         resultSet.getDouble(3),
                         resultSet.getDouble(4),
-                        resultSet.getInt(5)));
+                        resultSet.getInt(1)));
             }
 
             // close things
@@ -265,6 +265,48 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
         return ProduktBatchKompDTOs;
     }
 
+    public ProduktBatchKompDTO getproduktBatchKompDTO(int pbID, int rbID) throws DALException {
+
+        ProduktBatchKompDTO ProduktBatchKompDTO = null;
+
+        try {
+            // CONNECT
+            Connection connection = DatabaseHandler.connect();
+
+            // Set statement
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM productBatchComponents where pbID = ? and rbID = ?");
+
+            // Set variables
+            statement.setInt(1, pbID);
+            statement.setInt(2, rbID);
+
+            // Read reply
+            ResultSet resultSet = statement.executeQuery();
+
+            if(resultSet.next()) {
+                ProduktBatchKompDTO = new ProduktBatchKompDTO(
+                        resultSet.getInt(5),
+                        resultSet.getInt(2),
+                        resultSet.getDouble(3),
+                        resultSet.getDouble(4),
+                        resultSet.getInt(1));
+            }
+
+            // close things
+            connection.close();
+            resultSet.close();
+            statement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // return result
+
+        return ProduktBatchKompDTO;
+    }
+
 
     public void createProduktBatchKompDTO(ProduktBatchKompDTO produktBatchKompDTO) throws DALException {
         try {
@@ -273,20 +315,17 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "insert into produktBatchComponents (fk_UserID, fk_rbID, tara, netto, fk_pbID) values (?, ?, ?, ?, ?)");
+                    "insert into productBatchComponents (fk_UserID, fk_rbID, tara, netto, fk_pbID) values (?, ?, ?, ?, ?)");
 
 
             // Set variables
 
 
-            statement.setInt(1, produktBatchKompDTO.getRbID());
-            statement.setDouble(2, produktBatchKompDTO.getTara());
-            statement.setDouble(3, produktBatchKompDTO.getNetto());
-            statement.setInt(4, produktBatchKompDTO.getPbID());
-
-
-
-
+            statement.setInt(1, produktBatchKompDTO.getOprID());
+            statement.setInt(2, produktBatchKompDTO.getRbID());
+            statement.setDouble(3, produktBatchKompDTO.getTara());
+            statement.setDouble(4, produktBatchKompDTO.getNetto());
+            statement.setInt(5, produktBatchKompDTO.getPbID());
 
             // Excecute
             statement.execute();
@@ -311,17 +350,15 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "update produktBatchComponents set fk_UserID = ?, fk_rbID = ?,tara = ?, netto= ?,fk_pbID=? where fk_UserID = ?");
+                    "update productBatchComponents set tara = ?, netto= ? where fk_rbID = ? AND fk_pbID=?");
 
             // Set variables
 
 
-            statement.setInt(1, produktBatchKomp.getOprID());
-            statement.setInt(2, produktBatchKomp.getRbID());
-            statement.setDouble(3, produktBatchKomp.getTara());
-            statement.setDouble(4, produktBatchKomp.getNetto());
-            statement.setInt(5, produktBatchKomp.getPbID());
-
+            statement.setDouble(1, produktBatchKomp.getTara());
+            statement.setDouble(2, produktBatchKomp.getNetto());
+            statement.setInt(3, produktBatchKomp.getRbID());
+            statement.setInt(4, produktBatchKomp.getPbID());
 
             // Execute
             statement.execute();

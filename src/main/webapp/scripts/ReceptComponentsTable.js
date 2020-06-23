@@ -1,48 +1,62 @@
-$(document).ready(function () {
-    loadReceptComponents();
-});
-
-function deleteReceptComponents(id) {
-    $.post('rest/ReceptComponents/deleteReceptComponents', {"raavareId":id}, data => alert(JSON.stringify(data)));
+function deleteReceptKomponent(id) {
+    $.ajax({
+        url: '../rest/ReceptComponents/' + id,
+        method: 'delete',
+        contentType: "application/json", // det vi sender er json
+        success: function (data) {
+            $('#receptKomponentTable #tr' + data).remove();
+        }
+    });
 }
 
-function loadReceptComponents() {
-    $.post('rest/ReceptComponents/getReceptComponentsList',
+function createReceptKomponent(form) {
+    var data = form.serializeJSON();
+    $.ajax({
+        url: '../rest/ReceptComponents',
+        method: 'POST',
+        contentType: "application/json", // det vi sender er json
+        data: data,
+        success: function(data){
+            loadReceptKomponents();
+        }
+    });
+}
+
+function loadReceptKomponents() {
+    $.get('../rest/ReceptComponents',
         {},
         function (data, textStatus, req) {
-            $("#ReceptComponentsTable").empty();
+            $("#receptKomponentTable").empty();
             $.each(data, function (i, elt) {
-                $('#ReceptComponentsTable').append(generateReceptComponentsTable(elt));
+                $('#receptKomponentTable').append(addReceptKomponentOnTable(elt));
             });
         }
     );
 }
 
+function addReceptKomponentOnTable(receptKomponent) {
+    let sel = receptKomponent.receptID + "," + receptKomponent.raavareID;
 
-function generateReceptComponentsTable(ReceptComponents) {
-    return '<tr><td>' + ReceptComponents.raavareId + '</td>' +
-        '<td>' +'<input type="text" value="'+ReceptComponents.nonNetto +'">'+'</td>' +
-        '<td>' +'<input type="text" value="'+ReceptComponents.tolerance +'">'+'</td>' +
-        '<td>' +'<input type="text" value="'+ReceptComponents.receptID +'">'+'</td>' +
-        '<td onclick="updateReceptComponents(' + ReceptComponents.raavareId + ')">opdater ReceptComponents</td>' +
+    return `<tr id="tr${sel}"><form id=\"${sel}\"></form>
+        <td><input form=\"${sel}\" type=\"number\" name=\"pbID\" value=\"${receptKomponent.receptID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${sel}\" type=\"number\" name=\"rbID\" value=\"${receptKomponent.raavareID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${sel}\" type=\"number\" name=\"tara\" value=\"${receptKomponent.nonNetto}\" step="0.001"></td>
+        <td><input form=\"${sel}\" type=\"number\" name=\"netto\" value=\"${receptKomponent.tolerance}\" step="0.001"></td>
+        <td><input type=\"button\" value=\"opdater\" onclick=\"updateReceptKomponent($(\'#receptKomponentTable #${sel}\'));\"></td></tr>`;
+}
 
-        '<td onclick="deleteReceptComponents(' + ReceptComponents.raavareId + ')"><button>slet ReceptComponents</button></td></tr> '
-
-
-
-        }
-function updateReceptComponents(RaavareId,NonNetto,Tolerance,ReceptID){
+function updateReceptKomponent(form){
     var settings = {
-        "url": "http://localhost:8080/2SG16_CDIO_Final_war_exploded/rest/ReceptComponents/updateReceptComponents",
-        "method": "POST",
+        "url": "../rest/ReceptComponents",
+        "method": "PUT",
         "timeout": 0,
         "headers": {
             "Content-Type": "application/json"
         },
-        "data": JSON.stringify({"RaavareId":RaavareId,"NonNetto":NonNetto,"Tolerance":Tolerance,"ReceptID":ReceptID}),
+        "data": form.serializeJSON()
     };
 
     $.ajax(settings).done(function (response) {
-        console.log(response);
+        loadReceptKomponents();
     });
 }
