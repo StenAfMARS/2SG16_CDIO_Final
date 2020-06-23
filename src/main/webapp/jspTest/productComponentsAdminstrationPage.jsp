@@ -21,6 +21,7 @@
         <th><input form="createProductBatchKomponent" type="number" name="raavareID"></th>
         <th><input form="createProductBatchKomponent" type="number" name="nonNetto" step="0.001"></th>
         <th><input form="createProductBatchKomponent" type="number" name="tolerance" step="0.001"></th>
+        <th><input form="createProductBatchKomponent" type="number" name="oprID" value="<%out.print(session.getAttribute("sessionUserID"));%>" style="display: none;"></th>
         <th><input type="button" value="create" onclick="createProductBatchKomponent($('#createProductBatchKomponent'))"></th>
     </tr>
     </thead>
@@ -38,6 +39,7 @@
             "<td><input form=\"%6$s\" type=\"number\" name=\"raavareID\" value=\"%2$s\" readonly=\"readonly\"></td>" +
             "<td><input form=\"%6$s\" type=\"number\" name=\"nonNetto\" value=\"%3$s\" step=\"0.001\"></td>" +
             "<td><input form=\"%6$s\" type=\"number\" name=\"tolerance\" value=\"%4$s\" step=\"0.001\"></td>" +
+            "<td><input form=\"%6$s\" type=\"number\" name=\"oprID\" value=\"%5$s\"></td>" +
             "<td><input type=\"button\" value=\"opdater\" onclick=\"updateProductBatchKomponent($(\'#productBatchKomponentTable #%6$s\'));\"></td></tr>",
             productBatchKomponent.getPbID(),    // 1
             productBatchKomponent.getRbID(),    // 2

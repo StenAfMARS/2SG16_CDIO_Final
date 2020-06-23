@@ -24,7 +24,6 @@
         <th><input form="createReceptKomponent" type="number" name="rbID"></th>
         <th><input form="createReceptKomponent" type="number" name="tara" step="0.001"></th>
         <th><input form="createReceptKomponent" type="number" name="netto" step="0.001"></th>
-        <th><input form="createReceptKomponent" type="number" name="oprID" value="<%out.print(session.getAttribute("sessionUserID"));%>" style="display: none;"></th>
         <th><input type="button" value="create" onclick="createReceptKomponent($('#createReceptKomponent'))"></th>
     </tr>
     </thead>
