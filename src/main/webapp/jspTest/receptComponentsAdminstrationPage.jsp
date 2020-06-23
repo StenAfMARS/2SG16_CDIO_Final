@@ -47,7 +47,7 @@
         for (ReceptKomponentDTO receptKomponent : receptKomponentList) {
             sb.append(String.format("<tr id=\"tr%1$s\"><form id=\"%1$s\"></form>" +
                             "<td><input form=\"%1$s\" type=\"text\" name=\"RaavareID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
-                            "<td><input form=\"%1$s\" type=\"text\" name=\"ReceptID\" value=\"%2$s\"></td>" +
+                            "<td><input form=\"%1$s\" type=\"text\" name=\"ReceptID\" value=\"%2$s\" readonly=\"readonly\"></td>" +
                             "<td><input form=\"%1$s\" type=\"text\" name=\"nonNetto\" value=\"%3$s\"></td>" +
                             "<td><input form=\"%1$s\" type=\"text\" name=\"tolerance\" value=\"%4$s\"></td>" +
 
