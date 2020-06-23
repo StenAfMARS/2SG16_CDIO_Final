@@ -2,10 +2,15 @@ $("#logOnForm").submit(function(e) {
     e.preventDefault();
 });
 
-function switchPage(page, data){
-    $("#test").load(page, data);
-    history.pushState(null, "", page);
+function switchPage(page, returning){
+    $("#test").load(page);
+    if (!returning)
+        history.pushState(null, "", page);
 }
+
+window.onpopstate = function(event) {
+    switchPage(document.location.toString(), true);
+};
 
 function cookieCard() {
 

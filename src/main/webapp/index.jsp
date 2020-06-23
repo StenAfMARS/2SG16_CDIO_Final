@@ -78,6 +78,6 @@
     <footer>
 
     </footer>
-    <script>switchPage("jspTest/LandingPage.jsp");</script>
+    <script>switchPage("../jspTest/LandingPage.jsp");</script>
 </body>
 </html>
