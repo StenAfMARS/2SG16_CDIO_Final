@@ -11,16 +11,13 @@
     <form>
         <label>skriv dit bruger id og vælg din rolde</label>
         <input id="UserID" type="text" name="input">
-        <a onclick="switchPage('../jspTest/LandingPageAdminPanel.jsp?inputName='+document.getElementById('UserID').value+'&keycard=10')"><span>Admin</span></a>
-        <a onclick="switchPage('../jspTest/LandingPageAdminPanel.jsp?inputName='+document.getElementById('UserID').value+'&keycard=20')"><span>Farmaceut</span></a>
-        <a onclick="switchPage('../jspTest/LandingPageAdminPanel.jsp?inputName='+document.getElementById('UserID').value+'&keycard=30')"><span>Produktionsleder</span></a>
-        <a onclick="switchPage('../jspTest/LandingPageAdminPanel.jsp?inputName='+document.getElementById('UserID').value+'&keycard=40')"><span>Laborant</span></a>
-        <!--
-        <input type="submit" value="Admin" onclick="switchPage('jspTest/LandingPageAdminPanel.jsp')"><br/>
-        <input type="submit" value="Farmaceut" onclick="switchPage('jspTest/LandingPageAdminPanel.jsp')"><br/>
-        <input type="submit" value="Produktionsleder" onclick="switchPage('jspTest/LandingPageAdminPanel.jsp')"><br/>
-        <input type="submit" value="Laborant" onclick="switchPage('jspTest/LandingPageAdminPanel.jsp')"><br/>
-        -->
+        <div class="wrapper">
+            <a onclick="switchPage('../jspTest/LandingPageAdminPanel.jsp?inputName='+document.getElementById('UserID').value+'&keycard=10');setKeycard(10)"><span>Admin</span></a>
+            <a onclick="switchPage('../jspTest/LandingPageAdminPanel.jsp?inputName='+document.getElementById('UserID').value+'&keycard=10');setKeycard(20)"><span>Farmaceut</span></a>
+            <a onclick="switchPage('../jspTest/LandingPageAdminPanel.jsp?inputName='+document.getElementById('UserID').value+'&keycard=10');setKeycard(30)"><span>Produktionsleder</span></a>
+            <a onclick="switchPage('../jspTest/LandingPageAdminPanel.jsp?inputName='+document.getElementById('UserID').value+'&keycard=10');setKeycard(40)"><span>Laborant</span></a>
+        </div>
+
     </form>
 </body>
 

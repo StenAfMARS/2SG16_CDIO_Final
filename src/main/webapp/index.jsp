@@ -9,42 +9,42 @@
 </head>
 <body>
     <header>
-        <img src="images/logo-dummy.png"/>
-        <h1>This i a webpage</h1>
+        <img src="images/64249527_1562248023929254_8289038434601795584_o.jpg"/>
+
         <nav id="navBar">
             <ul>
                 <li id="UserPanel" class="kc10 kc100 kc">
-                    <a onclick="switchPage('jspTest/userAdminstrationPage.jsp')">
+                    <a onclick="switchPage('../jspTest/userAdminstrationPage.jsp')">
                         Bruger Administration Panel
                     </a>
                 </li>
-                <li id="productPanel" class="kc20 kc30 kc40 kc100 kc">
-                    <a onclick="switchPage('jspTest/productAdminstrationPage.jsp')">
+                <li id="productPanel" class="kc20 kc30 kc100 kc">
+                    <a onclick="switchPage('../jspTest/productAdminstrationPage.jsp')">
                         Produkt administration Panel
                     </a>
                 </li>
-                <li id="productComponentsPanel" class="kc20 kc30 kc40 kc100 kc">
-                    <a onclick="switchPage('jspTest/productComponentsAdminstrationPage.jsp')">
+                <li id="productComponentsPanel" class="kc20 kc30 kc100 kc">
+                    <a onclick="switchPage('../jspTest/productComponentsAdminstrationPage.jsp')">
                         product Components Panel
                     </a>
                 </li>
-                <li id="raavarePanel" class="kc20 kc30 kc40 kc100 kc">
-                    <a onclick="switchPage('jspTest/raavareadminstrationPage.jsp')">
+                <li id="raavarePanel" class="kc20 kc30 kc100 kc">
+                    <a onclick="switchPage('../jspTest/raavareadminstrationPage.jsp')">
                         Raavare Panel
                     </a>
                 </li>
-                <li id="raavareBatchPanel" class="kc20 kc30 kc40 kc100 kc">
-                    <a onclick="switchPage('jspTest/raavarebatchAdminstrationPage.html')">
+                <li id="raavareBatchPanel" class="kc20 kc30 kc100 kc">
+                    <a onclick="switchPage('../jspTest/raavarebatchAdminstrationPage.html')">
                         Raavarebatch Panel
                     </a>
                 </li>
-                <li id="receptPanel" class="kc20 kc30 kc40 kc100 kc">
-                    <a onclick="switchPage('jspTest/receptAdminstrationPage.jsp')">
+                <li id="receptPanel" class="kc20 kc30 kc100 kc">
+                    <a onclick="switchPage('../jspTest/receptAdminstrationPage.jsp')">
                         Recept Panel
                     </a>
                 </li>
-                <li id="receptComponentsPanel" class="kc10 kc20 kc30 kc40 kc100 kc">
-                    <a onclick="switchPage('jspTest/raavarebatchAdminstrationPage.html')">
+                <li id="receptComponentsPanel" class="kc20 kc30 kc100 kc">
+                    <a onclick="switchPage('../jspTest/raavarebatchAdminstrationPage.html')">
                         recept komboneter Panel
                     </a>
                 </li>

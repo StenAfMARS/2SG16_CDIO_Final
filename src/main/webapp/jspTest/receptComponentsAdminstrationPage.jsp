@@ -3,6 +3,19 @@
 <%@ page import="DTO.ProduktBatchKompDTO" %>
 <%@ page import="DTO.ReceptKomponentDTO" %>
 <%@ page import="Handlers.ReceptHandler" %>
+<%
+    String keycard = (String)session.getAttribute("sessionUserKeycard");
+
+    if (keycard == null)
+        response.sendRedirect("/index.jsp");
+    else switch (keycard){
+        case "20":
+        case "100":
+            break;
+        default:
+            response.setStatus(403);
+    }
+%>
 <script src="/scripts/jquery-3.4.1.js"></script>
 <script src="/scripts/jquery.serialize-object.js"></script>
 <table align="center">

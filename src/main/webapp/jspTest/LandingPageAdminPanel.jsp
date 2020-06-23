@@ -28,9 +28,9 @@
         session.setAttribute("currentPage",currentPage);
     }
 
-    String currentUName=(String)session.getAttribute("sessname");
-    String currentUKeycard=(String)session.getAttribute("sessname");
-    out.print("Welcome "+ uname);
+    String currentUName=(String)session.getAttribute("sessionUserID");
+    String currentUKeycard=(String)session.getAttribute("sessionUserKeycard");
+    out.print("Welcome "+ currentUName);
 
 %>
 </body>
