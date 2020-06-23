@@ -38,18 +38,18 @@
 
         for (ProduktBatchKompDTO productBatchKomponent : productBatchKomponents) {
         sb.append(String.format("<tr id=\"tr%1$s\"><form id=\"%1$s\"></form>" +
-            "<td><input form=\"%1$s\" type=\"text\" name=\"pbID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
-            "<td><input form=\"%1$s\" type=\"text\" name=\"rbID\" value=\"%2$s\"></td>" +
-            "<td><input form=\"%1$s\" type=\"text\" name=\"tara\" value=\"%3$s\"></td>" +
-            "<td><input form=\"%1$s\" type=\"text\" name=\"netto\" value=\"%4$s\"></td>" +
-            "<td><input form=\"%1$s\" type=\"text\" name=\"oprID\" value=\"%5$s\"></td>" +
-            "<td><input type=\"button\" value=\"opdater\" onclick=\"updateProductBatchKomponent($(\'#productBatchTable #%1$s\'));\"></td>" +
+            "<td><input form=\"%1$s\" type=\"nummer\" name=\"pbID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
+            "<td><input form=\"%1$s\" type=\"nummer\" name=\"rbID\" value=\"%2$s\" readonly=\"readonly\"></td>" +
+            "<td><input form=\"%1$s\" type=\"nummer\" name=\"tara\" value=\"%3$s\"> step=\"0.001\"</td>" +
+            "<td><input form=\"%1$s\" type=\"nummer\" name=\"netto\" value=\"%4$s\"> step=\"0.001\"</td>" +
+            "<td><input form=\"%1$s\" type=\"nummer\" name=\"oprID\" value=\"%5$s\"></td>" +
+            "<td><input type=\"button\" value=\"opdater\" onclick=\"updateProductBatchKomponent($(\'#productBatchKomponentTable #%1$s\'));\"></td>" +
             "<td><input type=\"button\" onclick=\"deleteProductBatchKomponent(%1$s);\" value=\"slet\"></td></tr>",
             productBatchKomponent.getPbID(),    // 1
             productBatchKomponent.getRbID(),    // 2
             productBatchKomponent.getTara(),    // 3
-            productBatchKomponent.getNetto(),   // 2
-            productBatchKomponent.getOprID()    // 3
+            productBatchKomponent.getNetto(),   // 4
+            productBatchKomponent.getOprID()    // 5
             ));}
 
         out.print(sb.toString());

@@ -36,11 +36,11 @@ function loadProductBatchKomponents() {
 
 function addProductBatchKomponentOnTable(productBatchKomponent) {
     return `<tr id="tr${productBatchKomponent.pbID}"><form id=\"${productBatchKomponent.pbID}\"></form>
-        <td><input form=\"${productBatchKomponent.pbID}\" type=\"text\" name=\"pbID\" value=\"${productBatchKomponent.pbID}\" readonly=\"readonly\"></td>
-        <td><input form=\"${productBatchKomponent.pbID}\" type=\"text\" name=\"rbID\" value=\"${productBatchKomponent.rbID}\"></td>
-        <td><input form=\"${productBatchKomponent.pbID}\" type=\"text\" name=\"tara\" value=\"${productBatchKomponent.tara}\"></td>
-        <td><input form=\\"${productBatchKomponent.pbID}\\" type=\\"text\\" name=\\"netto\\" value=\\"${productBatchKomponent.netto}\\"></td>
-        <td><input form=\\"${productBatchKomponent.pbID}\\" type=\\"text\\" name=\\"oprID\\" value=\\"${productBatchKomponent.oprID}\\"></td>
+        <td><input form=\"${productBatchKomponent.pbID}\" type=\"number\" name=\"pbID\" value=\"${productBatchKomponent.pbID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${productBatchKomponent.pbID}\" type=\"number\" name=\"rbID\" value=\"${productBatchKomponent.rbID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${productBatchKomponent.pbID}\" type=\"number\" name=\"tara\" value=\"${productBatchKomponent.tara}\" step="0.001"></td>
+        <td><input form=\"${productBatchKomponent.pbID}\" type=\"number\" name=\"netto\" value=\"${productBatchKomponent.netto}\" step="0.001"></td>
+        <td><input form=\"${productBatchKomponent.pbID}\" type=\"number\" name=\"oprID\" value=\"${productBatchKomponent.oprID}\"></td>
         <td><input type=\"button\" value=\"opdater\" onclick=\"updateProductBatchKomponent($(\'#productBatchKomponentTable #${productBatchKomponent.pbID}\'));\"></td>
         <td><input type=\"button\" onclick=\"deleteProductBatchKomponent(${productBatchKomponent.pbID});\" value=\"slet\"></td></tr>`;
 }
