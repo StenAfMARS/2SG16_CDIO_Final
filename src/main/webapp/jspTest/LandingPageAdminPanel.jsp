@@ -9,18 +9,28 @@
 
 <body>
 <%
-    String uname=request.getParameter("inputName");
+    String uname = (String)request.getParameter("inputName");
+
+
     if(uname != ""){
         session.setAttribute("sessionUserID",uname);
     }
+
     String ukeyCard=request.getParameter("keycard");
 
     if(ukeyCard != ""){
         session.setAttribute("sessionUserKeycard",ukeyCard);
     }
-    String currentUName=(String)session.getAttribute("sessionUserID");
-    String currentUKeycard=(String)session.getAttribute("sessionUserKeycard");
-    out.print("velkommen til dit id kort "+ currentUName+ " dit nøglekort nummer er: "+ currentUKeycard);
+
+    String currentPage=request.getParameter("currentPage");
+
+    if(currentPage != ""){
+        session.setAttribute("currentPage",currentPage);
+    }
+
+    String currentUName=(String)session.getAttribute("sessname");
+    String currentUKeycard=(String)session.getAttribute("sessname");
+    out.print("Welcome "+ uname);
 
 %>
 </body>
