@@ -1,13 +1,12 @@
-function loadReceptKomponents() {
-    $.get('../rest/ReceptComponents',
-        {},
-        function (data, textStatus, req) {
-            $("#ReceptComponentsTable").empty();
-            $.each(data, function (i, elt) {
-                $('#ReceptComponentsTable').append(addReceptKomponentOnTable(elt));
-            });
+function deleteReceptKomponent(id) {
+    $.ajax({
+        url: '../rest/ReceptComponents/' + id,
+        method: 'delete',
+        contentType: "application/json", // det vi sender er json
+        success: function (data) {
+            $('#receptKomponentTable #tr' + data).remove();
         }
-    );
+    });
 }
 
 function createReceptKomponent(form) {
@@ -23,7 +22,30 @@ function createReceptKomponent(form) {
     });
 }
 
-function updateReceptKomponents(form){
+function loadReceptKomponents() {
+    $.get('../rest/ReceptComponents',
+        {},
+        function (data, textStatus, req) {
+            $("#receptKomponentTable").empty();
+            $.each(data, function (i, elt) {
+                $('#receptKomponentTable').append(addReceptKomponentOnTable(elt));
+            });
+        }
+    );
+}
+
+function addReceptKomponentOnTable(receptKomponent) {
+    let sel = receptKomponent.receptID + "," + receptKomponent.raavareID;
+
+    return `<tr id="tr${sel}"><form id=\"${sel}\"></form>
+        <td><input form=\"${sel}\" type=\"number\" name=\"pbID\" value=\"${receptKomponent.receptID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${sel}\" type=\"number\" name=\"rbID\" value=\"${receptKomponent.raavareID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${sel}\" type=\"number\" name=\"tara\" value=\"${receptKomponent.nonNetto}\" step="0.001"></td>
+        <td><input form=\"${sel}\" type=\"number\" name=\"netto\" value=\"${receptKomponent.tolerance}\" step="0.001"></td>
+        <td><input type=\"button\" value=\"opdater\" onclick=\"updateReceptKomponent($(\'#receptKomponentTable #${sel}\'));\"></td></tr>`;
+}
+
+function updateReceptKomponent(form){
     var settings = {
         "url": "../rest/ReceptComponents",
         "method": "PUT",
@@ -37,13 +59,4 @@ function updateReceptKomponents(form){
     $.ajax(settings).done(function (response) {
         loadReceptKomponents();
     });
-}
-
-function addReceptKomponentOnTable(ReceptComponents) {
-    return `<tr id="tr${ReceptComponents.raavareID}"><form id=\"${ReceptComponents.raavareID}\"></form>
-        <td><input form=\"${ReceptComponents.raavareID}\" type=\"number\" name=\"raavareID\" value=\"${ReceptComponents.raavareID}\" readonly=\"readonly\"></td>
-        <td><input form=\"${ReceptComponents.raavareID}\" type=\"number\" name=\"ReceptID\" value=\"${ReceptComponents.RecepID}\" readonly=\"readonly\"></td>
-        <td><input form=\"${ReceptComponents.raavareID}\" type=\"number\" name=\"nonNetto\" value=\"${ReceptComponents.nonNetto}\" step="0.001"></td>
-        <td><input form=\"${ReceptComponents.raavareID}\" type=\"number\" name=\"tolerance\" value=\"${ReceptComponents.tolerance}\" step="0.001"></td>
-        <td><input type=\"button\" value=\"opdater\" onclick=\"updateReceptKomponents($(\'#ReceptComponentsTable #${ReceptComponents.raavareID}\'));\"></td></tr>`;
 }

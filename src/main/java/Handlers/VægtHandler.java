@@ -1,6 +1,7 @@
 package Handlers;
 
 import DTO.ProduktBatchKompDTO;
+import DTO.ReceptKomponentDTO;
 import Exceptions.DALException;
 
 public class VægtHandler {
@@ -23,26 +24,26 @@ public class VægtHandler {
         return raavareID;
     }
 
-    public void batchNummer(){
-        double målteTaraBelastning = 0;  // Første måling
-        double målteNettorVægt = 0;      // Anden måling
+    public void afmålt(int laborantID, int pbID, int rbID, double mTara, double mNetto){
+        ProduktBatchHandler pbHandler = new ProduktBatchHandler();
+        ReceptHandler receptHandler = new ReceptHandler();
+        RaavareBatchHandler rbHandler = new RaavareBatchHandler();
 
-        double nonNetto = 0;    // Vægt mål
-        double tolerance = 0;   // Tolerance i procent
-        int laborantID = 0;
+        int receptID = pbHandler.getProduktBatch(pbID).getReceptID();
+        int raavareID = rbHandler.getRaavareBatch(rbID).getRaavareID();
 
-        int produktBatchID = 0;
-        int receptID = 0;
-        int raavareBatchNummer = 0;
-        int raavareID = 0;
+        ReceptKomponentDTO receptKomponent = receptHandler.getReceptKomponent(receptID, raavareID);
 
-        double tempNetto = målteNettorVægt - målteTaraBelastning;
+        double nonNetto = receptKomponent.getNonNetto();    // Vægt mål
+        double tolerance = receptKomponent.getTolerance();   // Tolerance i procent
+
+        double tempNetto = mNetto - mTara;
 
         if ((100 - tolerance)/100 * nonNetto < tempNetto
                 && tempNetto < (100 + tolerance)/100 * nonNetto){
 
             new ProduktBatchHandler().createProduktBatchKompDTO(
-                    new ProduktBatchKompDTO(produktBatchID, raavareBatchNummer, målteTaraBelastning, tempNetto, laborantID)
+                    new ProduktBatchKompDTO(pbID, rbID, mTara, tempNetto, laborantID)
             );
         } else {
             throw new DALException("Incorrect weight");

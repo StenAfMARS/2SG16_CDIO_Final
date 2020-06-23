@@ -35,13 +35,15 @@ function loadProductBatchKomponents() {
 }
 
 function addProductBatchKomponentOnTable(productBatchKomponent) {
-    return `<tr id="tr${productBatchKomponent.pbID}"><form id=\"${productBatchKomponent.pbID}\"></form>
-        <td><input form=\"${productBatchKomponent.pbID}\" type=\"number\" name=\"pbID\" value=\"${productBatchKomponent.pbID}\" readonly=\"readonly\"></td>
-        <td><input form=\"${productBatchKomponent.pbID}\" type=\"number\" name=\"rbID\" value=\"${productBatchKomponent.rbID}\" readonly=\"readonly\"></td>
-        <td><input form=\"${productBatchKomponent.pbID}\" type=\"number\" name=\"tara\" value=\"${productBatchKomponent.tara}\" step="0.001"></td>
-        <td><input form=\"${productBatchKomponent.pbID}\" type=\"number\" name=\"netto\" value=\"${productBatchKomponent.netto}\" step="0.001"></td>
-        <td><input form=\"${productBatchKomponent.pbID}\" type=\"number\" name=\"oprID\" value=\"${productBatchKomponent.oprID}\" readonly=\"readonly\"></td>
-        <td><input type=\"button\" value=\"opdater\" onclick=\"updateProductBatchKomponent($(\'#productBatchKomponentTable #${productBatchKomponent.pbID}\'));\"></td></tr>`;
+    let sel = productBatchKomponent.pbID + "," + productBatchKomponent.rbID;
+
+    return `<tr id="tr${sel}"><form id=\"${sel}\"></form>
+        <td><input form=\"${sel}\" type=\"number\" name=\"pbID\" value=\"${productBatchKomponent.pbID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${sel}\" type=\"number\" name=\"rbID\" value=\"${productBatchKomponent.rbID}\" readonly=\"readonly\"></td>
+        <td><input form=\"${sel}\" type=\"number\" name=\"tara\" value=\"${productBatchKomponent.tara}\" step="0.001"></td>
+        <td><input form=\"${sel}\" type=\"number\" name=\"netto\" value=\"${productBatchKomponent.netto}\" step="0.001"></td>
+        <td><input form=\"${sel}\" type=\"number\" name=\"oprID\" value=\"${productBatchKomponent.oprID}\" readonly=\"readonly\"></td>
+        <td><input type=\"button\" value=\"opdater\" onclick=\"updateProductBatchKomponent($(\'#productBatchKomponentTable #${sel}\'));\"></td></tr>`;
 }
 
 function updateProductBatchKomponent(form){
