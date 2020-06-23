@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    cookieCard()
 });
 
 $("#logOnForm").submit(function(e) {
