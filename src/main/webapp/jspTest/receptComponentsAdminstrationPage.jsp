@@ -42,13 +42,13 @@
             "<td><input form=\"%6$s\" type=\"number\" name=\"netto\" value=\"%4$s\" step=\"0.001\"></td>" +
             "<td><input form=\"%6$s\" type=\"number\" name=\"oprID\" value=\"%5$s\"></td>" +
             "<td><input type=\"button\" value=\"opdater\" onclick=\"updateProductBatchKomponent($(\'#productBatchKomponentTable #%6$s\'));\"></td></tr>",
-            productBatchKomponent.getPbID(),    // 1
-            productBatchKomponent.getRbID(),    // 2
-            productBatchKomponent.getTara(),    // 3
-            productBatchKomponent.getNetto(),   // 4
-            productBatchKomponent.getOprID(),   // 5
-            productBatchKomponent.getPbID() + "," + productBatchKomponent.getRbID()
-            ));}
+        productBatchKomponent.getPbID(),    // 1
+        productBatchKomponent.getRbID(),    // 2
+        productBatchKomponent.getTara(),    // 3
+        productBatchKomponent.getNetto(),   // 4
+        productBatchKomponent.getOprID(),   // 5
+        productBatchKomponent.getPbID() + "," + productBatchKomponent.getRbID()
+        ));}
 
         out.print(sb.toString());
         %>

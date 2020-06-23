@@ -244,11 +244,11 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             while(resultSet.next()) {
                 ProduktBatchKompDTOs.add(new ProduktBatchKompDTO(
-                        resultSet.getInt(1),
+                        resultSet.getInt(5),
                         resultSet.getInt(2),
                         resultSet.getDouble(3),
                         resultSet.getDouble(4),
-                        resultSet.getInt(5)));
+                        resultSet.getInt(1)));
             }
 
             // close things
@@ -308,15 +308,15 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "update productBatchComponents set tara = ?, netto= ?, where fk_rbID = ? AND fk_pbID=?");
+                    "update productBatchComponents set tara = ?, netto= ? where fk_rbID = ? AND fk_pbID=?");
 
             // Set variables
 
 
             statement.setDouble(1, produktBatchKomp.getTara());
             statement.setDouble(2, produktBatchKomp.getNetto());
-            statement.setDouble(3, produktBatchKomp.getRbID());
-            statement.setDouble(4, produktBatchKomp.getPbID());
+            statement.setInt(3, produktBatchKomp.getRbID());
+            statement.setInt(4, produktBatchKomp.getPbID());
 
             // Execute
             statement.execute();

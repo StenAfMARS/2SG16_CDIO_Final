@@ -41,8 +41,7 @@ function addProductBatchKomponentOnTable(productBatchKomponent) {
         <td><input form=\"${productBatchKomponent.pbID}\" type=\"number\" name=\"tara\" value=\"${productBatchKomponent.tara}\" step="0.001"></td>
         <td><input form=\"${productBatchKomponent.pbID}\" type=\"number\" name=\"netto\" value=\"${productBatchKomponent.netto}\" step="0.001"></td>
         <td><input form=\"${productBatchKomponent.pbID}\" type=\"number\" name=\"oprID\" value=\"${productBatchKomponent.oprID}\"></td>
-        <td><input type=\"button\" value=\"opdater\" onclick=\"updateProductBatchKomponent($(\'#productBatchKomponentTable #${productBatchKomponent.pbID}\'));\"></td>
-        <td><input type=\"button\" onclick=\"deleteProductBatchKomponent(${productBatchKomponent.pbID});\" value=\"slet\"></td></tr>`;
+        <td><input type=\"button\" value=\"opdater\" onclick=\"updateProductBatchKomponent($(\'#productBatchKomponentTable #${productBatchKomponent.pbID}\'));\"></td></tr>`;
 }
 
 function updateProductBatchKomponent(form){
