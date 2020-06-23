@@ -4,7 +4,7 @@
 package DTO;
 
 public class ReceptKomponentDTO {
-    public ReceptKomponentDTO(int receptId, double nonNetto, double tolerance, int raavareId) {
+    public ReceptKomponentDTO(int receptId, int raavareId, double nonNetto, double tolerance) {
         this.receptID = receptId;
         this.raavareID = raavareId;
         this.nonNetto = nonNetto;

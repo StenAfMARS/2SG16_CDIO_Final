@@ -192,7 +192,6 @@ public class ReceptHandler implements IReceptHandler {
                         resultSet.getInt("fk_ReceptID"),
                         resultSet.getDouble("nonNetto"),
                         resultSet.getDouble("tolerance")
-
                     )
                 );
             }
