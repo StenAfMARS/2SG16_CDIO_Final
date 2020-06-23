@@ -224,9 +224,9 @@ public class ReceptHandler implements IReceptHandler {
             while (resultSet.next()){
                 receptKomponentList.add(new ReceptKomponentDTO(
                                 resultSet.getInt("fk_RaavareID"),
+                                resultSet.getInt("fk_ReceptID"),
                                 resultSet.getDouble("nonNetto"),
-                                resultSet.getDouble("tolerance"),
-                                resultSet.getInt("fk_ReceptID")
+                                resultSet.getDouble("tolerance")
                         )
                 );
             }
