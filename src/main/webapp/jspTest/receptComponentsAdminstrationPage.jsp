@@ -1,14 +1,13 @@
 <%--
-  Created by IntelliJ IDEA.
   User: Peter Skaarup
   Date: 23-Jun-20
-  Time: 13:22
-  NEEDS TO BE UPDATED WITH CORRECT VALUES AND DATA!!!!!
+
   NOT DONE! DO NOT TRY TO RUN!
+  NEEDS TO BE UPDATED WITH CORRECT VALUES AND DATA!!!!!
+
 --%>
 
 <%@ page import="java.util.List" %>
-<%@ page import="Handlers.ProduktBatchHandler" %>
 <%@ page import="DTO.ReceptKomponentDTO" %>
 <%@ page import="DTO.ReceptDTO" %>
 <%@ page import="DTO.RaavareDTO" %>
@@ -25,8 +24,7 @@
         <th>fk_ReceptID</th>
         <th>nonNetto</th>
         <th>tolerance</th>
-        <th></th>
-        <th></th>
+
     </tr>
     <tr>
         <form id="createReceptKomponent"></form>
@@ -42,24 +40,24 @@
     <%
         ReceptHandler ReceptHandler = new ReceptHandler();
 
-        List<ReceptKomponentDTO> recepthKomponents = ReceptHandler.getReceptKomponentList();
+        List<ReceptKomponentDTO> receptKomponentList = ReceptHandler.getReceptKomponentList();
 
         StringBuilder sb = new StringBuilder();
 
-        for (receptKomponents receptKomponent : receptKomponents) {
+        for (ReceptKomponentDTO receptKomponent : receptKomponentList) {
             sb.append(String.format("<tr id=\"tr%1$s\"><form id=\"%1$s\"></form>" +
-                            "<td><input form=\"%1$s\" type=\"text\" name=\"pbID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
-                            "<td><input form=\"%1$s\" type=\"text\" name=\"rbID\" value=\"%2$s\"></td>" +
-                            "<td><input form=\"%1$s\" type=\"text\" name=\"tara\" value=\"%3$s\"></td>" +
-                            "<td><input form=\"%1$s\" type=\"text\" name=\"netto\" value=\"%4$s\"></td>" +
-                            "<td><input form=\"%1$s\" type=\"text\" name=\"oprID\" value=\"%5$s\"></td>" +
+                            "<td><input form=\"%1$s\" type=\"text\" name=\"RaavareID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
+                            "<td><input form=\"%1$s\" type=\"text\" name=\"ReceptID\" value=\"%2$s\"></td>" +
+                            "<td><input form=\"%1$s\" type=\"text\" name=\"nonNetto\" value=\"%3$s\"></td>" +
+                            "<td><input form=\"%1$s\" type=\"text\" name=\"tolerance\" value=\"%4$s\"></td>" +
+
                             "<td><input type=\"button\" value=\"opdater\" onclick=\"updateProductBatchKomponent($(\'#productBatchTable #%1$s\'));\"></td>" +
                             "<td><input type=\"button\" onclick=\"deleteProductBatchKomponent(%1$s);\" value=\"slet\"></td></tr>",
-                    recepthKomponents.get,    // 1
-                    productBatchKomponent.getRbID(),    // 2
-                    productBatchKomponent.getTara(),    // 3
-                    productBatchKomponent.getNetto(),   // 2
-                    productBatchKomponent.getOprID()    // 3
+                    receptKomponent.getRaavareID(),    // 1
+                    receptKomponent.getReceptID(),    // 2
+                    receptKomponent.getNonNetto(),    // 3
+                    receptKomponent.getTolerance()   // 2
+
             ));}
 
         out.print(sb.toString());
