@@ -17,13 +17,9 @@
     if(ukeyCard != ""){
         session.setAttribute("sessionUserKeycard",ukeyCard);
     }
-    String currentPage=request.getParameter("currentPage");
-    if(currentPage != ""){
-        session.setAttribute("currentPage",currentPage);
-    }
-    String currentUName=(String)session.getAttribute("sessname");
-    String currentUKeycard=(String)session.getAttribute("sessname");
-    out.print("Welcome "+ uname);
+    String currentUName=(String)session.getAttribute("sessionUserID");
+    String currentUKeycard=(String)session.getAttribute("sessionUserKeycard");
+    out.print("velkommen til dit id kort "+ currentUName+ " dit nøglekort nummer er: "+ currentUKeycard);
 
 %>
 </body>
