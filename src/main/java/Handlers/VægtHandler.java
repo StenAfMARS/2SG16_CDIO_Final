@@ -36,7 +36,7 @@ public class VægtHandler {
             Connection connection = DatabaseHandler.connect();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT fk_receptID, fk_raavareID, nonNetto, tolerance\n" +
+                    "SELECT produktBatch.fk_receptID, fk_raavareID, nonNetto, tolerance\n" +
                             "FROM produktBatch\n" +
                             "join productBatchComponents on pbID = fk_pbID\n" +
                             "join RecebtComponents on produktBatch.fk_ReceptID = RecebtComponents.fk_ReceptID\n" +
