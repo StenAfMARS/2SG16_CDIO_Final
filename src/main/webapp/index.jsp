@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li id="receptComponentsPanel" class="kc20 kc30 kc100 kc">
-                    <a onclick="switchPage('../jspTest/receptComponentsAdminstrationPage.html')">
+                    <a onclick="switchPage('../jspTest/raavarebatchAdminstrationPage.jsp')">
                         recept komboneter Panel
                     </a>
                 </li>
