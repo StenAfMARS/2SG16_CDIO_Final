@@ -4,10 +4,8 @@ import DTO.ProduktBatchKompDTO;
 import DTO.ReceptKomponentDTO;
 import Exceptions.DALException;
 import Handlers.ProduktBatchHandler;
-import Handlers.ReceptHandler;
 import Handlers.VægtHandler;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
@@ -56,15 +54,10 @@ public class VægtAPI {
     }
 
     @POST
+    @Path("{id : [0-9]+}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public static Response nextCoponent(@Context HttpSession session, ProduktBatchKompDTO produktBatchKompDTO){
+    public static Response nextCoponent(@PathParam("id") int userID, ProduktBatchKompDTO produktBatchKompDTO){
         VægtHandler vægtHandler = new VægtHandler();
-
-        System.out.println(session.getAttribute("sessionUserID"));
-        Integer userID = (Integer)session.getAttribute("sessionUserID");
-
-        if (userID == null)
-            return Response.status(401).build();
 
         try {
             vægtHandler.afmaalt(userID, produktBatchKompDTO.getPbID(), produktBatchKompDTO.getRbID(), produktBatchKompDTO.getTara(), produktBatchKompDTO.getNetto());
