@@ -1,6 +1,7 @@
 package Handlers;
 
 import DTO.ProduktBatchKompDTO;
+import DTO.RaavareBatchDTO;
 import DTO.ReceptKomponentDTO;
 import Exceptions.DALException;
 
@@ -58,6 +59,9 @@ public class VægtHandler {
         return commodetyList;
     }
     public void afmaalt(int laborantID, int pbID, int rbID, double mTara, double mNetto) throws DALException {
+        if (mNetto < 0)
+            throw new DALException("mNetto can't be negative");
+
         ProduktBatchHandler pbHandler = new ProduktBatchHandler();
         ReceptHandler receptHandler = new ReceptHandler();
         RaavareBatchHandler rbHandler = new RaavareBatchHandler();
@@ -79,9 +83,14 @@ public class VægtHandler {
         if ((100 - tolerance)/100 * nonNetto < mNetto
                 && mNetto < (100 + tolerance)/100 * nonNetto){
 
-            new ProduktBatchHandler().createProduktBatchKompDTO(
+            pbHandler.createProduktBatchKompDTO(
                     new ProduktBatchKompDTO(pbID, rbID, mTara, mNetto, laborantID)
             );
+
+            RaavareBatchDTO rb = rbHandler.getRaavareBatch(rbID);
+            rb.setMaengde(rb.getMaengde() - mNetto);
+
+            rbHandler.updateRaavareBatch(rb);
         } else {
             throw new DALException("Incorrect weight");
         }
