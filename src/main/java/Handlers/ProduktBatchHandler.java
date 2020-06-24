@@ -6,6 +6,7 @@ import Exceptions.DALException;
 import Interfaces.IProduktBatchHandler;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -90,9 +91,8 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
         return products;
     }
 
-    public int[] getProduktBatchListOfUnfinishedProducts() throws DALException, SQLException {
-        int i;
-        Array productlist = null;
+    public Integer[] getProduktBatchListOfUnfinishedProducts() throws DALException, SQLException {
+        List<Integer> productlist = new ArrayList<>();
 
         try {
             // CONNECT
@@ -106,7 +106,10 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Read reply
             ResultSet resultSet = statement.executeQuery();
-            productlist = resultSet.getArray("pbID");
+
+            while (resultSet.next()){
+                productlist.add(resultSet.getInt(1));
+            }
 
             // close things
             connection.close();
@@ -116,13 +119,14 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         // return result
 
+        Integer[] integers = new Integer[productlist.size()];
+        productlist.toArray(integers);
 
-
-        return (int[])productlist.getArray();
+        return integers;
     }
+
     @Override
     public void createProduktBatch(ProduktBatchDTO produktbatch) throws DALException {
 
@@ -168,9 +172,6 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
             statement.setInt(2, produktbatch.getStatus());
             statement.setInt(3, produktbatch.getReceptID());
             statement.setInt(4, produktbatch.getPbID());
-
-
-
 
             // Execute
             statement.execute();
