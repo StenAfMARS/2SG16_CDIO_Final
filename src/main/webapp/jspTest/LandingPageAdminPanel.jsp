@@ -29,8 +29,8 @@
     }
 
     String currentUName=(String)session.getAttribute("sessionUserID");
-    String currentUKeycard=(String)session.getAttribute("sessionUserKeycard");
-    out.print("Welcome "+ currentUName);
+    String keycard = (String)session.getAttribute("sessionUserKeycard");
+    out.print("Welcome "+ currentUName+" dit nøglekort" + ukeyCard + "test af session" + keycard);
 
 %>
 </body>
