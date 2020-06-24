@@ -2,7 +2,6 @@ package Handlers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DatabaseHandler {
@@ -11,7 +10,7 @@ public class DatabaseHandler {
     public static String dbpassword = "b2h4k9gc";
 
     public static Connection connect() throws SQLException {
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
+            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 
             return DriverManager.getConnection(dburl, dbusername, dbpassword);
     }
