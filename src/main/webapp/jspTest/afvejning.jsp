@@ -55,9 +55,9 @@
         <label>indtast ravaareBatchID</label>
         <input form="afvejning" name="rbID" type="number">
         <label>indtast tara</label>
-        <input form="afvejning" name="tara" type="number" step="any">
+        <input form="afvejning" name="tara" type="number" step="any" min="0">
         <label>indtast netto</label>
-        <input form="afvejning" name="netto" type="number" step="any">
+        <input form="afvejning" name="netto" type="number" step="any" min="0">
         <a onclick="sendAfvejning(<%out.print(currentUName);%>)">afregn</a>
     </form>
 </body>

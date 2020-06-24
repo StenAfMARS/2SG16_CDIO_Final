@@ -31,9 +31,9 @@
     </tr>
     <tr>
         <form id="createProductBatch"></form>
-        <th><input form="createProductBatch" type="text" name="pbID"></th>
-        <th><input form="createProductBatch" type="text" name="status"></th>
-        <th><input form="createProductBatch" type="text" name="receptID"></th>
+        <th><input form="createProductBatch" type="number" min="0" name="pbID"></th>
+        <th><input form="createProductBatch" type="number" min="0" name="status"></th>
+        <th><input form="createProductBatch" type="number" min="0" name="receptID"></th>
         <th colspan="2"><input type="button" value="create" onclick="createProductBatch($('#createProductBatch'))"></th>
     </tr>
     </thead>
@@ -48,8 +48,8 @@
         for (ProduktBatchDTO productBatch : productBatches) {
             sb.append(String.format("<tr id=\"tr%1$s\"><form id=\"%1$s\"></form>" +
             "<td><input form=\"%1$s\" type=\"text\" name=\"pbID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
-            "<td><input form=\"%1$s\" type=\"text\" name=\"status\" value=\"%2$s\"></td>" +
-            "<td><input form=\"%1$s\" type=\"text\" name=\"receptID\" value=\"%3$s\"></td>" +
+            "<td><input form=\"%1$s\" type=\"number\" min=\"0\" name=\"status\" value=\"%2$s\"></td>" +
+            "<td><input form=\"%1$s\" type=\"number\" min=\"0\" name=\"receptID\" value=\"%3$s\"></td>" +
             "<td><input type=\"button\" value=\"opdater\" onclick=\"updateProductBatch($(\'#productBatchTable #%1$s\'));\"></td>" +
             "<td><input type=\"button\" onclick=\"deleteProductBatch(%1$s);\" value=\"slet\"></td></tr>",
             productBatch.getPbID(),   // 1

@@ -10,7 +10,7 @@
 <body>
     <form id="loginForm">
         <label>skriv dit bruger id og vælg din rolde</label>
-        <input id="UserID" type="text" name="input">
+        <input id="UserID" type="number" min="1" name="input">
         <div class="wrapper">
             <a onclick="switchPage('../jspTest/LandingPageAdminPanel.jsp?inputName='+document.getElementById('UserID').value+'&keycard=10');setKeycard(10)"><span>Admin</span></a>
             <a onclick="switchPage('../jspTest/LandingPageAdminPanel.jsp?inputName='+document.getElementById('UserID').value+'&keycard=20');setKeycard(20)"><span>Farmaceut</span></a>
