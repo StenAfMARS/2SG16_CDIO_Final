@@ -20,9 +20,8 @@ public class VægtAPI {
 
     @GET
     @Path("{id : [0-9]+}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public static ReceptKomponentDTO nextComponent(@PathParam("id") int pbID){
-        return null;
+    public static int nextComponent(@PathParam("id") int pbID){
+        return 1;
     }
 
     @GET
