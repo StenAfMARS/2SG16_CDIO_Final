@@ -133,7 +133,7 @@ public class ReceptHandler implements IReceptHandler {
     @Override
     public ReceptKomponentDTO getReceptKomponent(int receptID, int raavareID) throws DALException {
 
-        ReceptKomponentDTO ReceptKomponentDTO = null;
+        ReceptKomponentDTO ReceptKomponentDTO = new ReceptKomponentDTO();
 
         try{
             Connection connection = DatabaseHandler.connect();
@@ -147,13 +147,16 @@ public class ReceptHandler implements IReceptHandler {
 
             ResultSet resultSet = statement.executeQuery();
 
-            while (resultSet.next()){
+            if (resultSet.next()){
                 ReceptKomponentDTO = new ReceptKomponentDTO(
+                        resultSet.getInt("fk_ReceptID"),
                         resultSet.getInt("fk_RaavareID"),
-                        resultSet.getInt("nonNetto"),
-                        resultSet.getInt("tolerance"),
-                        resultSet.getInt("fk_ReceptID")
+                        resultSet.getDouble("nonNetto"),
+                        resultSet.getDouble("tolerance")
                 );
+            } else
+            {
+                throw new DALException("no RecebtComponent found");
             }
 
             connection.close();

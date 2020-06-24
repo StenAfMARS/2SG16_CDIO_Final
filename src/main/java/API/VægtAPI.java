@@ -10,6 +10,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 
 @Path("afvejning")
 public class VægtAPI {
@@ -23,15 +24,17 @@ public class VægtAPI {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public static void nextCoponent(@Context HttpServletRequest request, ProduktBatchKompDTO produktBatchKompDTO){
+    public static Response nextCoponent(@Context HttpServletRequest request, ProduktBatchKompDTO produktBatchKompDTO){
         VægtHandler vægtHandler = new VægtHandler();
 
         Integer userID = (Integer)request.getSession().getAttribute("sessionUserID");
 
         if (userID == null)
-            userID = 1;
+            return Response.status(401).build();
 
         vægtHandler.afmålt(userID, produktBatchKompDTO.getPbID(), produktBatchKompDTO.getRbID(), produktBatchKompDTO.getTara(), produktBatchKompDTO.getNetto());
+
+        return Response.status(201).build();
     }
 
 }
