@@ -59,6 +59,9 @@ public class VægtHandler {
         return commodetyList;
     }
     public void afmaalt(int laborantID, int pbID, int rbID, double mTara, double mNetto) throws DALException {
+        if (mNetto < 0)
+            throw new DALException("mNetto can't be negative");
+
         ProduktBatchHandler pbHandler = new ProduktBatchHandler();
         ReceptHandler receptHandler = new ReceptHandler();
         RaavareBatchHandler rbHandler = new RaavareBatchHandler();
