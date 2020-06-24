@@ -2,12 +2,14 @@ package API;
 
 import DTO.ProduktBatchKompDTO;
 import DTO.ReceptKomponentDTO;
+import Exceptions.DALException;
 import Handlers.ProduktBatchHandler;
 import Handlers.ReceptHandler;
 import Handlers.VægtHandler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -55,15 +57,21 @@ public class VægtAPI {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public static Response nextCoponent(@Context HttpServletRequest request, ProduktBatchKompDTO produktBatchKompDTO){
+    public static Response nextCoponent(@Context HttpSession session, ProduktBatchKompDTO produktBatchKompDTO){
         VægtHandler vægtHandler = new VægtHandler();
 
-        Integer userID = (Integer)request.getSession().getAttribute("sessionUserID");
+        System.out.println(session.getAttribute("sessionUserID"));
+        Integer userID = (Integer)session.getAttribute("sessionUserID");
 
         if (userID == null)
             return Response.status(401).build();
 
-        vægtHandler.afmålt(userID, produktBatchKompDTO.getPbID(), produktBatchKompDTO.getRbID(), produktBatchKompDTO.getTara(), produktBatchKompDTO.getNetto());
+        try {
+            vægtHandler.afmaalt(userID, produktBatchKompDTO.getPbID(), produktBatchKompDTO.getRbID(), produktBatchKompDTO.getTara(), produktBatchKompDTO.getNetto());
+        } catch (DALException e){
+            e.printStackTrace();
+            Response.status(400);
+        }
 
         return Response.status(201).build();
     }
