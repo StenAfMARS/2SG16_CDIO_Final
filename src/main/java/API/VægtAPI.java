@@ -24,8 +24,11 @@ public class VægtAPI {
         VægtHandler vægtHandler = new VægtHandler();
 
         try {
-            return vægtHandler.getReceptID(pbID).get(0);
-        } catch (SQLException e) {
+            ReceptKomponentDTO s = vægtHandler.getReceptID(pbID).get(0);
+            if (s == null)
+                throw new NullPointerException();
+            return s;
+        } catch (Exception e) {
             e.printStackTrace();
             response.sendError(500);
         }
