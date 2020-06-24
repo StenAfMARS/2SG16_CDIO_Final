@@ -1,15 +1,3 @@
-$(document).ready(function() {
-    cookieCard()
-});
-function cookieCard() {
-
-    const idCard = getCookie("CookieCard")
-    var keyCard = idCard.split(" ", 1)
-    // halfe ass fix to a buck
-    if(keyCard != "20" ) {
-        switchPage("Views/LandingPageAdminPanel.html")
-    }
-}
 function deleteCommodity(id) {
     $.ajax({
         url: '../rest/raavarer/' + id,
@@ -20,6 +8,7 @@ function deleteCommodity(id) {
         }
     });
 }
+
 function createCommodity(form) {
     var data = form.serializeJSON();
     $.ajax({

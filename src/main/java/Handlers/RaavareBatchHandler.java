@@ -23,7 +23,7 @@ public class RaavareBatchHandler implements IRaavareBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM raavareBatch WHERE  rbID=?");
+                    "SELECT rbID, fk_raavareID, maengde FROM raavareBatch WHERE  rbID=?");
 
             // Set variables
             statement.setInt(1, RaavareBatchId);
