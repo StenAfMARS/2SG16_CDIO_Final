@@ -20,7 +20,7 @@
     String currentUName=(String)session.getAttribute("sessionUserID");
 %>
     <form id="productBatch">
-        <label>vælg et productbatch</label>
+        <label>vælg et productbatch</label><br/>
         <select form="productBatch" name="products" id="Products">
             <%
                 ProduktBatchHandler productBatchHandler = new ProduktBatchHandler();
