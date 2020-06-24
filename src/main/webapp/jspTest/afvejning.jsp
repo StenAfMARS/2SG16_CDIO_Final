@@ -33,6 +33,28 @@
     </select>
     <a href="#" onclick="sendID()">vælg produkt</a>
 </form>
-
+<table align="center">
+    <thead>
+    <tr>
+        <td id="header" colspan="6" onclick="loadReceptKomponents()"><h1>Table of receptKomponents needed for the recept</h1></td>
+    </tr>
+    <tr>
+        <th>receptID</th>
+        <th>raavareID</th>
+        <th>nonNetto</th>
+        <th>tolerance</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="receptKomponentTable">
+    </tbody>
+</table>
+<form id="afvejning">
+    <label>indtast tara</label>
+    <input form="afvejning" name="tara" type="number" step="any">
+    <label>indtast netto</label>
+    <input form="afvejning" name="netto" type="number" step="any">
+    <a href="#" onclick="sendID()">afregn</a>
+</form>
 </body>
 </html>

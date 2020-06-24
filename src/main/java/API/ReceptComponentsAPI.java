@@ -24,7 +24,7 @@ public class ReceptComponentsAPI {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public static List<ReceptKomponentDTO> get(@PathParam("id") int ReceptID){
-        return receptComponents().getReceptKomponentList();
+        return receptComponents().getReceptKomponentList(ReceptID);
     }
 
     @GET
