@@ -29,12 +29,12 @@
                     </a>
                 </li>
                 <li id="raavarePanel" class="kc20 kc30 kc100 kc">
-                    <a onclick="switchPage('../jspTest/raavareadminstrationPage.jsp')">
+                    <a onclick="switchPage('../jspTest/raavareAdminstrationPage.jsp')">
                         Raavare Panel
                     </a>
                 </li>
                 <li id="raavareBatchPanel" class="kc20 kc30 kc100 kc">
-                    <a onclick="switchPage('../jspTest/raavarebatchAdminstrationPage.html')">
+                    <a onclick="switchPage('../jspTest/raavarebatchAdminstrationPage.jsp')">
                         Raavarebatch Panel
                     </a>
                 </li>
@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li id="receptComponentsPanel" class="kc20 kc30 kc100 kc">
-                    <a onclick="switchPage('../jspTest/raavarebatchAdminstrationPage.html')">
+                    <a onclick="switchPage('../jspTest/raavarebatchAdminstrationPage.jsp')">
                         recept komboneter Panel
                     </a>
                 </li>
