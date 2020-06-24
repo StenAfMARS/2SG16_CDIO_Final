@@ -32,18 +32,22 @@ public class VægtHandler {
         int receptID = pbHandler.getProduktBatch(pbID).getReceptID();
         int raavareID = rbHandler.getRaavareBatch(rbID).getRaavareID();
 
+        System.out.println(receptID);
+        System.out.println(rbID);
+        System.out.println(raavareID);
+
         ReceptKomponentDTO receptKomponent = receptHandler.getReceptKomponent(receptID, raavareID);
+
+        System.out.println(receptKomponent);
 
         double nonNetto = receptKomponent.getNonNetto();    // Vægt mål
         double tolerance = receptKomponent.getTolerance();   // Tolerance i procent
 
-        double tempNetto = mNetto - mTara;
-
-        if ((100 - tolerance)/100 * nonNetto < tempNetto
-                && tempNetto < (100 + tolerance)/100 * nonNetto){
+        if ((100 - tolerance)/100 * nonNetto < mNetto
+                && mNetto < (100 + tolerance)/100 * nonNetto){
 
             new ProduktBatchHandler().createProduktBatchKompDTO(
-                    new ProduktBatchKompDTO(pbID, rbID, mTara, tempNetto, laborantID)
+                    new ProduktBatchKompDTO(pbID, rbID, mTara, mNetto, laborantID)
             );
         } else {
             throw new DALException("Incorrect weight");

@@ -24,11 +24,10 @@
         <td id="header" colspan="6" onclick="loadReceptKomponents()"><h1>Table of receptKomponents</h1></td>
     </tr>
     <tr>
-        <th>ReceptID</th>
-        <th>RaavareBatchID</th>
-        <th>Tara</th>
-        <th>Netto</th>
-        <th>OpretterID</th>
+        <th>receptID</th>
+        <th>raavareID</th>
+        <th>nonNetto</th>
+        <th>tolerance</th>
         <th></th>
     </tr>
     <tr>

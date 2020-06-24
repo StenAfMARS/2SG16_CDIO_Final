@@ -23,10 +23,11 @@
         <td id="header" colspan="6" onclick="loadProductBatchKomponents()"><h1>Table of productBatchKomponents</h1></td>
     </tr>
     <tr>
-        <th>receptID</th>
-        <th>raavareID</th>
-        <th>nonNetto</th>
-        <th>tolerance</th>
+        <th>pbID</th>
+        <th>rbID</th>
+        <th>tara</th>
+        <th>netto</th>
+        <th>oprID</th>
         <th></th>
     </tr>
     <tr>

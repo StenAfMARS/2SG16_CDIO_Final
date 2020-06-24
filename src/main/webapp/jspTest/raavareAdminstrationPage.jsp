@@ -5,7 +5,6 @@
   Time: 5:09 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="Handlers.UserHandler" %>
 <%@ page import="java.util.List" %>
 <%@ page import="DTO.RaavareDTO" %>
 <%@ page import="Handlers.RaavareHandler" %>
@@ -41,7 +40,7 @@
         <th></th>
     </tr>
     <tr>
-        <form id="createRaavare" method="post" action="/rest/users">
+        <form id="createRaavare">
             <th></th>
             <th><input form="createRaavare" type="text" name="raavareNavn"></th>
             <th><input form="createRaavare" type="text" name="leverandoer"></th>
@@ -76,4 +75,4 @@
     %>
     </tbody>
 </table>
-<script src="/scripts/RaavareTable.js"></script>
+<script src="../scripts/RaavareTable.js"></script>
