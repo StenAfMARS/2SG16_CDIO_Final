@@ -20,6 +20,7 @@ public class VægtAPI {
 
     @GET
     @Path("{id : [0-9]+}")
+    @Produces(MediaType.APPLICATION_JSON)
     public static ReceptKomponentDTO nextComponent(@Context HttpServletResponse response, @PathParam("id") int pbID) throws IOException {
         VægtHandler vægtHandler = new VægtHandler();
 
