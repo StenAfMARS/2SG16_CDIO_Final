@@ -13,23 +13,6 @@ import java.util.List;
 
 public class VægtHandler {
 
-    public int producer(int produktBatchID){
-        int raavareID = 0;
-
-        // Skaffe receptID fra produktBach med produktBatchID
-
-        // Find alle receptKomponents med den rigtige receptID
-
-        /*
-        SQL statement der får alle receptKomponents med den rigtige receptID og som ikke matcher en produktbatchComponent på raavareID (skaffet medrbID)
-         */
-
-        // returner den første
-        //
-        // hvis tom kast en fejl
-
-        return raavareID;
-    }
     public List<ReceptKomponentDTO> getReceptID(int id)throws DALException, SQLException{
         List<ReceptKomponentDTO> commodetyList = new ArrayList<>();
         try{
@@ -74,7 +57,7 @@ public class VægtHandler {
 
         return commodetyList;
     }
-    public void afmålt(int laborantID, int pbID, int rbID, double mTara, double mNetto){
+    public void afmaalt(int laborantID, int pbID, int rbID, double mTara, double mNetto) throws DALException {
         ProduktBatchHandler pbHandler = new ProduktBatchHandler();
         ReceptHandler receptHandler = new ReceptHandler();
         RaavareBatchHandler rbHandler = new RaavareBatchHandler();

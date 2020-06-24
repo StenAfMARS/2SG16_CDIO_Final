@@ -1,13 +1,16 @@
 function sendID(){
     var getChoosenValue = document.getElementById("Products");
-    var result = getChoosenValue.options[getChoosenValue.selectedIndex].value;
+    document.pbID = getChoosenValue.options[getChoosenValue.selectedIndex].value;
     $.ajax({
-        url: '../rest/afvejning/' + result,
+        url: '../rest/afvejning/' + document.pbID,
         method: 'get',
         contentType: "application/json", // det vi sender er json
         success: function (data) {
-            alert(data)
-            loadReceptKomponents(data)
+            var receptComponent = data;
+            $("#receptKomponentTable").empty();
+
+            $('#receptKomponentTable').append(
+                addReceptKomponentOnTable(receptComponent));
         }
     });
 }
@@ -21,6 +24,25 @@ function loadReceptKomponents(ID) {
             });
         }
     );
+}
+
+function sendAfvejning(){
+    var data = JSON.stringify({
+        pbID:document.pbID,
+        rbID:document.getElementsByName("rbID")[0].value,
+        tara:document.getElementsByName("tara")[0].value,
+        netto:document.getElementsByName("netto")[0].value
+    });
+
+    $.ajax({
+        url: '../rest/afvejning',
+        method: 'post',
+        data: data,
+        contentType: "application/json", // det vi sender er json
+        success: function (data) {
+            alert(data);
+        }
+    });
 }
 
 function addReceptKomponentOnTable(receptKomponent) {
