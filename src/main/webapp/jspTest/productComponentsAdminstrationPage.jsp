@@ -60,7 +60,7 @@
             productBatchKomponent.getTara(),    // 3
             productBatchKomponent.getNetto(),   // 4
             productBatchKomponent.getOprID(),   // 5
-            productBatchKomponent.getPbID() + "," + productBatchKomponent.getRbID()
+            productBatchKomponent.getPbID() + "_" + productBatchKomponent.getRbID()
             ));}
 
         out.print(sb.toString());

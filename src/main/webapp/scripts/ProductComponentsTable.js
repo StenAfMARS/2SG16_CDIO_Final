@@ -35,7 +35,7 @@ function loadProductBatchKomponents() {
 }
 
 function addProductBatchKomponentOnTable(productBatchKomponent) {
-    let sel = productBatchKomponent.pbID + "," + productBatchKomponent.rbID;
+    let sel = productBatchKomponent.pbID + "_" + productBatchKomponent.rbID;
 
     return `<tr id="tr${sel}"><form id=\"${sel}\"></form>
         <td><input form=\"${sel}\" type=\"number\" name=\"pbID\" value=\"${productBatchKomponent.pbID}\" readonly=\"readonly\"></td>
