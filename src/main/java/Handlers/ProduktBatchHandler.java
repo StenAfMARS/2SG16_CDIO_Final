@@ -5,10 +5,7 @@ import DTO.ProduktBatchKompDTO;
 import Exceptions.DALException;
 import Interfaces.IProduktBatchHandler;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -93,6 +90,39 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
         return products;
     }
 
+    public int[] getProduktBatchListOfUnfinishedProducts() throws DALException, SQLException {
+        int i;
+        Array productlist = null;
+
+        try {
+            // CONNECT
+            Connection connection = DatabaseHandler.connect();
+
+            // Set statement
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT pbId FROM produktBatch WHERE status != 2");
+
+            // Set variables
+
+            // Read reply
+            ResultSet resultSet = statement.executeQuery();
+            productlist = resultSet.getArray("pbID");
+
+            // close things
+            connection.close();
+            resultSet.close();
+            statement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // return result
+
+
+
+        return (int[])productlist.getArray();
+    }
     @Override
     public void createProduktBatch(ProduktBatchDTO produktbatch) throws DALException {
 
