@@ -30,13 +30,13 @@ public class VægtHandler {
 
         return raavareID;
     }
-    public List<Integer> getReceptID(int id)throws DALException, SQLException{
-        List<Integer> commodetyIDList = new ArrayList<>();
+    public List<ReceptKomponentDTO> getReceptID(int id)throws DALException, SQLException{
+        List<ReceptKomponentDTO> commodetyList = new ArrayList<>();
         try{
             Connection connection = DatabaseHandler.connect();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT fk_raavareID\n" +
+                    "SELECT fk_receptID, fk_raavareID, nonNetto, tolerance\n" +
                             "FROM produktBatch\n" +
                             "join productBatchComponents on pbID = fk_pbID\n" +
                             "join RecebtComponents on produktBatch.fk_ReceptID = RecebtComponents.fk_ReceptID\n" +
@@ -55,7 +55,11 @@ public class VægtHandler {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()){
-                commodetyIDList.add(resultSet.getInt(1));
+                commodetyList.add(new ReceptKomponentDTO(
+                        resultSet.getInt(1),
+                        resultSet.getInt(2),
+                        resultSet.getDouble(3),
+                        resultSet.getDouble(4)));
             }
 
 
@@ -68,7 +72,7 @@ public class VægtHandler {
             throw new DALException("Could not find recept component");
         }
 
-        return commodetyIDList;
+        return commodetyList;
     }
     public void afmålt(int laborantID, int pbID, int rbID, double mTara, double mNetto){
         ProduktBatchHandler pbHandler = new ProduktBatchHandler();

@@ -3,6 +3,7 @@ package API;
 import DTO.ProduktBatchKompDTO;
 import DTO.ReceptKomponentDTO;
 import Handlers.ProduktBatchHandler;
+import Handlers.ReceptHandler;
 import Handlers.VægtHandler;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -20,8 +20,17 @@ public class VægtAPI {
 
     @GET
     @Path("{id : [0-9]+}")
-    public static int nextComponent(@PathParam("id") int pbID){
-        return 1;
+    public static ReceptKomponentDTO nextComponent(@Context HttpServletResponse response, @PathParam("id") int pbID) throws IOException {
+        VægtHandler vægtHandler = new VægtHandler();
+
+        try {
+            return vægtHandler.getReceptID(pbID).get(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendError(500);
+        }
+
+        return null;
     }
 
     @GET

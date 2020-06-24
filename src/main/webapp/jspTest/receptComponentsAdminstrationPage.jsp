@@ -1,6 +1,4 @@
 <%@ page import="java.util.List" %>
-<%@ page import="Handlers.ProduktBatchHandler" %>
-<%@ page import="DTO.ProduktBatchKompDTO" %>
 <%@ page import="DTO.ReceptKomponentDTO" %>
 <%@ page import="Handlers.ReceptHandler" %>
 <%
