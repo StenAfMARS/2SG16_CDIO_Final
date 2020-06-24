@@ -59,7 +59,7 @@
                     receptKomponent.getRaavareID(),    // 2
                     receptKomponent.getNonNetto(),    // 3
                     receptKomponent.getTolerance(),   // 4
-                    receptKomponent.getReceptID() + "," + receptKomponent.getRaavareID()
+                    receptKomponent.getReceptID() + "_" + receptKomponent.getRaavareID()
             ));}
 
         out.print(sb.toString());

@@ -35,7 +35,7 @@ function loadReceptKomponents() {
 }
 
 function addReceptKomponentOnTable(receptKomponent) {
-    let sel = receptKomponent.receptID + "," + receptKomponent.raavareID;
+    let sel = receptKomponent.receptID + "_" + receptKomponent.raavareID;
 
     return `<tr id="tr${sel}"><form id=\"${sel}\"></form>
         <td><input form=\"${sel}\" type=\"number\" name=\"receptID\" value=\"${receptKomponent.receptID}\" readonly=\"readonly\"></td>
