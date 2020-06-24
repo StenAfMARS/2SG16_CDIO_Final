@@ -26,16 +26,15 @@ function loadReceptKomponents(ID) {
     );
 }
 
-function sendAfvejning(){
+function sendAfvejning(id){
     var data = JSON.stringify({
         pbID:document.pbID,
         rbID:document.getElementsByName("rbID")[0].value,
         tara:document.getElementsByName("tara")[0].value,
         netto:document.getElementsByName("netto")[0].value
     });
-
     $.ajax({
-        url: '../rest/afvejning/' + USERID,
+        url: '../rest/afvejning/' + id,
         method: 'post',
         data: data,
         contentType: "application/json", // det vi sender er json

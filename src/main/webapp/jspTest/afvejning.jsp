@@ -16,6 +16,9 @@
 <script src="../scripts/afvejning.js"></script>
 
 <body>
+<%
+    String currentUName=(String)session.getAttribute("sessionUserID");
+%>
     <form id="productBatch">
         <label>vælg et productbatch</label>
         <select form="productBatch" name="products" id="Products">
@@ -55,7 +58,7 @@
         <input form="afvejning" name="tara" type="number" step="any">
         <label>indtast netto</label>
         <input form="afvejning" name="netto" type="number" step="any">
-        <a onclick="sendAfvejning()">afregn</a>
+        <a onclick="sendAfvejning(<%out.print(currentUName);%>)">afregn</a>
     </form>
 </body>
 </html>
