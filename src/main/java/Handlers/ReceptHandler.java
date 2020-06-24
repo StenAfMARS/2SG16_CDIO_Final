@@ -187,8 +187,8 @@ public class ReceptHandler implements IReceptHandler {
 
             while (resultSet.next()){
                 receptKomponentList.add(new ReceptKomponentDTO(
-                        resultSet.getInt("fk_RaavareID"),
                         resultSet.getInt("fk_ReceptID"),
+                        resultSet.getInt("fk_RaavareID"),
                         resultSet.getDouble("nonNetto"),
                         resultSet.getDouble("tolerance")
                     )
@@ -222,8 +222,8 @@ public class ReceptHandler implements IReceptHandler {
 
             while (resultSet.next()){
                 receptKomponentList.add(new ReceptKomponentDTO(
-                                resultSet.getInt("fk_RaavareID"),
                                 resultSet.getInt("fk_ReceptID"),
+                                resultSet.getInt("fk_RaavareID"),
                                 resultSet.getDouble("nonNetto"),
                                 resultSet.getDouble("tolerance")
                         )
@@ -274,13 +274,14 @@ public class ReceptHandler implements IReceptHandler {
             Connection connection = DatabaseHandler.connect();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "update RecebtComponents set fk_RaavareID = ?, nonNetto = ?, tolerance = ?, fk_ReceptID = ? where fk_ReceptId = ?");
+                    "update RecebtComponents set nonNetto = ?, tolerance = ? where fk_ReceptID = ? AND fk_RaavareID = ?");
 
-            statement.setInt(1, receptKomponent.getRaavareID());
-            statement.setDouble(2, receptKomponent.getNonNetto());
-            statement.setDouble(3, receptKomponent.getTolerance());
-            statement.setInt(4, receptKomponent.getReceptID());
-            statement.setInt(5, receptKomponent.getReceptID());
+
+            statement.setDouble(1, receptKomponent.getNonNetto());
+            statement.setDouble(2, receptKomponent.getTolerance());
+            statement.setInt(3, receptKomponent.getReceptID());
+            statement.setInt(4, receptKomponent.getRaavareID());
+
 
             statement.execute();
 
