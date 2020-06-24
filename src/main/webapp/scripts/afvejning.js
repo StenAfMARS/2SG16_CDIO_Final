@@ -35,7 +35,7 @@ function sendAfvejning(){
     });
 
     $.ajax({
-        url: '../rest/afvejning',
+        url: '../rest/afvejning/' + USERID,
         method: 'post',
         data: data,
         contentType: "application/json", // det vi sender er json
