@@ -136,7 +136,7 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "insert into produktBatch (status, receptID) values ( ?, ?)");
+                    "insert into produktBatch (status, fk_receptID) values ( ?, ?)");
 
             // Set variables
             statement.setInt(1, produktbatch.getStatus());
