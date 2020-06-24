@@ -31,7 +31,7 @@ function sendAfvejning(id){
         pbID:document.pbID,
         rbID:document.getElementsByName("rbID")[0].value,
         tara:document.getElementsByName("tara")[0].value,
-        netto:document.getElementsByName("netto")[0].value
+        netto:document.getElementsByName("netto")[0].value - document.getElementsByName("tara")[0].value
     });
     $.ajax({
         url: '../rest/afvejning/' + id,
