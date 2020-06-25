@@ -48,6 +48,11 @@
                         recept komboneter Panel
                     </a>
                 </li>
+                <li id="receptComponentsPanel" class="kc30 kc40 kc100 kc">
+                    <a onclick="switchPage('../jspTest/afvejning.jsp')">
+                        afvejnings system
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>

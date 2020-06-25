@@ -38,7 +38,7 @@
             <th></th>
             <th><input form="createUser" type="text" name="userName"></th>
             <th><input form="createUser" type="text" name="ini"></th>
-            <th><input form="createUser" type="text" name="cpr"></th>
+            <th><input form="createUser" type="number" name="cpr"></th>
             <th><input form="createUser" type="text" name="password"></th>
             <th><input form="createUser" type="text" name="roles"></th>
             <th colspan="2"><input type="button" value="create" onclick="createUser($('#createUser'))"></th>
@@ -54,10 +54,10 @@
 
             for (UserDTO user : users) {
                 sb.append(String.format("<tr keycard=\"tr%1$s\"><form keycard=\"%1$s\"></form>" +
-                    "<td><input form=\"%1$s\" type=\"text\" name=\"userID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
+                    "<td><input form=\"%1$s\" type=\"number\" name=\"userID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
                     "<td><input form=\"%1$s\" type=\"text\" name=\"userName\" value=\"%2$s\"></td>" +
                     "<td><input form=\"%1$s\" type=\"text\" name=\"ini\" value=\"%3$s\"></td>" +
-                    "<td><input form=\"%1$s\" type=\"text\" name=\"cpr\" value=\"%4$s\"></td>" +
+                    "<td><input form=\"%1$s\" type=\"number\" name=\"cpr\" value=\"%4$s\"></td>" +
                     "<td><input form=\"%1$s\" type=\"text\" name=\"password\" value=\"%5$s\"></td>" +
                     "<td><input form=\"%1$s\" type=\"text\" name=\"roles\" value=\"%6$s\"></td>" +
                     "<td><input type=\"button\" value=\"opdater\" onclick=\"updateUser($(\'#userTable #%1$s\'));\"></td>" +

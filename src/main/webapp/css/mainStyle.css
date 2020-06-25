@@ -105,3 +105,33 @@ main table thead {
 #loginForm .wrapper a:hover{
     background-color: white;
 }
+#productBatch{
+    position: relative;
+    width: 100%;
+    font-size: 32px;
+    margin: 4px auto;
+}
+#productBatch select{
+    display: block;
+    width: 100%;
+    position: relative;
+}
+
+#productBatch a{
+    background-color: #798894;
+    display: inline-block;
+    font-size: 22px;
+    margin: 4px auto;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+#afvejning a{
+    background-color: #798894;
+    display: inline-block;
+    font-size: 22px;
+    margin: 4px auto;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}

@@ -29,7 +29,7 @@
     </tr>
     <tr>
         <form id="createRecept"></form>
-        <th><input form="createRecept" type="text" name="receptID"></th>
+        <th><input form="createRecept" type="number" min="0" name="receptID"></th>
         <th><input form="createRecept" type="text" name="receptNavn"></th>
         <th colspan="2"><input type="button" value="create" onclick="createRecept($('#createRecept'))"></th>
     </tr>
@@ -44,7 +44,7 @@
 
         for (ReceptDTO recept : recepter) {
         sb.append(String.format("<tr id=\"tr%1$s\"><form id=\"%1$s\"></form>" +
-            "<td><input form=\"%1$s\" type=\"text\" name=\"receptID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
+            "<td><input form=\"%1$s\" type=\"number\" min=\"0\" name=\"receptID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
             "<td><input form=\"%1$s\" type=\"text\" name=\"receptNavn\" value=\"%2$s\"></td>" +
             "<td><input type=\"button\" value=\"opdater\" onclick=\"updateRecept($(\'#receptTable #%1$s\'));\"></td></tr>",
         recept.getReceptID(),   // 1

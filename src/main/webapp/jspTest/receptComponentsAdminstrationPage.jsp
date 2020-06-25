@@ -1,6 +1,4 @@
 <%@ page import="java.util.List" %>
-<%@ page import="Handlers.ProduktBatchHandler" %>
-<%@ page import="DTO.ProduktBatchKompDTO" %>
 <%@ page import="DTO.ReceptKomponentDTO" %>
 <%@ page import="Handlers.ReceptHandler" %>
 <%
@@ -32,10 +30,10 @@
     </tr>
     <tr>
         <form id="createReceptKomponent"></form>
-        <th><input form="createReceptKomponent" type="number" name="receptID"></th>
-        <th><input form="createReceptKomponent" type="number" name="raavareID"></th>
-        <th><input form="createReceptKomponent" type="number" name="nonNetto" step="0.001"></th>
-        <th><input form="createReceptKomponent" type="number" name="tolerance" step="0.001"></th>
+        <th><input form="createReceptKomponent" type="number" min="0" name="receptID"></th>
+        <th><input form="createReceptKomponent" type="number" min="0" name="raavareID"></th>
+        <th><input form="createReceptKomponent" type="number" min="0" name="nonNetto" step="0.001"></th>
+        <th><input form="createReceptKomponent" type="number" min="0" name="tolerance" step="0.001"></th>
         <th><input type="button" value="create" onclick="createReceptKomponent($('#createReceptKomponent'))"></th>
     </tr>
     </thead>
@@ -49,10 +47,10 @@
 
         for (ReceptKomponentDTO receptKomponent : receptKomponents) {
             sb.append(String.format("<tr id=\"tr%5$s\"><form id=\"%5$s\"></form>" +
-                            "<td><input form=\"%5$s\" type=\"number\" name=\"receptID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
-                            "<td><input form=\"%5$s\" type=\"number\" name=\"raavareID\" value=\"%2$s\" readonly=\"readonly\"></td>" +
-                            "<td><input form=\"%5$s\" type=\"number\" name=\"nonNetto\" value=\"%3$s\" step=\"0.001\"></td>" +
-                            "<td><input form=\"%5$s\" type=\"number\" name=\"tolerance\" value=\"%4$s\" step=\"0.001\"></td>" +
+                            "<td><input form=\"%5$s\" type=\"number\" min=\"0\" name=\"receptID\" value=\"%1$s\" readonly=\"readonly\"></td>" +
+                            "<td><input form=\"%5$s\" type=\"number\" min=\"0\" name=\"raavareID\" value=\"%2$s\" readonly=\"readonly\"></td>" +
+                            "<td><input form=\"%5$s\" type=\"number\" min=\"0\" name=\"nonNetto\" value=\"%3$s\" step=\"0.001\"></td>" +
+                            "<td><input form=\"%5$s\" type=\"number\" min=\"0\" name=\"tolerance\" value=\"%4$s\" step=\"0.001\"></td>" +
                             "<td><input type=\"button\" value=\"opdater\" onclick=\"updateReceptKomponent($(\'#receptKomponentTable #%5$s\'));\"></td></tr>",
                     receptKomponent.getReceptID(),    // 1
                     receptKomponent.getRaavareID(),    // 2

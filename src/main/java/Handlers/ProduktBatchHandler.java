@@ -5,10 +5,8 @@ import DTO.ProduktBatchKompDTO;
 import Exceptions.DALException;
 import Interfaces.IProduktBatchHandler;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -93,6 +91,42 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
         return products;
     }
 
+    public Integer[] getProduktBatchListOfUnfinishedProducts() throws DALException, SQLException {
+        List<Integer> productlist = new ArrayList<>();
+
+        try {
+            // CONNECT
+            Connection connection = DatabaseHandler.connect();
+
+            // Set statement
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT pbId FROM produktBatch WHERE status != 2");
+
+            // Set variables
+
+            // Read reply
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                productlist.add(resultSet.getInt(1));
+            }
+
+            // close things
+            connection.close();
+            resultSet.close();
+            statement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        // return result
+
+        Integer[] integers = new Integer[productlist.size()];
+        productlist.toArray(integers);
+
+        return integers;
+    }
+
     @Override
     public void createProduktBatch(ProduktBatchDTO produktbatch) throws DALException {
 
@@ -102,7 +136,7 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
 
             // Set statement
             PreparedStatement statement = connection.prepareStatement(
-                    "insert into produktBatch (status, receptID) values ( ?, ?)");
+                    "insert into produktBatch (status, fk_receptID) values ( ?, ?)");
 
             // Set variables
             statement.setInt(1, produktbatch.getStatus());
@@ -138,9 +172,6 @@ public class ProduktBatchHandler implements IProduktBatchHandler {
             statement.setInt(2, produktbatch.getStatus());
             statement.setInt(3, produktbatch.getReceptID());
             statement.setInt(4, produktbatch.getPbID());
-
-
-
 
             // Execute
             statement.execute();

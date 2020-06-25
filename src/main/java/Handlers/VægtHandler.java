@@ -1,30 +1,67 @@
 package Handlers;
 
 import DTO.ProduktBatchKompDTO;
+import DTO.RaavareBatchDTO;
 import DTO.ReceptKomponentDTO;
 import Exceptions.DALException;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class VægtHandler {
 
-    public int producer(int produktBatchID){
-        int raavareID = 0;
+    public List<ReceptKomponentDTO> getReceptID(int id)throws DALException, SQLException{
+        List<ReceptKomponentDTO> commodetyList = new ArrayList<>();
+        try{
+            Connection connection = DatabaseHandler.connect();
 
-        // Skaffe receptID fra produktBach med produktBatchID
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT produktBatch.fk_receptID, fk_raavareID, nonNetto, tolerance\n" +
+                            "FROM produktBatch\n" +
+                            "join productBatchComponents on pbID = fk_pbID\n" +
+                            "join RecebtComponents on produktBatch.fk_ReceptID = RecebtComponents.fk_ReceptID\n" +
+                            "where pbID = ? and \n" +
+                            "fk_raavareID not in\n" +
+                            "(SELECT fk_raavareID\n" +
+                            "FROM produktBatch\n" +
+                            "join productBatchComponents on pbID = fk_pbID\n" +
+                            "join raavareBatch on fk_rbID = rbID\n" +
+                            "where pbID = ?)");
 
-        // Find alle receptKomponents med den rigtige receptID
+            statement.setInt(1, id);
+            statement.setInt(2, id);
+            statement.execute();
 
-        /*
-        SQL statement der får alle receptKomponents med den rigtige receptID og som ikke matcher en produktbatchComponent på raavareID (skaffet medrbID)
-         */
+            ResultSet resultSet = statement.executeQuery();
 
-        // returner den første
-        //
-        // hvis tom kast en fejl
+            while (resultSet.next()){
+                commodetyList.add(new ReceptKomponentDTO(
+                        resultSet.getInt(1),
+                        resultSet.getInt(2),
+                        resultSet.getDouble(3),
+                        resultSet.getDouble(4)));
+            }
 
-        return raavareID;
+
+            connection.close();
+            resultSet.close();
+            statement.close();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new DALException("Could not find recept component");
+        }
+
+        return commodetyList;
     }
+    public void afmaalt(int laborantID, int pbID, int rbID, double mTara, double mNetto) throws DALException {
+        if (mNetto < 0)
+            throw new DALException("mNetto can't be negative");
 
-    public void afmålt(int laborantID, int pbID, int rbID, double mTara, double mNetto){
         ProduktBatchHandler pbHandler = new ProduktBatchHandler();
         ReceptHandler receptHandler = new ReceptHandler();
         RaavareBatchHandler rbHandler = new RaavareBatchHandler();
@@ -46,9 +83,14 @@ public class VægtHandler {
         if ((100 - tolerance)/100 * nonNetto < mNetto
                 && mNetto < (100 + tolerance)/100 * nonNetto){
 
-            new ProduktBatchHandler().createProduktBatchKompDTO(
+            pbHandler.createProduktBatchKompDTO(
                     new ProduktBatchKompDTO(pbID, rbID, mTara, mNetto, laborantID)
             );
+
+            RaavareBatchDTO rb = rbHandler.getRaavareBatch(rbID);
+            rb.setMaengde(rb.getMaengde() - mNetto);
+
+            rbHandler.updateRaavareBatch(rb);
         } else {
             throw new DALException("Incorrect weight");
         }

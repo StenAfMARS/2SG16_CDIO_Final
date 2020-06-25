@@ -31,7 +31,7 @@
     </tr>
     <tr>
         <form id="createProductBatch"></form>
-        <th><input form="createProductBatch" type="text" name="pbID"></th>
+        <th></th>
         <th><input form="createProductBatch" type="text" name="status"></th>
         <th><input form="createProductBatch" type="text" name="receptID"></th>
         <th colspan="2"><input type="button" value="create" onclick="createProductBatch($('#createProductBatch'))"></th>
